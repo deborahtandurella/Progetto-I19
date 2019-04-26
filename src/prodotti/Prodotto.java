@@ -1,5 +1,7 @@
 package prodotti;
 
+//Commento per commit test
+
 public class Prodotto {
     private String nome, descrizione;
     private float prezzo;
