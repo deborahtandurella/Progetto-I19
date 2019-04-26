@@ -1,5 +1,5 @@
 package ordinazioni;
 
-public enum StatoOrdinazione {
+public enum StatoOrdinazione  {
     ORDINATO, LAVORAZIONE, CONSEGNATO
 }

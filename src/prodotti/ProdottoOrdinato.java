@@ -1,4 +1,3 @@
-package prodotti;
 
 public class ProdottoOrdinato {
     private Prodotto prodotto;
@@ -17,3 +16,4 @@ public class ProdottoOrdinato {
         return quantita;
     }
 }
+
