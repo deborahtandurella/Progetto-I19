@@ -1,4 +1,4 @@
-package src.ordinazioni;
+package ordinazioni;
 
 public enum StatoOrdinazione {
     ORDINATO, LAVORAZIONE, CONSEGNATO
