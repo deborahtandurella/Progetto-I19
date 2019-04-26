@@ -1,6 +1,4 @@
-package prodotti;
-
-//Commento per commit test
+package src.prodotti;
 
 public class Prodotto {
     private String nome, descrizione;

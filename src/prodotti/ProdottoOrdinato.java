@@ -1,4 +1,4 @@
-package prodotti;
+package src.prodotti;
 
 public class ProdottoOrdinato {
     private Prodotto prodotto;
