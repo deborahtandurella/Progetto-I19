@@ -1,3 +1,4 @@
+package prodotti;
 
 public class ProdottoOrdinato {
     private Prodotto prodotto;

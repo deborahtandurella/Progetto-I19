@@ -1,3 +1,4 @@
+package ordinazioni;
 
 public interface OrdinazioneInterface extends ProdottoOrdinato {
 

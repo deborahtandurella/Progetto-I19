@@ -1,5 +1,5 @@
+package ordinazioni;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Ordinazione implements OrdinazineInterface  extends StatoOrdinazione{
@@ -20,6 +20,8 @@ public class Ordinazione implements OrdinazineInterface  extends StatoOrdinazion
     public boolean AggiungiOrdini(prodotti.Prodotto prodotto, int quantita){
 
         ordini.add(new ProdottoOrdinato(prodotto, quantita));
+
+        return true;
 
     }
 
