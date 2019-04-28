@@ -5,7 +5,7 @@ import prodotti.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Ordinazione implements OrdinazioneInterface extends StatoOrdinazione{
+public class Ordinazione implements OrdinazioneInterface {
 
     private int idTavolo;
     private int id;
@@ -20,12 +20,9 @@ public class Ordinazione implements OrdinazioneInterface extends StatoOrdinazion
         this.ordini  = new ArrayList<ProdottoOrdinato>();
     }
 
-    public boolean aggiungiOrdini(Prodotto prodotto, int quantita){
-
+    @Override
+    public boolean AggiungiOrdini(Prodotto prodotto, int quantita) {
         this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
         return true;
-
     }
-
-
 }
