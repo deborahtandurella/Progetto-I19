@@ -8,13 +8,13 @@ import java.util.List;
 public class Ordinazione implements OrdinazioneInterface {
 
     private int idTavolo;
-    private int id;
+    private int idOrdinazione;
     private StatoOrdinazione stato;
     private List<ProdottoOrdinato> ordini;
 
-    public Ordinazione(int idTavolo, int id, StatoOrdinazione stato){
+    public Ordinazione(int idTavolo, int idOrdinazione, StatoOrdinazione stato){
 
-        this.id = id;
+        this.idOrdinazione = idOrdinazione;
         this.idTavolo = idTavolo;
         this.stato = stato;
         this.ordini  = new ArrayList<ProdottoOrdinato>();
