@@ -2,7 +2,7 @@ package ordinazioni;
 
 import prodotti.*;
 
-public interface OrdinazioneInterface extends ProdottoOrdinato {
+public interface OrdinazioneInterface {
 
     public boolean AggiungiOrdini(Prodotto prodotto, int quantita);
 
