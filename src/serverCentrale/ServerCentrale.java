@@ -1,5 +1,7 @@
 package serverCentrale;
 
+import ordinazioni.Ordinazione;
+
 public class ServerCentrale implements InterfaceServerCentrale
 {
     
