@@ -5,11 +5,11 @@ import ordinazioni.Ordinazione;
 
 public interface InterfaceServerCentrale
 {
-    public boolean creaOrdinazione(idTavolo, ProdottoOrdinato p);
+    public boolean creaOrdinazione(int idTavolo, ProdottoOrdinato p);
 
-    public float getConto(idTavolo);
+    public float getConto(int idTavolo);
 
     public Ordinazione inviaOrdineCucina();
 
-    public void eliminaOrdinazione(idOrdinazione);
+    public void eliminaOrdinazione(int idOrdinazione);
 }
