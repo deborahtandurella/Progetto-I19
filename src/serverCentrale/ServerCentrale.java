@@ -2,8 +2,7 @@ package serverCentrale;
 
 public class ServerCentrale implements InterfaceServerCentrale
 {
-
-
+    
     @Override
     public boolean creaOrdinazione() {
         return false;

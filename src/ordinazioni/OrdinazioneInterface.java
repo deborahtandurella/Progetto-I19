@@ -1,9 +1,9 @@
 package ordinazioni;
 
-import prodotti.ProdottoOrdinato;
+import prodotti.*;
 
 public interface OrdinazioneInterface extends ProdottoOrdinato {
 
-    public boolean AggiungiOrdini(prodotti.Prodotto prodotto, int quantita);
+    public boolean AggiungiOrdini(Prodotto prodotto, int quantita);
 
 }

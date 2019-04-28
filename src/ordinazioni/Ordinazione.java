@@ -1,6 +1,6 @@
 package ordinazioni;
 
-import prodotti.ProdottoOrdinato;
+import prodotti.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,20 +10,19 @@ public class Ordinazione implements OrdinazioneInterface extends StatoOrdinazion
     private int idTavolo;
     private int id;
     private StatoOrdinazione stato;
-    private List<ProdottoOrdinato> ordini = new ArrayList<ProdottoOrdinato>();
+    private List<ProdottoOrdinato> ordini;
 
-    public Ordinazione(int idTavolo, int id, StatoOrdinazione stato, List<ProdottoOrdinato> ordini){
+    public Ordinazione(int idTavolo, int id, StatoOrdinazione stato){
 
         this.id = id;
         this.idTavolo = idTavolo;
         this.stato = stato;
-        this.ordini = ordini;
+        this.ordini  = new ArrayList<ProdottoOrdinato>();
     }
 
-    public boolean AggiungiOrdini(prodotti.Prodotto prodotto, int quantita){
+    public boolean aggiungiOrdini(Prodotto prodotto, int quantita){
 
-        ordini.add(new ProdottoOrdinato(prodotto, quantita));
-
+        this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
         return true;
 
     }
