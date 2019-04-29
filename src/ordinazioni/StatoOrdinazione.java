@@ -1,5 +1,5 @@
 package ordinazioni;
 
 public enum StatoOrdinazione  {
-    ORDINATO, LAVORAZIONE, CONSEGNATO
+    ORDINATO, LAVORAZIONE, CONSEGNATO,
 }

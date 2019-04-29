@@ -25,4 +25,6 @@ public class Ordinazione implements OrdinazioneInterface {
         this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
         return true;
     }
+
+
 }

@@ -1,6 +1,7 @@
 package serverCentrale;
 
 import ordinazioni.Ordinazione;
+import ordinazioni.StatoOrdinazione;
 import prodotti.ProdottoOrdinato;
 
 public class ServerCentrale implements InterfaceServerCentrale
@@ -8,11 +9,13 @@ public class ServerCentrale implements InterfaceServerCentrale
 
     @Override
     public boolean creaOrdinazione(int idTavolo) {
+        Ordinazione ordinazione= new Ordinazione(idTavolo);
         return false;
     }
 
     @Override
-    public float getConto(int idTavolo) {
+    public float getConto(int idTavolo){
+
         return 0;
     }
 
@@ -22,7 +25,9 @@ public class ServerCentrale implements InterfaceServerCentrale
     }
 
     @Override
-    public Ordinazione inviaOrdineCucina() {
+    public Ordinazione inviaOrdineCucina(Ordinazione ordine)
+    {
+        ordine.setStato(StatoOrdinazione.ORDINATO);
         return null;
     }
 
