@@ -4,6 +4,6 @@ import prodotti.*;
 
 public interface OrdinazioneInterface {
 
-    public boolean AggiungiOrdini(Prodotto prodotto, int quantita);
+    public boolean aggiungiOrdini(Prodotto prodotto, int quantita);
 
 }
