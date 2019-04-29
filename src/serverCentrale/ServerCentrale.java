@@ -7,7 +7,7 @@ public class ServerCentrale implements InterfaceServerCentrale
 {
 
     @Override
-    public boolean creaOrdinazione(int idTavolo, ProdottoOrdinato p) {
+    public boolean creaOrdinazione(int idTavolo) {
         return false;
     }
 

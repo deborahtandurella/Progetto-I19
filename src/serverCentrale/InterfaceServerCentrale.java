@@ -5,7 +5,7 @@ import ordinazioni.Ordinazione;
 
 public interface InterfaceServerCentrale
 {
-    public boolean creaOrdinazione(int idTavolo, ProdottoOrdinato p);
+    public boolean creaOrdinazione(int idTavolo);
 
     public float getConto(int idTavolo);
 
