@@ -13,10 +13,10 @@ public class Ordinazione implements OrdinazioneInterface {
     private List<ProdottoOrdinato> ordini;
     private static int progressive = 1;
 
-    public Ordinazione(int idTavolo, StatoOrdinazione stato){
+    public Ordinazione(int idTavolo){
         this.idOrdinazione = progressive++;
         this.idTavolo = idTavolo;
-        this.stato = stato;
+        this.stato = null;
         this.ordini  = new ArrayList<ProdottoOrdinato>();
     }
 
