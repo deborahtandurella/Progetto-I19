@@ -20,6 +20,10 @@ public class Ordinazione implements OrdinazioneInterface {
         this.ordini  = new ArrayList<ProdottoOrdinato>();
     }
 
+    public void setStato(StatoOrdinazione stato) {
+        this.stato = stato;
+    }
+
     @Override
     public boolean AggiungiOrdini(Prodotto prodotto, int quantita) {
         this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
