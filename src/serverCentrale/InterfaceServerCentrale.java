@@ -9,7 +9,7 @@ public interface InterfaceServerCentrale
 
     public float getConto(int idTavolo);
 
-    public Ordinazione inviaOrdineCucina();
+    public Ordinazione inviaOrdineCucina(Ordinazione ordine);
 
     public void eliminaOrdinazione(int idOrdinazione);
 }
