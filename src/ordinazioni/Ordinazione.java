@@ -2,6 +2,8 @@ package ordinazioni;
 
 import prodotti.*;
 
+import java.sql.Time;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,6 +13,7 @@ public class Ordinazione implements OrdinazioneInterface {
     private String idOrdinazione;
     private StatoOrdinazione stato;
     private ArrayList<ProdottoOrdinato> ordini;
+    private LocalDateTime tempoInizioElaborazione;
 
     public Ordinazione(int idTavolo){
     	
@@ -20,6 +23,7 @@ public class Ordinazione implements OrdinazioneInterface {
         this.idTavolo = idTavolo;
         this.stato = null;
         this.ordini  = new ArrayList<ProdottoOrdinato>();
+        this.tempoInizioElaborazione =  LocalDateTime.now();
     }
     
     public float getContoParziale(){
@@ -56,6 +60,17 @@ public class Ordinazione implements OrdinazioneInterface {
 	public ArrayList<ProdottoOrdinato> getOrdini() {
 		return ordini;
 	}
+
+	public void eliminaProdotto(Prodotto p)
+    {
+        for (ProdottoOrdinato prodotti : ordini)
+        {
+            if(prodotti.getProdotto().equals(p))
+            {
+                ordini.remove(prodotti);
+            }
+        }
+    }
 
 
 }
