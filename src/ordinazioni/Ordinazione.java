@@ -7,6 +7,7 @@ import prodotti.*;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -33,7 +34,7 @@ public class Ordinazione implements OrdinazioneInterface {
     public float getContoParziale(){
     	
     	float totale=0;
-    	for (ProdottoOrdinato p : ordini){
+    	for (ProdottoOrdinato p : ordini) {
     		totale=p.getCostoParziale()+totale;
     	}
     	return totale;
@@ -90,5 +91,16 @@ public class Ordinazione implements OrdinazioneInterface {
 
     public void setTempoInizioOrdinato() {
         this.tempoInizioOrdinato = LocalDateTime.now();
+    }
+
+    public LocalDateTime getTempoInizioOrdinato() {
+        return tempoInizioOrdinato;
+    }
+
+    public  LocalDateTime getTempoEffettivoOrdinato() {
+        //TemporalAmount t;
+        LocalDateTime temp = LocalDateTime.now();
+        temp=temp.minusMinutes(tempoInizioOrdinato.getMinute());
+        return  temp;
     }
 }
