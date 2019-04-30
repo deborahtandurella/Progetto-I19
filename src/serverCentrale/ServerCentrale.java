@@ -7,7 +7,7 @@ import prodotti.ProdottoOrdinato;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServerCentrale implements InterfaceServerCentrale
+public class ServerCentrale implements ServerCentraleInterface
 {
 
     private List<Ordinazione> ordini;

@@ -3,7 +3,7 @@ package serverCentrale;
 import prodotti.ProdottoOrdinato;
 import ordinazioni.Ordinazione;
 
-public interface InterfaceServerCentrale
+public interface ServerCentraleInterface
 {
     public boolean creaOrdinazione(int idTavolo);
 

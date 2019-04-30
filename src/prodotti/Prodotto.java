@@ -1,13 +1,12 @@
 package prodotti;
 
 public class Prodotto {
-    private String nome, descrizione;
+    private String nome;
     private float prezzo;
 
-    public Prodotto(String nome, String descrizione,float prezzo) {
+    public Prodotto(String nome,float prezzo) {
         this.nome = nome;
         this.prezzo = prezzo;
-        this.descrizione = descrizione;
     }
 
     public float getPrezzo() {
@@ -16,10 +15,6 @@ public class Prodotto {
 
     public String getNome() {
         return nome;
-    }
-
-    public String getDescrizione() {
-        return descrizione;
     }
 
     @Override
