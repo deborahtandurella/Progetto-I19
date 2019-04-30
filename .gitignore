@@ -91,3 +91,5 @@ fabric.properties
 
 # Ecplise
 .project
+.classpath
+/bin/
