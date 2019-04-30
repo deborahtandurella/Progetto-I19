@@ -68,7 +68,11 @@ public class ServerCentrale implements ServerCentraleInterface {
 		return menu;
 	}
 
-	public void setMenu(ArrayList<Prodotto> menu) {
-		this.menu = menu;
+	@Override
+	public void aggiungiProdottoMenu(Prodotto prodotto) {
+		this.menu.add(prodotto);
+		
 	}
+	
+	
 }
