@@ -18,7 +18,7 @@ public class Ordinazione implements OrdinazioneInterface {
     private String idOrdinazione;
     private StatoOrdinazione stato;
     private ArrayList<ProdottoOrdinato> ordini;
-    private LocalDateTime tempoInizioElaborazione;
+    private LocalDateTime tempoInizioOrdinato;
 
     public Ordinazione(int idTavolo){
     	
@@ -28,7 +28,6 @@ public class Ordinazione implements OrdinazioneInterface {
         this.idTavolo = idTavolo;
         this.stato = null;
         this.ordini  = new ArrayList<ProdottoOrdinato>();
-        this.tempoInizioElaborazione =  LocalDateTime.now();
     }
     
     public float getContoParziale(){
@@ -89,5 +88,7 @@ public class Ordinazione implements OrdinazioneInterface {
         }
     }
 
-
+    public void setTempoInizioOrdinato() {
+        this.tempoInizioOrdinato = LocalDateTime.now();
+    }
 }

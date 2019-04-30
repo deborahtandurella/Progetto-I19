@@ -51,6 +51,7 @@ public class ServerCentrale implements ServerCentraleInterface {
 		}
 
 		ordinazione.setStato(StatoOrdinazione.ORDINATO);
+		ordinazione.setTempoInizioOrdinato();
 		return true;
 	}
 
