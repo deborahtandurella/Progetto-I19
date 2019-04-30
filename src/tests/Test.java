@@ -11,9 +11,9 @@ public class Test {
 
 	public static void main(String[] args) {
 		
-		Prodotto p1= new Prodotto("pasta",10);				//creo prodotti 
-		Prodotto p2= new Prodotto("riso",12);
-		Prodotto p3= new Prodotto("carne",18);
+		Prodotto p1= new Prodotto("pasta",10,"pasta carbonara");				//creo prodotti 
+		Prodotto p2= new Prodotto("riso",12,"riso carnaroli");
+		Prodotto p3= new Prodotto("carne",18,"carne rossa");
 		
 		ArrayList<Prodotto> a=new ArrayList<Prodotto>();				//creo arraylist per immissione prodotti
 		a.add(p1);
