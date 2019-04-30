@@ -26,7 +26,9 @@ public class ServerCentrale implements ServerCentraleInterface {
 	public float getConto(int idTavolo) {
 		float totale = 0;
 		for(Ordinazione ordine : this.listaOrdinazioni) {
-			totale += ordine.getContoParziale();
+			if(ordine.getIdTavolo() == idTavolo) {
+				totale += ordine.getContoParziale();
+			}
 		}
 		return totale;
 	}
