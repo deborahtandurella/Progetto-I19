@@ -71,6 +71,12 @@ public class ServerCentrale implements ServerCentraleInterface {
 		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
 		ordinazione.aggiungiOrdini(prodotto, quantita);
 	}
+
+	@Override
+	public StatoOrdinazione getStatoOrdinazione(String idOrdinazione) {
+		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
+		return ordinazione.getStato();
+	}
 	
 	
 }

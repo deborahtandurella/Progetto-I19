@@ -2,6 +2,7 @@ package serverCentrale;
 
 import java.util.ArrayList;
 import ordinazioni.Ordinazione;
+import ordinazioni.StatoOrdinazione;
 import prodotti.Prodotto;
 
 public interface ServerCentraleInterface
@@ -13,4 +14,5 @@ public interface ServerCentraleInterface
     public boolean eleminaOrdinazione(String idOrdinazione);
     public void aggiungiProdottoMenu(Prodotto prodotto);
     public void aggiungiProdottoOrdinazine(String idOrdinazione, Prodotto prodotto, int quantita);
+    public StatoOrdinazione getStatoOrdinazione(String idOrdinazione);
 }
