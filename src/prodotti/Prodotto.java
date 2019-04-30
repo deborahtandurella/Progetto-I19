@@ -19,7 +19,7 @@ public class Prodotto {
 
     @Override
     public String toString() {
-        return  '\n' + nome + '|' + descrizione + '|' + prezzo;
+        return  '\n' + nome + '|' + prezzo;
     }
 }
 
