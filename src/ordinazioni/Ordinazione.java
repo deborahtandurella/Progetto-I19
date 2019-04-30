@@ -3,7 +3,6 @@ package ordinazioni;
 import prodotti.*;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Ordinazione implements OrdinazioneInterface {
