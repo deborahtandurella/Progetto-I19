@@ -4,20 +4,32 @@ import prodotti.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Ordinazione implements OrdinazioneInterface {
 
     private int idTavolo;
-    private int idOrdinazione;
+    private String idOrdinazione;
     private StatoOrdinazione stato;
-    private List<ProdottoOrdinato> ordini;
-    private static int progressive = 1;
+    private ArrayList<ProdottoOrdinato> ordini;
 
     public Ordinazione(int idTavolo){
-        this.idOrdinazione = progressive++;
+    	
+    	Random rand = new Random();
+    	int n=rand.nextInt(99)+1;
+        this.idOrdinazione = idTavolo+":"+n;
         this.idTavolo = idTavolo;
         this.stato = null;
         this.ordini  = new ArrayList<ProdottoOrdinato>();
+    }
+    
+    public float getContoParziale(){
+    	
+    	float totale=0;
+    	for (ProdottoOrdinato p : ordini){
+    		totale=p.getCostoParziale()+totale;
+    	}
+    	return totale;
     }
 
     public void setStato(StatoOrdinazione stato) {
@@ -29,6 +41,8 @@ public class Ordinazione implements OrdinazioneInterface {
         this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
         return true;
     }
+
+	
 
 
 }
