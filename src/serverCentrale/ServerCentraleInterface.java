@@ -8,8 +8,7 @@ public interface ServerCentraleInterface
     public Ordinazione creaOrdinazione(int idTavolo);
     public float getConto(int idTavolo);
     public boolean inviaOrdine(Ordinazione ordinazione);
-    public ArrayList<Ordinazione> getOrdiniCucina();
-    public ArrayList<Ordinazione> getOrdiniCaffetteria();
+    public ArrayList<Ordinazione> getOrdiniInviati();
     public boolean eleminaOrindazione(Ordinazione ordinazione);
     
 }
