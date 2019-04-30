@@ -12,4 +12,5 @@ public interface ServerCentraleInterface
     public ArrayList<Ordinazione> getOrdiniInviati();
     public boolean eleminaOrdinazione(String idOrdinazione);
     public void aggiungiProdottoMenu(Prodotto prodotto);
+    public void aggiungiProdottoOrdinazine(String idOrdinazione, Prodotto prodotto, int quantita);
 }

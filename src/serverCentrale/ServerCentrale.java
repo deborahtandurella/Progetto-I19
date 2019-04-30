@@ -65,6 +65,12 @@ public class ServerCentrale implements ServerCentraleInterface {
 		this.menu.add(prodotto);
 		
 	}
+
+	@Override
+	public void aggiungiProdottoOrdinazine(String idOrdinazione, Prodotto prodotto, int quantita) {
+		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
+		ordinazione.aggiungiOrdini(prodotto, quantita);
+	}
 	
 	
 }
