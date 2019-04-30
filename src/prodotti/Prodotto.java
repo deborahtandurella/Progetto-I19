@@ -5,12 +5,14 @@ public class Prodotto {
     private final float prezzo;
     private final String descrizione;
     private int tempoPreparazione;
+    private TipoProdotto tipo;
 
-    public Prodotto(String nome,float prezzo, String descrizione, int tempoPreparazione) {
+    public Prodotto(String nome,float prezzo, String descrizione, int tempoPreparazione, TipoProdotto tipo) {
         this.nome = nome;
         this.prezzo = prezzo;
         this.descrizione = descrizione;
         this.tempoPreparazione = tempoPreparazione;
+        this.tipo= tipo;
     }
 
     public float getPrezzo() {
@@ -30,6 +32,14 @@ public class Prodotto {
     @Override
     public String toString() {
         return '\n' + nome + '|' + prezzo;
+    }
+
+    public TipoProdotto getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoProdotto tipo) {
+        this.tipo = tipo;
     }
 }
 
