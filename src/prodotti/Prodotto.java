@@ -1,9 +1,9 @@
 package prodotti;
 
 public class Prodotto {
-    private String nome;
-    private float prezzo;
-    private String descrizione;
+    private final String nome;
+    private final float prezzo;
+    private final String descrizione;
 
     public Prodotto(String nome,float prezzo, String descrizione) {
         this.nome = nome;
