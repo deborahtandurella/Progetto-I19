@@ -1,5 +1,6 @@
 package serverCentrale;
 
+import eccezioni.InvioOrdineRIdondanteException;
 import eccezioni.NessunProdottoException;
 import eccezioni.ProdottoNonConsegnatoException;
 import ordinazioni.ListaOrdinazioni;
@@ -37,9 +38,18 @@ public class ServerCentrale implements ServerCentraleInterface {
 	}
 
 	@Override
-	public boolean inviaOrdine(String idOrdinazione)  {
+	public boolean inviaOrdine(String idOrdinazione) throws NessunProdottoException, InvioOrdineRIdondanteException {
 
 		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
+
+		if(ordinazione.getOrdini() == null){
+			throw new NessunProdottoException();
+		}
+
+		if(ordinazione.getStato() != null ){
+			throw new InvioOrdineRIdondanteException();
+		}
+
 		ordinazione.setStato(StatoOrdinazione.ORDINATO);
 		return true;
 	}

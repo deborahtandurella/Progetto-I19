@@ -47,7 +47,13 @@ public class Ordinazione implements OrdinazioneInterface {
     @Override
     public boolean aggiungiOrdini(Prodotto prodotto, int quantita)   {
 
-        this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
+        try {
+
+            this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
+
+        } catch (OrdinazioneNegativaException e) {
+            e.printStackTrace();
+        }
 
         return true;
     }
@@ -70,7 +76,7 @@ public class Ordinazione implements OrdinazioneInterface {
 
 	public void eliminaProdotto(Prodotto p) throws EliminaProdNonOrdException
     {
-        if(stato != ORDINATO ) {
+        if(stato == null  ) {
             throw new EliminaProdNonOrdException();
         }
 
