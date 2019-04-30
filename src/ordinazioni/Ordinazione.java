@@ -42,7 +42,21 @@ public class Ordinazione implements OrdinazioneInterface {
         return true;
     }
 
-	
+	public int getIdTavolo() {
+		return idTavolo;
+	}
+
+	public String getIdOrdinazione() {
+		return idOrdinazione;
+	}
+
+	public StatoOrdinazione getStato() {
+		return stato;
+	}
+
+	public ArrayList<ProdottoOrdinato> getOrdini() {
+		return ordini;
+	}
 
 
 }
