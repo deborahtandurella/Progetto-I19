@@ -8,8 +8,8 @@ public interface ServerCentraleInterface
 {
     public Ordinazione creaOrdinazione(int idTavolo);
     public float getConto(int idTavolo);
-    public boolean inviaOrdine(Ordinazione ordinazione);
+    public boolean inviaOrdine(String idOrdinazione);
     public ArrayList<Ordinazione> getOrdiniInviati();
-    public boolean eleminaOrdinazione(Ordinazione ordinazione);
+    public boolean eleminaOrdinazione(String idOrdinazione);
     public void aggiungiProdottoMenu(Prodotto prodotto);
 }

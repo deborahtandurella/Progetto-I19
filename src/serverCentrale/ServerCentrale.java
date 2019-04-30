@@ -35,7 +35,8 @@ public class ServerCentrale implements ServerCentraleInterface {
 	}
 
 	@Override
-	public boolean inviaOrdine(Ordinazione ordinazione) {
+	public boolean inviaOrdine(String idOrdinazione) {
+		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
 		ordinazione.setStato(StatoOrdinazione.ORDINATO);
 		return true;
 	}
@@ -50,8 +51,8 @@ public class ServerCentrale implements ServerCentraleInterface {
 	}
 
 	@Override
-	public boolean eleminaOrdinazione(Ordinazione ordinazione) {
-		this.listaOrdinazioni.remove(ordinazione);
+	public boolean eleminaOrdinazione(String idOrdinazione) {
+		this.listaOrdinazioni.remove(idOrdinazione);
 		return true;
 	}
 
