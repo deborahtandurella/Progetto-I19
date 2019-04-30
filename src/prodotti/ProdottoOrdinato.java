@@ -1,8 +1,8 @@
 package prodotti;
 
 public class ProdottoOrdinato {
-    private Prodotto prodotto;
-    private int quantita;
+    private final Prodotto prodotto;
+    private final int quantita;
 
     public ProdottoOrdinato(Prodotto prodotto, int quantita) {
         this.prodotto = prodotto;
