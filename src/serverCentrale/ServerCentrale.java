@@ -10,6 +10,11 @@ public class ServerCentrale implements ServerCentraleInterface {
     private ArrayList<Ordinazione> listaOrdinazioni;
     private ArrayList<Prodotto> menu;
 
+    public ServerCentrale() {
+		listaOrdinazioni=new ArrayList<>();
+		menu=new ArrayList<>();
+	}
+    
     @Override
 	public Ordinazione creaOrdinazione(int idTavolo) {
     	Ordinazione ordinazione = new Ordinazione(idTavolo);
@@ -44,7 +49,7 @@ public class ServerCentrale implements ServerCentraleInterface {
 	}
 
 	@Override
-	public boolean eleminaOrindazione(Ordinazione ordinazione) {
+	public boolean eleminaOrdinazione(Ordinazione ordinazione) {
 		this.listaOrdinazioni.remove(ordinazione);
 		return true;
 	}

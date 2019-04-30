@@ -9,6 +9,6 @@ public interface ServerCentraleInterface
     public float getConto(int idTavolo);
     public boolean inviaOrdine(Ordinazione ordinazione);
     public ArrayList<Ordinazione> getOrdiniInviati();
-    public boolean eleminaOrindazione(Ordinazione ordinazione);
+    public boolean eleminaOrdinazione(Ordinazione ordinazione);
     
 }
