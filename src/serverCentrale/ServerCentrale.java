@@ -1,6 +1,7 @@
 package serverCentrale;
 
 import ordinazioni.Ordinazione;
+import ordinazioni.StatoOrdinazione;
 import prodotti.Prodotto;
 import java.util.ArrayList;
 
@@ -11,38 +12,41 @@ public class ServerCentrale implements ServerCentraleInterface {
 
     @Override
 	public Ordinazione creaOrdinazione(int idTavolo) {
-		// TODO Auto-generated method stub
-		return null;
+    	Ordinazione ordinazione = new Ordinazione(idTavolo);
+    	listaOrdinazioni.add(ordinazione);
+		return ordinazione;
 	}
 
 	@Override
 	public float getConto(int idTavolo) {
-		// TODO Auto-generated method stub
-		return 0;
+		float totale = 0;
+		for(Ordinazione ordine : this.listaOrdinazioni) {
+			totale += ordine.getContoParziale();
+		}
+		return totale;
 	}
 
 	@Override
 	public boolean inviaOrdine(Ordinazione ordinazione) {
-		// TODO Auto-generated method stub
-		return false;
+		ordinazione.setStato(StatoOrdinazione.ORDINATO);
+		return true;
 	}
 
 	@Override
-	public ArrayList<Ordinazione> getOrdiniCucina() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<Ordinazione> getOrdiniCaffetteria() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Ordinazione> getOrdiniInviati() {
+		ArrayList<Ordinazione> ordiniInviati = new ArrayList<Ordinazione>();
+		for(Ordinazione ordine : this.listaOrdinazioni) {
+			if(ordine.getStato() == StatoOrdinazione.ORDINATO) {
+				ordiniInviati.add(ordine);
+			}
+		}
+		return ordiniInviati;
 	}
 
 	@Override
 	public boolean eleminaOrindazione(Ordinazione ordinazione) {
-		// TODO Auto-generated method stub
-		return false;
+		this.listaOrdinazioni.remove(ordinazione);
+		return true;
 	}
     
 	public ArrayList<Ordinazione> getListaOrdinazioni() {
