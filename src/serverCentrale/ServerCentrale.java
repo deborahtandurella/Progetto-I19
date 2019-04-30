@@ -1,5 +1,7 @@
 package serverCentrale;
 
+import eccezioni.NessunProdottoException;
+import eccezioni.ProdottoNonConsegnatoException;
 import ordinazioni.ListaOrdinazioni;
 import ordinazioni.Ordinazione;
 import ordinazioni.StatoOrdinazione;
@@ -24,7 +26,7 @@ public class ServerCentrale implements ServerCentraleInterface {
 	}
 
 	@Override
-	public float getConto(int idTavolo) {
+	public float getConto(int idTavolo){
 		float totale = 0;
 		for(Ordinazione ordine : this.listaOrdinazioni.getElementsByIdTavolo(idTavolo)) {
 			if(ordine.getIdTavolo() == idTavolo) {
@@ -35,7 +37,8 @@ public class ServerCentrale implements ServerCentraleInterface {
 	}
 
 	@Override
-	public boolean inviaOrdine(String idOrdinazione) {
+	public boolean inviaOrdine(String idOrdinazione)  {
+
 		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
 		ordinazione.setStato(StatoOrdinazione.ORDINATO);
 		return true;

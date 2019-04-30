@@ -1,5 +1,7 @@
 package prodotti;
 
+import eccezioni.PrezzoNegativoException;
+
 public class Prodotto {
     private final String nome;
     private final float prezzo;
@@ -7,9 +9,15 @@ public class Prodotto {
     private int tempoPreparazione;
     private TipoProdotto tipo;
 
-    public Prodotto(String nome,float prezzo, String descrizione, int tempoPreparazione, TipoProdotto tipo) {
-        this.nome = nome;
+    public Prodotto(String nome,float prezzo, String descrizione, int tempoPreparazione, TipoProdotto tipo) throws PrezzoNegativoException {
+
         this.prezzo = prezzo;
+
+        if(prezzo <= 0){
+            throw new PrezzoNegativoException();
+        }
+
+        this.nome = nome;
         this.descrizione = descrizione;
         this.tempoPreparazione = tempoPreparazione;
         this.tipo= tipo;

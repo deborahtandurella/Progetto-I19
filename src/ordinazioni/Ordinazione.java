@@ -1,11 +1,16 @@
 package ordinazioni;
 
+import eccezioni.EliminaProdNonOrdException;
+import eccezioni.OrdinazioneNegativaException;
+import eccezioni.PrezzoNegativoException;
 import prodotti.*;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
+
+import static ordinazioni.StatoOrdinazione.ORDINATO;
 
 public class Ordinazione implements OrdinazioneInterface {
 
@@ -40,8 +45,10 @@ public class Ordinazione implements OrdinazioneInterface {
     }
 
     @Override
-    public boolean aggiungiOrdini(Prodotto prodotto, int quantita) {
+    public boolean aggiungiOrdini(Prodotto prodotto, int quantita)   {
+
         this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
+
         return true;
     }
 
@@ -61,8 +68,12 @@ public class Ordinazione implements OrdinazioneInterface {
 		return ordini;
 	}
 
-	public void eliminaProdotto(Prodotto p)
+	public void eliminaProdotto(Prodotto p) throws EliminaProdNonOrdException
     {
+        if(stato != ORDINATO ) {
+            throw new EliminaProdNonOrdException();
+        }
+
         for (ProdottoOrdinato prodotti : ordini)
         {
             if(prodotti.getProdotto().equals(p))
