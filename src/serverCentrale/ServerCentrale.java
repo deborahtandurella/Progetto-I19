@@ -2,10 +2,8 @@ package serverCentrale;
 
 import eccezioni.InvioOrdineRIdondanteException;
 import eccezioni.NessunProdottoException;
-import eccezioni.ProdottoNonConsegnatoException;
 import ordinazioni.ListaOrdinazioni;
 import ordinazioni.Ordinazione;
-import ordinazioni.StatoOrdinazione;
 import prodotti.Prodotto;
 import java.util.ArrayList;
 

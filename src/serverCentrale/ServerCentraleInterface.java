@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import eccezioni.InvioOrdineRIdondanteException;
 import eccezioni.NessunProdottoException;
 import ordinazioni.Ordinazione;
-import ordinazioni.StatoOrdinazione;
 import prodotti.Prodotto;
 
 public interface ServerCentraleInterface
