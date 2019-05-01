@@ -11,13 +11,11 @@ import java.time.temporal.TemporalAmount;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static ordinazioni.StatoOrdinazione.ORDINATO;
 
 public class Ordinazione implements OrdinazioneInterface {
 
     private int idTavolo;
     private String idOrdinazione;
-    private StatoOrdinazione stato;
     private ArrayList<ProdottoOrdinato> ordini;
     private LocalDateTime tempoInizioOrdinato;
 
@@ -27,7 +25,6 @@ public class Ordinazione implements OrdinazioneInterface {
     	int n=rand.nextInt(99)+1;
         this.idOrdinazione = idTavolo+":"+n;
         this.idTavolo = idTavolo;
-        this.stato = null;
         this.ordini  = new ArrayList<ProdottoOrdinato>();
     }
     
@@ -38,10 +35,6 @@ public class Ordinazione implements OrdinazioneInterface {
     		totale=p.getCostoParziale()+totale;
     	}
     	return totale;
-    }
-
-    public void setStato(StatoOrdinazione stato) {
-        this.stato = stato;
     }
 
     @Override
@@ -66,9 +59,7 @@ public class Ordinazione implements OrdinazioneInterface {
 		return idOrdinazione;
 	}
 
-	public StatoOrdinazione getStato() {
-		return stato;
-	}
+
 
 	public ArrayList<ProdottoOrdinato> getOrdini() {
 		return ordini;
@@ -76,15 +67,16 @@ public class Ordinazione implements OrdinazioneInterface {
 
 	public void eliminaProdotto(Prodotto p) throws EliminaProdNonOrdException
     {
-        if(stato == null  ) {
-            throw new EliminaProdNonOrdException();
-        }
-
         for (ProdottoOrdinato prodotti : ordini)
         {
             if(prodotti.getProdotto().equals(p))
             {
-                ordini.remove(prodotti);
+                if(prodotti.getStato() == null  ) {
+                    throw new EliminaProdNonOrdException();
+                }
+                else {
+                    ordini.remove(prodotti);
+                }
             }
         }
     }
