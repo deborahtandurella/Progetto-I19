@@ -11,14 +11,13 @@ public class ProdottoOrdinato {
     private LocalDateTime tempoInizioLavorazione;
 
     public ProdottoOrdinato(Prodotto prodotto, int quantita) throws OrdinazioneNegativaException {
-        this.prodotto = prodotto;
-        this.quantita = quantita;
-        this.stato = null;
-
-        if(quantita < 0){
+        if(quantita <= 0){
             throw new OrdinazioneNegativaException();
         }
 
+        this.prodotto = prodotto;
+        this.quantita = quantita;
+        this.stato = null;
     }
     
     public float getCostoParziale(){
