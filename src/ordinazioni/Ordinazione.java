@@ -36,14 +36,11 @@ public class Ordinazione implements OrdinazioneInterface {
     }
 
     @Override
-    public boolean aggiungiOrdini(Prodotto prodotto, int quantita)   {
-
+    public boolean aggiungiOrdini(Prodotto prodotto, int quantita) {
         try {
-
             this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
-
         } catch (OrdinazioneNegativaException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
 
         return true;
@@ -63,18 +60,14 @@ public class Ordinazione implements OrdinazioneInterface {
 		return ordini;
 	}
 
-	public void eliminaProdotto(Prodotto p) throws EliminaProdNonOrdException
-    {
-        for (ProdottoOrdinato prodotti : ordini)
-        {
-            if(prodotti.getProdotto().equals(p))
-            {
-                if(prodotti.getStato() == null  ) {
-                    throw new EliminaProdNonOrdException();
-                }
-                else {
+	public void eliminaProdotto(Prodotto p) throws EliminaProdNonOrdException {
+        if(!ordini.contains(p)){
+            throw new EliminaProdNonOrdException();
+        }
+
+        for (ProdottoOrdinato prodotti : ordini) {
+            if(prodotti.getProdotto().equals(p)) {
                     ordini.remove(prodotti);
-                }
             }
         }
     }
