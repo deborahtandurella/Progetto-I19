@@ -2,10 +2,13 @@ package prodotti;
 
 import eccezioni.OrdinazioneNegativaException;
 
+import java.time.LocalDateTime;
+
 public class ProdottoOrdinato {
     private final Prodotto prodotto;
     private final int quantita;
     private StatoProdottoOrdinato stato;
+    private LocalDateTime tempoInizioLavorazione;
 
     public ProdottoOrdinato(Prodotto prodotto, int quantita) throws OrdinazioneNegativaException {
         this.prodotto = prodotto;
@@ -36,6 +39,11 @@ public class ProdottoOrdinato {
 
     public StatoProdottoOrdinato getStato() {
         return stato;
+    }
+
+    public void setStatoProdottoOrdinatoLavorazione() {
+        this.stato=StatoProdottoOrdinato.LAVORAZIONE;
+        this.tempoInizioLavorazione = LocalDateTime.now();
     }
 }
 

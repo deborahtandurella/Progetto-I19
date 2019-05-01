@@ -17,10 +17,8 @@ public class Ordinazione implements OrdinazioneInterface {
     private int idTavolo;
     private String idOrdinazione;
     private ArrayList<ProdottoOrdinato> ordini;
-    private LocalDateTime tempoInizioOrdinato;
 
     public Ordinazione(int idTavolo){
-    	
     	Random rand = new Random();
     	int n=rand.nextInt(99)+1;
         this.idOrdinazione = idTavolo+":"+n;
@@ -81,18 +79,19 @@ public class Ordinazione implements OrdinazioneInterface {
         }
     }
 
-    public void setTempoInizioOrdinato() {
-        this.tempoInizioOrdinato = LocalDateTime.now();
-    }
+    public int getTempoEffettivoLavorazione() {
+        int tempoEffettivo;
+        int tempoParziale=0;
 
-    public LocalDateTime getTempoInizioOrdinato() {
-        return tempoInizioOrdinato;
-    }
+        for(ProdottoOrdinato prodotti : ordini)
+        {
+            if(prodotti.getStato()==StatoProdottoOrdinato.LAVORAZIONE)
+                tempoParziale+=prodotti.getProdotto().getTempoPreparazione()*60;
+        }
 
-    public  LocalDateTime getTempoEffettivoOrdinato() {
-        //TemporalAmount t;
         LocalDateTime temp = LocalDateTime.now();
-        temp=temp.minusMinutes(tempoInizioOrdinato.getMinute());
-        return  temp;
+        temp=temp.minusSeconds(tempoParziale);
+        tempoEffettivo=temp.getSecond();
+        return  tempoEffettivo;
     }
 }
