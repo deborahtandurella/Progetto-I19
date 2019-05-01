@@ -40,10 +40,11 @@ public class ServerCentrale implements ServerCentraleInterface {
 
 		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
 
-		if(ordinazione.getOrdini() == null){
+		if(ordinazione.getOrdini().isEmpty()){
 			throw new NessunProdottoException();
 		}
 
+		//Da rivedere
 		if(ordinazione.getStato() != null ){
 			throw new InvioOrdineRIdondanteException();
 		}
