@@ -5,6 +5,8 @@ import eccezioni.NessunProdottoException;
 import ordinazioni.ListaOrdinazioni;
 import ordinazioni.Ordinazione;
 import prodotti.Prodotto;
+import prodotti.StatoProdottoOrdinato;
+
 import java.util.ArrayList;
 
 public class ServerCentrale implements ServerCentraleInterface {
@@ -45,12 +47,11 @@ public class ServerCentrale implements ServerCentraleInterface {
 		}
 
 		//Da rivedere
-		if(ordinazione.getStato() != null ){
+		if(!ordinazione.getProdottiOrdinati(null).isEmpty()){
 			throw new InvioOrdineRIdondanteException();
 		}
 
-		ordinazione.setStato(StatoOrdinazione.ORDINATO);
-		ordinazione.setTempoInizioOrdinato();
+		ordinazione.setStatoTuttiProdotti(StatoProdottoOrdinato.CONSEGNATO);
 		return true;
 	}
 
