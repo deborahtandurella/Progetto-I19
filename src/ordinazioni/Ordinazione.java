@@ -18,7 +18,7 @@ public class Ordinazione implements OrdinazioneInterface {
 		int n = rand.nextInt(99) + 1;
 		this.idOrdinazione = idTavolo + ":" + n;
 		this.idTavolo = idTavolo;
-		this.ordini = new ArrayList<ProdottoOrdinato>();
+		this.ordini = new ArrayList<>();
 	}
 
 	public float getContoParziale() {
@@ -81,20 +81,5 @@ public class Ordinazione implements OrdinazioneInterface {
 		for(ProdottoOrdinato prodottoOrdinato : this.ordini) {
 			prodottoOrdinato.setStato(statoProdottoOrdinato);
 		}
-	}
-
-	public int getTempoEffettivoLavorazione() {
-		int tempoEffettivo;
-		int tempoParziale = 0;
-
-		for (ProdottoOrdinato prodotti : ordini) {
-			if (prodotti.getStato() == StatoProdottoOrdinato.LAVORAZIONE)
-				tempoParziale += prodotti.getProdotto().getTempoPreparazione() * 60;
-		}
-
-		LocalDateTime temp = LocalDateTime.now();
-		temp = temp.minusSeconds(tempoParziale);
-		tempoEffettivo = temp.getSecond();
-		return tempoEffettivo;
 	}
 }
