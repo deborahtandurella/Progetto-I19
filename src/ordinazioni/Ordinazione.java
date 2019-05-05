@@ -76,6 +76,12 @@ public class Ordinazione implements OrdinazioneInterface {
 		
 		return listaProdotti;
 	}
+	
+	public void setStatoTuttiProdotti(StatoProdottoOrdinato statoProdottoOrdinato) {
+		for(ProdottoOrdinato prodottoOrdinato : this.ordini) {
+			prodottoOrdinato.setStato(statoProdottoOrdinato);
+		}
+	}
 
 	public int getTempoEffettivoLavorazione() {
 		int tempoEffettivo;
