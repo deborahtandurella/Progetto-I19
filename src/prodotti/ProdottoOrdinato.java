@@ -5,44 +5,43 @@ import eccezioni.OrdinazioneNegativaException;
 import java.time.LocalDateTime;
 
 public class ProdottoOrdinato {
-    private final Prodotto prodotto;
-    private final int quantita;
-    private StatoProdottoOrdinato stato;
-    private LocalDateTime tempoInizioLavorazione;
+	private final Prodotto prodotto;
+	private final int quantita;
+	private StatoProdottoOrdinato stato;
+	private LocalDateTime tempoInizioLavorazione;
 
-    public ProdottoOrdinato(Prodotto prodotto, int quantita) throws OrdinazioneNegativaException {
-        if(quantita <= 0){
-            throw new OrdinazioneNegativaException();
-        }
+	public ProdottoOrdinato(Prodotto prodotto, int quantita) throws OrdinazioneNegativaException {
+		if (quantita <= 0) {
+			throw new OrdinazioneNegativaException();
+		}
 
-        this.prodotto = prodotto;
-        this.quantita = quantita;
-        this.stato = null;
-    }
-    
-    public float getCostoParziale(){
-    	return prodotto.getPrezzo()*quantita;
-    }
+		this.prodotto = prodotto;
+		this.quantita = quantita;
+		this.stato = null;
+	}
 
-    public Prodotto getProdotto() {
-        return prodotto;
-    }
+	public float getCostoParziale() {
+		return prodotto.getPrezzo() * quantita;
+	}
 
-    public int getQuantita() {
-        return quantita;
-    }
+	public Prodotto getProdotto() {
+		return prodotto;
+	}
 
-    public void setStato(StatoProdottoOrdinato stato) {
-        this.stato = stato;
-    }
+	public int getQuantita() {
+		return quantita;
+	}
 
-    public StatoProdottoOrdinato getStato() {
-        return stato;
-    }
+	public void setStato(StatoProdottoOrdinato stato) {
+		this.stato = stato;
+	}
 
-    public void setStatoProdottoOrdinatoLavorazione() {
-        this.stato=StatoProdottoOrdinato.LAVORAZIONE;
-        this.tempoInizioLavorazione = LocalDateTime.now();
-    }
+	public StatoProdottoOrdinato getStato() {
+		return stato;
+	}
+
+	public void setStatoProdottoOrdinatoLavorazione() {
+		this.stato = StatoProdottoOrdinato.LAVORAZIONE;
+		this.tempoInizioLavorazione = LocalDateTime.now();
+	}
 }
-
