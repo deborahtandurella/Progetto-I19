@@ -55,14 +55,14 @@ public class ServerCentrale implements ServerCentraleInterface {
 		return true;
 	}
 
-	@Override
-	public ArrayList<Ordinazione> getOrdiniInviati() {
-		ArrayList<Ordinazione> ordiniInviati = new ArrayList<Ordinazione>();
-		for(Ordinazione ordine : this.listaOrdinazioni.getElementsByStatoOrdinazione(StatoOrdinazione.ORDINATO)) {		
-			ordiniInviati.add(ordine);			
-		}
-		return ordiniInviati;
-	}
+	// @Override
+	// public ArrayList<Ordinazione> getOrdiniInviati() {
+	// 	ArrayList<Ordinazione> ordiniInviati = new ArrayList<Ordinazione>();
+	// 	for(Ordinazione ordine : this.listaOrdinazioni.getElementsByStatoOrdinazione(StatoOrdinazione.ORDINATO)) {		
+	// 		ordiniInviati.add(ordine);			
+	// 	}
+	// 	return ordiniInviati;
+	// }
 
 	@Override
 	public boolean eleminaOrdinazione(String idOrdinazione) {
