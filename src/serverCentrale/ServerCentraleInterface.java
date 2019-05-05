@@ -16,5 +16,4 @@ public interface ServerCentraleInterface
     public boolean eleminaOrdinazione(String idOrdinazione);
     public void aggiungiProdottoMenu(Prodotto prodotto);
     public void aggiungiProdottoOrdinazine(String idOrdinazione, Prodotto prodotto, int quantita);
-    public StatoOrdinazione getStatoOrdinazione(String idOrdinazione);
 }
