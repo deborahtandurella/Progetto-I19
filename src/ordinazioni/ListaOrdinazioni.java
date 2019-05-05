@@ -4,23 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import prodotti.ProdottoOrdinato;
+import prodotti.StatoProdottoOrdinato;
 import prodotti.TipoProdotto;
 
 public class ListaOrdinazioni extends HashMap<String, Ordinazione>{
 	
 	public ListaOrdinazioni() {
 		super();
-	}
-	
-	public ArrayList<Ordinazione> getElementsByStatoOrdinazione(StatoOrdinazione statoOrdinazione) {
-		ArrayList<Ordinazione> listaOrdinazioni = new ArrayList<>();
-		for(Ordinazione ordinazione : this.values()) {
-			if(ordinazione.getStato() == statoOrdinazione) {
-				listaOrdinazioni.add(ordinazione);
-			}
-		}
-		
-		return listaOrdinazioni;
 	}
 	
 	public ArrayList<Ordinazione> getElementsByIdTavolo(int idTavolo) {
