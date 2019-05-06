@@ -38,14 +38,13 @@ public class ServerCentrale implements ServerCentraleInterface {
 		}
 
 		for(Ordinazione ordine : this.listaOrdinazioni.getElementsByIdTavolo(idTavolo)) {
-			if(ordine.getIdTavolo() == idTavolo) {
-				for(ProdottoOrdinato p : ordine.getOrdini()){
-					if(p.getStato() != StatoProdottoOrdinato.CONSEGNATO){
-						throw new ProdottoNonConsegnatoException();
-					}
+			for(ProdottoOrdinato p : ordine.getOrdini()){
+				if(p.getStato() != StatoProdottoOrdinato.CONSEGNATO){
+					throw new ProdottoNonConsegnatoException();
 				}
-				totale += ordine.getContoParziale();
 			}
+			totale += ordine.getContoParziale();
+			
 		}
 		return totale;
 	}
