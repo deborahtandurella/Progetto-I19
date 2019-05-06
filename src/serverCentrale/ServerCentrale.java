@@ -1,10 +1,13 @@
 package serverCentrale;
 
 import eccezioni.InvioOrdineRIdondanteException;
+import eccezioni.NessunOrdineException;
 import eccezioni.NessunProdottoException;
+import eccezioni.ProdottoNonConsegnatoException;
 import ordinazioni.ListaOrdinazioni;
 import ordinazioni.Ordinazione;
 import prodotti.Prodotto;
+import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
 
 import java.util.ArrayList;
@@ -27,10 +30,20 @@ public class ServerCentrale implements ServerCentraleInterface {
 	}
 
 	@Override
-	public float getConto(int idTavolo){
+	public float getConto(int idTavolo) throws NessunOrdineException, ProdottoNonConsegnatoException {
 		float totale = 0;
+
+		if(this.listaOrdinazioni.getElementsByIdTavolo(idTavolo).isEmpty()){
+			throw new NessunOrdineException();
+		}
+
 		for(Ordinazione ordine : this.listaOrdinazioni.getElementsByIdTavolo(idTavolo)) {
 			if(ordine.getIdTavolo() == idTavolo) {
+				for(ProdottoOrdinato p : ordine.getOrdini()){
+					if(p.getStato() != StatoProdottoOrdinato.CONSEGNATO){
+						throw new ProdottoNonConsegnatoException();
+					}
+				}
 				totale += ordine.getContoParziale();
 			}
 		}
