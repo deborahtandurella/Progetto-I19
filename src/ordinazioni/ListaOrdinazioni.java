@@ -7,7 +7,9 @@ import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
 import prodotti.TipoProdotto;
 
-public class ListaOrdinazioni extends HashMap<String, Ordinazione>{
+
+// Classe per la gestione delle Ordinazioni avente metodi che ritornano Ordinazioni in base a dei parametri di filtro
+public class ListaOrdinazioni extends HashMap<Long, Ordinazione>{
 	
 	public ListaOrdinazioni() {
 		super();
@@ -22,19 +24,6 @@ public class ListaOrdinazioni extends HashMap<String, Ordinazione>{
 		}
 		
 		return listaOrdinazioni;
-	}
-	
-	public ArrayList<ProdottoOrdinato> getElementsByTipoProdotto(TipoProdotto tipoProdotto) {
-		ArrayList<ProdottoOrdinato> listaProdottiOrdinati = new ArrayList<>();
-		for(Ordinazione ordinazione : this.values()) {
-			for(ProdottoOrdinato prodottoOrdinato : ordinazione.getOrdini()) {
-				if(prodottoOrdinato.getProdotto().getTipo() == tipoProdotto) {
-					listaProdottiOrdinati.add(prodottoOrdinato);
-				}
-			}
-		}
-		
-		return listaProdottiOrdinati;
 	}
 	
 }
