@@ -51,5 +51,17 @@ public class ProdottoOrdinato {
 		int tempoPassato = (int)Duration.between(this.tempoInizioLavorazione, LocalDateTime.now()).getSeconds();
 		return this.prodotto.getTempoPreparazione() - tempoPassato;
 	}
-    
+	
+	public String getAllInfo(){
+		return this.toString();
+	}
+	
+    @Override
+    public String toString() {
+    	return  '{' + 
+    			'\n' + '\t' + "\"prodotto\"" + ':' + '"' + getProdotto() + '"'  + ',' + 
+    			'\n' + '\t' + "\"stato\"" + ':' + '"' + getStato() + '"' + ',' + 
+    			'\n' + '\t' + "\"temporimanente\"" + ':' + getTempoElaborazioneRimanente() + 
+    			'}'  ;
+    }
 }
