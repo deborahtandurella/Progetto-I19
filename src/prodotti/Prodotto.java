@@ -10,13 +10,11 @@ public class Prodotto {
     private TipoProdotto tipo;
 
     public Prodotto(String nome,float prezzo, String descrizione, int tempoPreparazione, TipoProdotto tipo) throws PrezzoNegativoException {
-
-        this.prezzo = prezzo;
-
-        if(prezzo <= 0){
+    	
+    	if(prezzo <= 0){
             throw new PrezzoNegativoException();
         }
-
+        this.prezzo = prezzo;
         this.nome = nome;
         this.descrizione = descrizione;
         this.tempoPreparazione = tempoPreparazione;
