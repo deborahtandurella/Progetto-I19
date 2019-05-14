@@ -77,7 +77,7 @@ public class ServerCentrale implements ServerCentraleInterface {
 	// }
 
 	@Override
-	public boolean eleminaOrdinazione(String idOrdinazione) {
+	public boolean eliminaOrdinazione(String idOrdinazione) {
 		this.listaOrdinazioni.remove(idOrdinazione);
 		return true;
 	}
@@ -93,7 +93,7 @@ public class ServerCentrale implements ServerCentraleInterface {
 	}
 
 	@Override
-	public void aggiungiProdottoOrdinazine(String idOrdinazione, Prodotto prodotto, int quantita) {
+	public void aggiungiProdottoOrdinazione(String idOrdinazione, Prodotto prodotto, int quantita) {
 		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
 		ordinazione.aggiungiOrdini(prodotto, quantita);
 	}	

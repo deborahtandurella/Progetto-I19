@@ -24,12 +24,12 @@ public class Test {
 					
 		s.setMenu(a);										//creo menu
 		
-		Ordinazione o=s.creaOrdinazione(1);				//creo ordinazione tavolo 1
+		Ordinazione o = s.creaOrdinazione(1);				//creo ordinazione tavolo 1
 		
 		o.aggiungiOrdini(p1,2);
 		o.aggiungiOrdini(p3,2);								//aggiungo due ordini all'ordinazione
 		
-		s.inviaOrdine(o);
+		s.inviaOrdine(o.getIdOrdinazione());
 		
 		for(Ordinazione o2 : s.getOrdiniInviati()){
 			for(ProdottoOrdinato po : o2.getOrdini() ){
