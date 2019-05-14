@@ -93,4 +93,13 @@ public class Ordinazione implements OrdinazioneInterface {
 			prodottoOrdinato.setStato(statoProdottoOrdinato);
 		}
 	}
+	
+	public boolean hasAllProdottiConsegnati(TipoProdotto tipoProdotto){
+		for(ProdottoOrdinato prodottoOrdinato : this.getProdottiOrdinati(tipoProdotto)){
+			if(prodottoOrdinato.getStato() != StatoProdottoOrdinato.CONSEGNATO ){
+				return false;
+			}
+		}
+		return true;
+	}
 }
