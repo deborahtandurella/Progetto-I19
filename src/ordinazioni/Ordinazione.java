@@ -102,4 +102,13 @@ public class Ordinazione implements OrdinazioneInterface {
 		}
 		return true;
 	}
+	
+	public String getStatoProdottiOrdinati(){
+		String output="[";
+		for(ProdottoOrdinato prodottoordinato : this.ordini){
+			output += prodottoordinato.getAllInfo() + ",\n";
+		}
+		output += "]";
+		return output;
+	}
 }
