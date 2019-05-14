@@ -3,22 +3,20 @@ package ordinazioni;
 import eccezioni.EliminaProdNonOrdException;
 import eccezioni.OrdinazioneNegativaException;
 import prodotti.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Ordinazione implements OrdinazioneInterface {
 
 	private int idTavolo;
-	private String idOrdinazione;
+	private long idOrdinazione;
 	private ArrayList<ProdottoOrdinato> ordini;
 
-	public Ordinazione(int idTavolo) {
-		Random rand = new Random();
-		int n = rand.nextInt(99) + 1;
-		this.idOrdinazione = idTavolo + ":" + n;
+	public Ordinazione(int idTavolo, ArrayList<ProdottoOrdinato> ordini) {
+		
+		this.idOrdinazione = System.currentTimeMillis(); // Utilizzo il timestamp per avere un ordine temporale delle ordianazioni
 		this.idTavolo = idTavolo;
-		this.ordini = new ArrayList<>();
+		this.ordini = ordini;
+		this.setStatoTuttiProdotti(StatoProdottoOrdinato.ORDINATO);
 	}
 
 	public float getContoParziale() {
@@ -45,7 +43,7 @@ public class Ordinazione implements OrdinazioneInterface {
 		return idTavolo;
 	}
 
-	public String getIdOrdinazione() {
+	public long getIdOrdinazione() {
 		return idOrdinazione;
 	}
 
@@ -54,6 +52,7 @@ public class Ordinazione implements OrdinazioneInterface {
 	}
 
 	public void eliminaProdotto(Prodotto p) throws EliminaProdNonOrdException {
+		// TODO: fix bug, ordini è un ArrayList di ProdottiOrdinati. ProdottoOrdinato non è una classe che estende Prodotto
 		if (!ordini.contains(p)) {
 			throw new EliminaProdNonOrdException();
 		}
@@ -77,9 +76,39 @@ public class Ordinazione implements OrdinazioneInterface {
 		return listaProdotti;
 	}
 	
+	public ArrayList<ProdottoOrdinato> getProdottiOrdinati(TipoProdotto tipoProdotto) {
+		ArrayList<ProdottoOrdinato> listaProdotti = new ArrayList<>();
+		
+		for(ProdottoOrdinato prodottoOrdinato : this.ordini) {
+			if(prodottoOrdinato.getProdotto().getTipo() == tipoProdotto) {
+				listaProdotti.add(prodottoOrdinato);
+			}
+		}
+		
+		return listaProdotti;
+	}
+	
 	public void setStatoTuttiProdotti(StatoProdottoOrdinato statoProdottoOrdinato) {
 		for(ProdottoOrdinato prodottoOrdinato : this.ordini) {
 			prodottoOrdinato.setStato(statoProdottoOrdinato);
 		}
+	}
+	
+	public boolean hasAllProdottiConsegnati(TipoProdotto tipoProdotto){
+		for(ProdottoOrdinato prodottoOrdinato : this.getProdottiOrdinati(tipoProdotto)){
+			if(prodottoOrdinato.getStato() != StatoProdottoOrdinato.CONSEGNATO ){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public String getStatoProdottiOrdinati(){
+		String output="[";
+		for(ProdottoOrdinato prodottoordinato : this.ordini){
+			output += prodottoordinato.getAllInfo() + ",\n";
+		}
+		output += "]";
+		return output;
 	}
 }

@@ -2,6 +2,7 @@ package prodotti;
 
 import eccezioni.OrdinazioneNegativaException;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class ProdottoOrdinato {
@@ -18,6 +19,7 @@ public class ProdottoOrdinato {
 		this.prodotto = prodotto;
 		this.quantita = quantita;
 		this.stato = null;
+		this.tempoInizioLavorazione = null;
 	}
 
 	public float getCostoParziale() {
@@ -44,19 +46,22 @@ public class ProdottoOrdinato {
 		this.stato = StatoProdottoOrdinato.LAVORAZIONE;
 		this.tempoInizioLavorazione = LocalDateTime.now();
 	}
-
-    public int getTempoEffettivoLavorazione() {
-        int tempoEffettivo;
-        int tempoParziale = 0;
-
-            if (stato == StatoProdottoOrdinato.LAVORAZIONE)
-                tempoParziale += prodotto.getTempoPreparazione() * 60; // Non devo moltiplicare per quantità
-
-        LocalDateTime temp = LocalDateTime.now();
-        tempoEffettivo = temp.getSecond() - tempoInizioLavorazione.getSecond() - tempoParziale ; //può venire un tempo negativo
-        if(tempoEffettivo<0) {
-            tempoEffettivo = -tempoEffettivo; // cambio segno
-        }
-        return tempoEffettivo;
+	
+	public int getTempoElaborazioneRimanente() {
+		int tempoPassato = (int)Duration.between(this.tempoInizioLavorazione, LocalDateTime.now()).getSeconds();
+		return this.prodotto.getTempoPreparazione() - tempoPassato;
+	}
+	
+	public String getAllInfo(){
+		return this.toString();
+	}
+	
+    @Override
+    public String toString() {
+    	return  '{' + 
+    			'\n' + '\t' + "\"prodotto\"" + ':' + '"' + getProdotto() + '"'  + ',' + 
+    			'\n' + '\t' + "\"stato\"" + ':' + '"' + getStato() + '"' + ',' + 
+    			'\n' + '\t' + "\"temporimanente\"" + ':' + getTempoElaborazioneRimanente() + 
+    			'}'  ;
     }
 }
