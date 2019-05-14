@@ -9,75 +9,102 @@ import ordinazioni.Ordinazione;
 import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
+import prodotti.TipoProdotto;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 
 public class ServerCentrale implements ServerCentraleInterface {
 
-    private ListaOrdinazioni listaOrdinazioni;
-    private ArrayList<Prodotto> menu;
+	private ListaOrdinazioni listaOrdinazioni;
+	private ArrayList<Prodotto> menu;
 
-    public ServerCentrale() {
-    	this.listaOrdinazioni = new ListaOrdinazioni();
+	public ServerCentrale() {
+		this.listaOrdinazioni = new ListaOrdinazioni();
 		this.menu = new ArrayList<>();
-	}
-    
-    @Override
-	public Ordinazione creaOrdinazione(int idTavolo) {
-    	Ordinazione ordinazione = new Ordinazione(idTavolo);
-    	listaOrdinazioni.put(ordinazione.getIdOrdinazione(), ordinazione);
-		return ordinazione;
 	}
 
 	@Override
 	public float getConto(int idTavolo) throws NessunOrdineException, ProdottoNonConsegnatoException {
 		float totale = 0;
 
-		if(this.listaOrdinazioni.getElementsByIdTavolo(idTavolo).isEmpty()){
+		if (this.listaOrdinazioni.getElementsByIdTavolo(idTavolo).isEmpty()) {
 			throw new NessunOrdineException();
 		}
 
-		for(Ordinazione ordine : this.listaOrdinazioni.getElementsByIdTavolo(idTavolo)) {
-			for(ProdottoOrdinato p : ordine.getOrdini()){
-				if(p.getStato() != StatoProdottoOrdinato.CONSEGNATO){
+		for (Ordinazione ordine : this.listaOrdinazioni.getElementsByIdTavolo(idTavolo)) {
+			for (ProdottoOrdinato p : ordine.getOrdini()) {
+				if (p.getStato() != StatoProdottoOrdinato.CONSEGNATO) {
 					throw new ProdottoNonConsegnatoException();
 				}
 			}
 			totale += ordine.getContoParziale();
-			
+
 		}
 		return totale;
 	}
 
+	// L'ORDINAZIONE VIENE CREATA QUANDO VENGONO INVIATI IN CUCINA TUTTI I PRODOTTI
+
 	@Override
-	public boolean inviaOrdine(String idOrdinazione) throws NessunProdottoException, InvioOrdineRIdondanteException {
+	public long inviaOrdine(int idTavolo, ArrayList<ProdottoOrdinato> ordini)
+			throws NessunProdottoException, InvioOrdineRIdondanteException {
 
-		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
+		Ordinazione ordinazione = new Ordinazione(idTavolo, ordini);
 
-		if(ordinazione.getOrdini().isEmpty()){
+		if (ordinazione.getOrdini().isEmpty()) {
 			throw new NessunProdottoException();
 		}
 
-		//Da rivedere
-		if(!ordinazione.getProdottiOrdinati(null).isEmpty()){
+		// TODO: to fix, not correct
+		if (ordinazione.getProdottiOrdinati(StatoProdottoOrdinato.ORDINATO).isEmpty()) {
 			throw new InvioOrdineRIdondanteException();
 		}
-
-		ordinazione.setStatoTuttiProdotti(StatoProdottoOrdinato.CONSEGNATO);
-		return true;
+		
+		this.listaOrdinazioni.put(ordinazione.getIdOrdinazione(), ordinazione);
+		return ordinazione.getIdOrdinazione();
 	}
 
-	// @Override
-	// public ArrayList<Ordinazione> getOrdiniInviati() {
-	// 	ArrayList<Ordinazione> ordiniInviati = new ArrayList<Ordinazione>();
-	// 	for(Ordinazione ordine : this.listaOrdinazioni.getElementsByStatoOrdinazione(StatoOrdinazione.ORDINATO)) {		
-	// 		ordiniInviati.add(ordine);			
-	// 	}
-	// 	return ordiniInviati;
-	// }
+	public String getStatoOrdinazione(long idOrdinazione) {
+		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
+		return ordinazione.getStatoProdottiOrdinati();
+	}
+	
+	@Override
+	public ArrayList<Ordinazione> getOrdini(TipoProdotto tipoProdotto) {
+	 	ArrayList<Ordinazione> listaOrdinazione = new ArrayList<>();
+	 	
+	 	Ordinazione[] array_ordinazioni = (Ordinazione[]) this.listaOrdinazioni.values().toArray();
+	 	Arrays.sort(array_ordinazioni, new Comparator<Ordinazione>() { // Ordino in ordine cronologico dato che l'ID dell'ordine è un timestamp
+
+			@Override
+			public int compare(Ordinazione o1, Ordinazione o2) {
+				
+				return Long.compare(o1.getIdOrdinazione(), o2.getIdOrdinazione());
+			}
+		});
+	 	
+	 	for(Ordinazione ordinazione : array_ordinazioni) {
+	 		if(ordinazione.hasAllProdottiConsegnati(tipoProdotto)) {
+	 			listaOrdinazione.add(ordinazione);
+	 		}
+	 	}
+	 	
+	 	return listaOrdinazione;
+	 }
 
 	@Override
-	public boolean eleminaOrdinazione(String idOrdinazione) {
+	public void consegnaProdotto(ProdottoOrdinato prodottoOrdinato) {
+		prodottoOrdinato.setStato(StatoProdottoOrdinato.CONSEGNATO);
+	}
+	@Override
+	public void lavoraProdotto(ProdottoOrdinato prodottoOrdinato) {
+		prodottoOrdinato.setStato(StatoProdottoOrdinato.LAVORAZIONE);
+	}
+	
+	@Override
+	public boolean eleminaOrdinazione(long idOrdinazione) {
 		this.listaOrdinazioni.remove(idOrdinazione);
 		return true;
 	}
@@ -89,13 +116,7 @@ public class ServerCentrale implements ServerCentraleInterface {
 	@Override
 	public void aggiungiProdottoMenu(Prodotto prodotto) {
 		this.menu.add(prodotto);
-		
+
 	}
 
-	@Override
-	public void aggiungiProdottoOrdinazine(String idOrdinazione, Prodotto prodotto, int quantita) {
-		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
-		ordinazione.aggiungiOrdini(prodotto, quantita);
-	}	
-	
 }

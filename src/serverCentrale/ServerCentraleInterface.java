@@ -8,14 +8,16 @@ import eccezioni.NessunProdottoException;
 import eccezioni.ProdottoNonConsegnatoException;
 import ordinazioni.Ordinazione;
 import prodotti.Prodotto;
+import prodotti.ProdottoOrdinato;
+import prodotti.TipoProdotto;
 
 public interface ServerCentraleInterface
 {
-    public Ordinazione creaOrdinazione(int idTavolo);
     public float getConto(int idTavolo) throws NessunOrdineException, ProdottoNonConsegnatoException;
-    public boolean inviaOrdine(String idOrdinazione) throws NessunProdottoException, InvioOrdineRIdondanteException;
-    // public ArrayList<Ordinazione> getOrdiniInviati();
-    public boolean eleminaOrdinazione(String idOrdinazione);
+    public long inviaOrdine(int idTavolo, ArrayList<ProdottoOrdinato> ordini) throws NessunProdottoException, InvioOrdineRIdondanteException;
+    public boolean eleminaOrdinazione(long idOrdinazione);
     public void aggiungiProdottoMenu(Prodotto prodotto);
-    public void aggiungiProdottoOrdinazine(String idOrdinazione, Prodotto prodotto, int quantita);
+    public ArrayList<Ordinazione> getOrdini(TipoProdotto tipoProdotto);
+    public void consegnaProdotto(ProdottoOrdinato prodottoOrdinato);
+    public void lavoraProdotto(ProdottoOrdinato prodottoOrdinato);
 }
