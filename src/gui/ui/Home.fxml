@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane prefHeight="160.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
+         <children>
+            <JFXButton layoutY="90.0" prefHeight="70.0" prefWidth="165.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="179.0" layoutY="105.0" text="Tavolo: " textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+            <Label id="time" layoutX="454.0" layoutY="105.0" text="HH : mm" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="928.0" layoutY="94.0" prefHeight="3.0" prefWidth="82.0" ripplerFill="#ebebeb" style="-fx-background-color: #FF9800;" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </JFXButton>
+            <Label id="ordinazione" layoutX="729.0" layoutY="105.0" text="Ordinazioni: " textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Text layoutX="53.0" layoutY="326.0" lineSpacing="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tocca una delle icone qui a lato per accedervi" textAlignment="CENTER" wrappingWidth="330.0">
+         <font>
+            <Font name="Roboto" size="30.0" />
+         </font>
+      </Text>
+      <Text layoutX="53.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benvenuto," textAlignment="CENTER" wrappingWidth="330.0">
+         <font>
+            <Font name="Roboto" size="60.0" />
+         </font>
+      </Text>
+      <Text layoutX="53.0" layoutY="519.0" lineSpacing="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tocca 'Ordinazione' per visualizzare i prodotti ordinati, il loro stato e chiedere il conto." textAlignment="CENTER" wrappingWidth="330.0">
+         <font>
+            <Font name="Roboto" size="30.0" />
+         </font>
+      </Text>
+      <JFXButton id="menu_piatti" buttonType="RAISED" layoutX="428.0" layoutY="188.0" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="MENU PIATTI">
+         <font>
+            <Font name="Roboto" size="49.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="dolci" buttonType="RAISED" layoutX="428.0" layoutY="620.0" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="DOLCI">
+         <font>
+            <Font name="Roboto" size="49.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="vini" buttonType="RAISED" layoutX="428.0" layoutY="483.0" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="CARTA DEI VINI">
+         <font>
+            <Font name="Roboto" size="49.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="bevande" buttonType="RAISED" layoutX="428.0" layoutY="332.0" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="BEVANDE">
+         <font>
+            <Font name="Roboto" size="49.0" />
+         </font>
+      </JFXButton>
+   </children>
+</Pane>
