@@ -1,4 +1,4 @@
-package gui.ui;
+package gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -12,10 +12,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class VisualizzaProdottiController implements Initializable {
-
+public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
     }
 
     //Sarebbe preferibile creare una classe FXMLManager
@@ -28,7 +28,22 @@ public class VisualizzaProdottiController implements Initializable {
         window.show();
     }
 
-    public void loadHome(ActionEvent event) throws IOException {
-        loadFXML(event, "Home.fxml");
+    public void loadMenuPiatti(ActionEvent event) throws IOException {
+        loadFXML(event, "VisualizzaProdotti.fxml");
     }
+
+    public void loadDolci(ActionEvent event) throws IOException {
+        loadFXML(event, "VisualizzaProdotti.fxml");
+    }
+
+    public void loadVini(ActionEvent event) throws IOException {
+        loadFXML(event, "VisualizzaProdotti.fxml");
+    }
+
+    public void loadBevande(ActionEvent event) throws IOException {
+        loadFXML(event, "VisualizzaProdotti.fxml");
+    }
+
+    //Sistemare i metodi load, quando sarà presente il db andranno caricate le liste dei prodotti
+    //Aggiungere logica button "Ordinazione"
 }

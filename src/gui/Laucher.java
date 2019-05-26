@@ -1,4 +1,4 @@
-package gui.ui;
+package gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ public class Laucher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 
         primaryStage.setTitle("Ristorante");
         primaryStage.setScene(new Scene(root));
