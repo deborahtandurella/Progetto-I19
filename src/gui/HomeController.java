@@ -1,6 +1,7 @@
 package gui;
 
 import gui.utils.Clock;
+import gui.utils.FXMLManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,30 +23,20 @@ public class HomeController implements Initializable {
         Clock.initClock(time);
     }
 
-    //Sarebbe preferibile creare una classe FXMLManager
-    protected void loadFXML(ActionEvent event, String path) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(path));
-        Scene scene = new Scene(root);
-
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
     public void loadMenuPiatti(ActionEvent event) throws IOException {
-        loadFXML(event, "VisualizzaProdotti.fxml");
+        FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
     }
 
     public void loadDolci(ActionEvent event) throws IOException {
-        loadFXML(event, "VisualizzaProdotti.fxml");
+        FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
     }
 
     public void loadVini(ActionEvent event) throws IOException {
-        loadFXML(event, "VisualizzaProdotti.fxml");
+        FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
     }
 
     public void loadBevande(ActionEvent event) throws IOException {
-        loadFXML(event, "VisualizzaProdotti.fxml");
+        FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
     }
 
     //Sistemare i metodi load, quando sarà presente il db andranno caricate le liste dei prodotti

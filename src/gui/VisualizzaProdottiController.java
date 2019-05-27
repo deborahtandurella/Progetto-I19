@@ -1,6 +1,7 @@
 package gui;
 
 import gui.utils.Clock;
+import gui.utils.FXMLManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,17 +24,7 @@ public class VisualizzaProdottiController implements Initializable {
         Clock.initClock(time);
     }
 
-    //Sarebbe preferibile creare una classe FXMLManager
-    protected void loadFXML(ActionEvent event, String path) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(path));
-        Scene scene = new Scene(root);
-
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(scene);
-        window.show();
-    }
-
     public void loadHome(ActionEvent event) throws IOException {
-        loadFXML(event, "Home.fxml");
+        FXMLManager.loadFXML(event, "/gui/Home.fxml");
     }
 }
