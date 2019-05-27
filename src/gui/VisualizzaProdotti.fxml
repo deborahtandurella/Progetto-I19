@@ -22,7 +22,7 @@
                   <Font name="Roboto" size="33.0" />
                </font>
             </Label>
-            <Label layoutX="430.0" layoutY="95.0" prefHeight="56.0" prefWidth="165.0" text=" HH  :  mm" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="time" layoutX="430.0" layoutY="95.0" prefHeight="56.0" prefWidth="165.0" text=" HH  :  mm" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
