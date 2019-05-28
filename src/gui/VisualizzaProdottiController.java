@@ -10,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import prodotti.Prodotto;
+import prodotti.TipoPortata;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,18 +25,73 @@ public class VisualizzaProdottiController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
-        fillList();
+
+        switch (HomeController.getIndex()){
+            case 0:
+                fillPiattiList();
+                break;
+            case 1:
+                fillBevandeList();
+                break;
+            case 2:
+                fillViniList();
+                break;
+            case 3:
+                fillDolciList();
+                break;
+            default:
+                System.out.println("NOPE");
+        }
     }
 
     public void loadHome(ActionEvent event) throws IOException {
         FXMLManager.loadFXML(event, "/gui/Home.fxml");
     }
 
-    public void fillList(){
-        ArrayList<Prodotto> lista = Laucher.retProdotti();
+//    public void fillList(){
+//        ArrayList<Prodotto> lista = Launcher.retProdotti();
+//
+//        for(Prodotto p : lista){
+//            AnchorPane tempPane = new AnchorPane();
+//            JFXButton addTemp = new JFXButton("+");
+//            Text titleTemp = new Text(p.getNome());
+//            titleTemp.setId("titletemp");
+//            Text descTemp = new Text(p.getDescrizione());
+//            descTemp.setId("desctemp");
+//
+//            tempPane.getChildren().addAll(titleTemp, descTemp, addTemp);
+//            tempPane.getStylesheets().add(getClass().getResource("/gui/style/Style.css").toExternalForm());
+//
+//            addTemp.setLayoutX(562.0);
+//            addTemp.setLayoutY(6.0);
+//            titleTemp.setLayoutX(7.0);
+//            titleTemp.setLayoutY(22.0);
+//            descTemp.setLayoutX(7.0);
+//            descTemp.setLayoutY(40.0);
+//            descTemp.setWrappingWidth(562.0);
+//
+//            vBoxList.getChildren().addAll(tempPane);
+//        }
+//    }
 
-        for(Prodotto p : lista){
+    public void fillPiattiList(){
+        vBoxFiller(searchByType(TipoPortata.PIATTI));
+    }
 
+    public void fillBevandeList(){
+        vBoxFiller(searchByType(TipoPortata.BEVANDE));
+    }
+
+    public void fillViniList(){
+        vBoxFiller(searchByType(TipoPortata.VINI));
+    }
+
+    public void fillDolciList(){
+        vBoxFiller(searchByType(TipoPortata.DOLCI));
+    }
+
+    public void vBoxFiller(ArrayList<Prodotto> aLP){
+        for(Prodotto p : aLP){
             AnchorPane tempPane = new AnchorPane();
             JFXButton addTemp = new JFXButton("+");
             Text titleTemp = new Text(p.getNome());
@@ -45,6 +101,7 @@ public class VisualizzaProdottiController implements Initializable {
 
             tempPane.getChildren().addAll(titleTemp, descTemp, addTemp);
             tempPane.getStylesheets().add(getClass().getResource("/gui/style/Style.css").toExternalForm());
+
             addTemp.setLayoutX(562.0);
             addTemp.setLayoutY(6.0);
             titleTemp.setLayoutX(7.0);
@@ -56,4 +113,16 @@ public class VisualizzaProdottiController implements Initializable {
             vBoxList.getChildren().addAll(tempPane);
         }
     }
+
+    public ArrayList<Prodotto> searchByType(TipoPortata type){
+        ArrayList<Prodotto> listafull = Launcher.initFullMenu();
+        ArrayList<Prodotto> lista = new ArrayList<>();
+        for (Prodotto p : listafull){
+            if (p.getTipoPortata() == type){
+                lista.add(p);
+            }
+        }
+        return lista;
+    }
+
 }
