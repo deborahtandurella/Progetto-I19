@@ -1,0 +1,18 @@
+.jfx-button{
+    -fx-background-color: #FF9800;
+    -fx-text-fill: white;
+    -fx-font-size: 22;
+    -fx-font-family: "Roboto Bold";
+}
+
+#titletemp{
+    -fx-font-size: 22;
+    -fx-font-family: "Roboto Bold";
+}
+
+#titletemp{
+    -fx-font-size: 20;
+    -fx-font-family: "Roboto";
+    -fx-max-width: 20;
+    -fx-max-height: 20;
+}
