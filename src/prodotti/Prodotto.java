@@ -8,8 +8,9 @@ public class Prodotto {
     private final String descrizione;
     private int tempoPreparazione;
     private TipoProdotto tipo;
+    private TipoPortata tipoPortata;
 
-    public Prodotto(String nome,float prezzo, String descrizione, int tempoPreparazione, TipoProdotto tipo) throws PrezzoNegativoException {
+    public Prodotto(String nome,float prezzo, String descrizione, int tempoPreparazione, TipoProdotto tipo, TipoPortata tipoP) throws PrezzoNegativoException {
     	
     	if(prezzo <= 0){
             throw new PrezzoNegativoException();
@@ -18,7 +19,8 @@ public class Prodotto {
         this.nome = nome;
         this.descrizione = descrizione;
         this.tempoPreparazione = tempoPreparazione;
-        this.tipo= tipo;
+        this.tipo = tipo;
+        this.tipoPortata = tipoP;
     }
 
     public float getPrezzo() {
@@ -46,6 +48,10 @@ public class Prodotto {
 
     public void setTipo(TipoProdotto tipo) {
         this.tipo = tipo;
+    }
+
+    public TipoPortata getTipoPortata() {
+        return tipoPortata;
     }
 }
 
