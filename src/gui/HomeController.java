@@ -47,5 +47,7 @@ public class HomeController implements Initializable {
         FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
     }
 
-    //Aggiungere logica button "Ordinazione"
+    public void loadOrdinazioni(ActionEvent event) throws IOException {
+        FXMLManager.loadFXML(event, "/gui/conferma_ordinazione.fxml");
+    }
 }
