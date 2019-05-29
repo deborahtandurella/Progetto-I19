@@ -18,7 +18,7 @@ public class HomeController implements Initializable {
         return index;
     }
 
-    private void setIndex(int index) {
+    protected static void setIndex(int index) {
         HomeController.index = index;
     }
 
