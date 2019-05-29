@@ -2,6 +2,8 @@ package gui.utils;
 
 import com.jfoenix.controls.JFXButton;
 import gui.Launcher;
+import gui.VisualizzaProdottiController;
+import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -24,6 +26,9 @@ public class ListFiller {
     }
 
     public void vBoxFiller(ArrayList<Prodotto> aLP, VBox vbox){
+
+        int indiceBottone=0;
+
         for(Prodotto p : aLP){
             AnchorPane tempPane = new AnchorPane();
             JFXButton addTemp = new JFXButton("+");
@@ -37,6 +42,8 @@ public class ListFiller {
 
             addTemp.setLayoutX(562.0);
             addTemp.setLayoutY(6.0);
+            addTemp.setId(Integer.toString(indiceBottone));
+            addTemp.setOnAction(this::addProdotto);
             titleTemp.setLayoutX(7.0);
             titleTemp.setLayoutY(22.0);
             descTemp.setLayoutX(7.0);
@@ -44,6 +51,7 @@ public class ListFiller {
             descTemp.setWrappingWidth(562.0);
 
             vbox.getChildren().addAll(tempPane);
+            indiceBottone++;
         }
     }
 
@@ -61,5 +69,15 @@ public class ListFiller {
 
     public void dolci(VBox vbox){
         vBoxFiller(searchByType(TipoPortata.DOLCI), vbox);
+    }
+
+    public void addProdotto(ActionEvent event)  {
+        JFXButton o= (JFXButton) event.getSource();
+        /*if(o.getId().equals("0")) System.out.println("Belco");
+        if(o.getId().equals("1")) System.out.println("Daniel");
+        if(o.getId().equals("2")) System.out.println("terronz");*/
+        ArrayList<Prodotto> p=searchByType(TipoPortata.PIATTI);
+        System.out.println(p.get(Integer.parseInt(o.getId())).getNome());
+
     }
 }
