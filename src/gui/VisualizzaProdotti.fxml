@@ -18,17 +18,17 @@
                <Font name="Roboto" size="33.0" />
             </font>
          </JFXButton>
-         <Label layoutX="179.0" layoutY="105.0" text="Tavolo: " textFill="WHITE">
+         <Label layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
             <font>
                <Font name="Roboto" size="33.0" />
             </font>
          </Label>
-         <Label fx:id="time" layoutX="454.0" layoutY="105.0" text="HH : mm" textFill="WHITE">
+         <Label fx:id="time" layoutX="454.0" layoutY="101.0" text="HH : mm" textFill="WHITE">
             <font>
                <Font name="Roboto" size="33.0" />
             </font>
          </Label>
-         <Label id="ordinazione" layoutX="729.0" layoutY="105.0" text="Ordinazioni: " textFill="WHITE">
+         <Label id="ordinazione" layoutX="729.0" layoutY="101.0" text="Ordinazioni: " textFill="WHITE">
             <font>
                <Font name="Roboto" size="33.0" />
             </font>

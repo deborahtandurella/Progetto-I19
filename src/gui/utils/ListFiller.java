@@ -2,7 +2,6 @@ package gui.utils;
 
 import com.jfoenix.controls.JFXButton;
 import gui.Launcher;
-import gui.VisualizzaProdottiController;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -47,8 +46,8 @@ public class ListFiller {
             titleTemp.setLayoutX(7.0);
             titleTemp.setLayoutY(22.0);
             descTemp.setLayoutX(7.0);
-            descTemp.setLayoutY(40.0);
-            descTemp.setWrappingWidth(562.0);
+            descTemp.setLayoutY(42.0);
+            descTemp.setWrappingWidth(540.0);
 
             vbox.getChildren().addAll(tempPane);
             indiceBottone++;

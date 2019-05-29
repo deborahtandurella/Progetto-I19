@@ -10,9 +10,8 @@
     -fx-font-family: "Roboto Bold";
 }
 
-#titletemp{
-    -fx-font-size: 20;
+#desctemp{
+    -fx-font-size: 18;
     -fx-font-family: "Roboto";
-    -fx-max-width: 20;
-    -fx-max-height: 20;
+    -fx-fill: #757575;
 }
