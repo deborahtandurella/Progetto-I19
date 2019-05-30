@@ -86,4 +86,7 @@ public class VisualizzaProdottiController implements Initializable {
         HomeController.setIndex(0);
         FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
     }
+    public void loadOrdinazioni(ActionEvent event) throws IOException {
+        FXMLManager.loadFXML(event, "/gui/conferma_ordinazione.fxml");
+    }
 }
