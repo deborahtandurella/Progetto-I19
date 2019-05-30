@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class ListFiller {
 
+    static ArrayList<Prodotto> prodotti= new ArrayList<>();
+
     public ArrayList<Prodotto> searchByType(TipoPortata type){
         ArrayList<Prodotto> listafull = Launcher.initFullMenu();
         ArrayList<Prodotto> lista = new ArrayList<>();
@@ -77,7 +79,12 @@ public class ListFiller {
         if(o.getId().equals("1")) System.out.println("Daniel");
         if(o.getId().equals("2")) System.out.println("terronz");*/
         ArrayList<Prodotto> p=searchByType(TipoPortata.PIATTI);
-        System.out.println(p.get(Integer.parseInt(o.getId())).getNome());
+        //System.out.println(p.get(Integer.parseInt(o.getId())).getNome());
+        prodotti.add(p.get(Integer.parseInt(o.getId())));
+        System.out.println(prodotti.toString());
+    }
 
+    public ArrayList<Prodotto> getProdotti() {
+        return prodotti;
     }
 }
