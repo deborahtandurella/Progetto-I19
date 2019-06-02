@@ -13,29 +13,29 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA; -fx-fit-to-width: true;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConfermaOrdinazioneController">
    <children>
-      <Pane prefHeight="162.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
+      <Pane prefHeight="160.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
          <children>
-            <JFXButton layoutX="7.0" layoutY="92.0" onAction="#loadHome" prefHeight="56.0" prefWidth="165.0" style="-fx-background-color: #D50000;" text="Home" textFill="WHITE">
+            <JFXButton onAction="#loadHome" layoutY="90.0" prefHeight="70.0" prefWidth="165.0" text="Home" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
             </JFXButton>
-            <Label layoutX="186.0" layoutY="95.0" prefHeight="56.0" prefWidth="165.0" text="Tavolo: " textAlignment="CENTER" textFill="WHITE">
+            <Label layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
             </Label>
-            <Label layoutX="403.0" layoutY="95.0" prefHeight="56.0" prefWidth="165.0" text=" HH  :  mm" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="time" layoutX="454.0" layoutY="101.0" text="HH : mm" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
             </Label>
-            <Label layoutX="678.0" layoutY="95.0" prefHeight="56.0" prefWidth="196.0" text="Ordinazione: " textFill="WHITE">
+            <Label id="ordinazione" layoutX="729.0" layoutY="101.0" text="Ordinazioni: " textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
             </Label>
-            <JFXButton layoutX="898.0" layoutY="92.0" prefHeight="37.0" prefWidth="68.0" style="-fx-background-color: #FF9800;" text="N" textFill="WHITE">
+            <JFXButton fx:id="carrello" onAction="#loadOrdinazioni" layoutX="912.0" layoutY="84.0" prefHeight="3.0" prefWidth="82.0" ripplerFill="#ebebeb" style="-fx-background-color: #FF9800;" text="0" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
@@ -59,7 +59,7 @@
                   <Font name="Roboto" size="22.0" />
                </font>
             </Text>
-            <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="366.0" onAction="#loadVisualizzaProdotti" prefHeight="73.0" prefWidth="282.0" style="-fx-background-color: white;" text="AGGIUNGI PRODOTTI" textFill="#ff9800">
+            <JFXButton onAction="#loadVisualizzaProdotti" buttonType="RAISED" layoutX="20.0" layoutY="366.0" prefHeight="73.0" prefWidth="282.0" style="-fx-background-color: white;" text="AGGIUNGI PRODOTTI" textFill="#ff9800">
                <font>
                   <Font name="Roboto Bold" size="25.0" />
                </font>
@@ -262,7 +262,7 @@
                   </AnchorPane>
                </children>
             </VBox>
-            <VBox fx:id="vBoxList" prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="vBoxList" prefHeight="200.0" prefWidth="100.0" >
             </VBox>
          </content>
       </ScrollPane>

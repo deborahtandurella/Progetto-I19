@@ -15,7 +15,7 @@
                   <Font name="Roboto" size="33.0" />
                </font>
             </JFXButton>
-            <Label layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
+            <Label fx:id="table" layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
@@ -30,7 +30,7 @@
                      <Font name="Roboto" size="33.0" />
                  </font>
              </Label>
-            <JFXButton onAction="#loadOrdinazioni" layoutX="912.0" layoutY="84.0" prefHeight="3.0" prefWidth="82.0" ripplerFill="#ebebeb" style="-fx-background-color: #FF9800;" text="0" textFill="WHITE">
+            <JFXButton fx:id="carrello" onAction="#loadOrdinazioni" layoutX="912.0" layoutY="84.0" prefHeight="3.0" prefWidth="82.0" ripplerFill="#ebebeb" style="-fx-background-color: #FF9800;" text="0" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
