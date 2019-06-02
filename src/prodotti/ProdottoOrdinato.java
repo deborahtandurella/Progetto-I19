@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public class ProdottoOrdinato {
 	private final Prodotto prodotto;
-	private final int quantita;
+	private int quantita;
 	private StatoProdottoOrdinato stato;
 	private LocalDateTime tempoInizioLavorazione;
 
@@ -32,6 +32,10 @@ public class ProdottoOrdinato {
 
 	public int getQuantita() {
 		return quantita;
+	}
+
+	public void addQuantita(){
+		quantita++;
 	}
 
 	public void setStato(StatoProdottoOrdinato stato) {
