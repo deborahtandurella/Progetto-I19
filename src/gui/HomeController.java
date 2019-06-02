@@ -1,7 +1,9 @@
 package gui;
 
+import com.jfoenix.controls.JFXButton;
 import gui.utils.Clock;
 import gui.utils.FXMLManager;
+import gui.utils.RefreshManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -12,7 +14,10 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
     public Label time;
+    public Label table;
+    public JFXButton carrello;
     private static int index;
+    private static Integer nTavolo;
 
     public static int getIndex() {
         return index;
@@ -22,9 +27,20 @@ public class HomeController implements Initializable {
         HomeController.index = index;
     }
 
+    private void setTavolo (int n){
+        nTavolo = n;
+        table.setText(table.getText() + nTavolo);
+    }
+
+    public static int getnTavolo() {
+        return nTavolo;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
+        setTavolo(12);
+        RefreshManager.ordinazioniButton(carrello);
     }
 
     public void loadMenuPiatti(ActionEvent event) throws IOException {
@@ -48,6 +64,6 @@ public class HomeController implements Initializable {
     }
 
     public void loadOrdinazioni(ActionEvent event) throws IOException {
-        FXMLManager.loadFXML(event, "/gui/conferma_ordinazione.fxml");
+        FXMLManager.loadFXML(event, "/gui/ConfermaOrdinazioni.fxml");
     }
 }

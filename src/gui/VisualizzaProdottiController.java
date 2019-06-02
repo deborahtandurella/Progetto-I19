@@ -4,14 +4,13 @@ import com.jfoenix.controls.JFXButton;
 import gui.utils.Clock;
 import gui.utils.FXMLManager;
 import gui.utils.ListFiller;
+import gui.utils.RefreshManager;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
-import prodotti.TipoPortata;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,12 +24,12 @@ public class VisualizzaProdottiController implements Initializable {
     public JFXButton bevandeButton;
     public JFXButton dolciButton;
     public JFXButton piattiButton;
-
-    private int n=0;
+    public JFXButton carrello;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
+        RefreshManager.ordinazioniButton(carrello);
         ListFiller fillList = new ListFiller();
 
         switch (HomeController.getIndex()){
@@ -58,14 +57,6 @@ public class VisualizzaProdottiController implements Initializable {
     public void loadHome(ActionEvent event) throws IOException {
         FXMLManager.loadFXML(event, "/gui/Home.fxml");
     }
-    
-    public void aggiornaConteggioOrdine(ActionEvent event) {
-
-       JFXButton ButtonConteggio=new JFXButton();
-       ButtonConteggio.setText(Integer.toString(n));
-       n++;
-        System.out.println(n);
-    }
 
     public void loadBevande(ActionEvent event) throws IOException {
         HomeController.setIndex(1);
@@ -87,6 +78,6 @@ public class VisualizzaProdottiController implements Initializable {
         FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
     }
     public void loadOrdinazioni(ActionEvent event) throws IOException {
-        FXMLManager.loadFXML(event, "/gui/conferma_ordinazione.fxml");
+        FXMLManager.loadFXML(event, "/gui/ConfermaOrdinazioni.fxml");
     }
 }

@@ -46,7 +46,7 @@ public class Launcher extends Application {
         }
     }
 
-    public static ArrayList initFullMenu(){
+    public static ArrayList<Prodotto> initFullMenu(){
         ArrayList<Prodotto> list = new ArrayList<>();
         list.add(p1);
         list.add(p2);
