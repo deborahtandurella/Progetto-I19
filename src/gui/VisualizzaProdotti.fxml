@@ -18,7 +18,7 @@
                <Font name="Roboto" size="33.0" />
             </font>
          </JFXButton>
-         <Label layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
+         <Label fx:id="table" layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
             <font>
                <Font name="Roboto" size="33.0" />
             </font>

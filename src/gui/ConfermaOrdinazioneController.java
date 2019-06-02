@@ -1,7 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import eccezioni.PrezzoNegativoException;
 import gui.utils.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -9,10 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
-import prodotti.TipoPortata;
-import prodotti.TipoProdotto;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,11 +21,13 @@ public class ConfermaOrdinazioneController implements Initializable
     public Label time;
     public VBox vBoxList;
     public JFXButton carrello;
+    public Label table;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
         RefreshManager.ordinazioniButton(carrello);
+        table.setText(table.getText() + HomeController.getnTavolo());
 
         ManagerOrdinazioni manager = new ManagerOrdinazioni();
 
@@ -44,7 +42,7 @@ public class ConfermaOrdinazioneController implements Initializable
         FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
     }
 
-    public void loadProdottiOrdinati(ArrayList<ProdottoOrdinato> aPO, VBox vBox){
+    private void loadProdottiOrdinati(ArrayList<ProdottoOrdinato> aPO, VBox vBox){
         for(ProdottoOrdinato p : aPO){
             AnchorPane tempPane = new AnchorPane();
             JFXButton addTemp = new JFXButton("RIMUOVI");
@@ -75,6 +73,4 @@ public class ConfermaOrdinazioneController implements Initializable
         loadProdottiOrdinati(manager.getProdottiOrdinati(), vBoxList);
     }
 
-    public void loadOrdinazioni(ActionEvent event) {
-    }
 }

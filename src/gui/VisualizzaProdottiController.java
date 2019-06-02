@@ -25,11 +25,13 @@ public class VisualizzaProdottiController implements Initializable {
     public JFXButton dolciButton;
     public JFXButton piattiButton;
     public JFXButton carrello;
-    
+    public Label table;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
         RefreshManager.ordinazioniButton(carrello);
+        table.setText(table.getText() + HomeController.getnTavolo());
         ListFiller fillList = new ListFiller();
 
         switch (HomeController.getIndex()){
