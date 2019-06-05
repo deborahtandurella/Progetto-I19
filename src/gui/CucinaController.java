@@ -1,9 +1,11 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import gui.utils.FXMLManager;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -12,7 +14,9 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import ordinazioni.Ordinazione;
 import prodotti.ProdottoOrdinato;
+import prodotti.TipoPortata;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -32,6 +36,9 @@ public class CucinaController implements Initializable {
         for(Ordinazione ord : ordini){
             Text table = new Text("TAVOLO N. " + ord.getIdTavolo());
             JFXButton startTimer = new JFXButton("START TIMER");
+            startTimer.setId(Integer.toString(ord.getIdTavolo()));
+            startTimer.setOnAction(this::setTimer);
+
             VBox vBox1 = new VBox();
             AnchorPane tempPane1 = new AnchorPane();
 
@@ -94,5 +101,44 @@ public class CucinaController implements Initializable {
 
     public static ArrayList<Ordinazione> getOrdini() {
         return ordini;
+    }
+
+    public void setTimer(ActionEvent event)  {
+
+        JFXButton b= (JFXButton)event.getSource();
+
+        for(Ordinazione ord : ordini){
+            if (b.getId().equals(Integer.toString(ord.getIdTavolo())))
+            {
+                for(ProdottoOrdinato p : ord.getOrdini()){
+                    if (p.getProdotto().getTipoPortata()== TipoPortata.PIATTI)
+                    {
+                        p.setStatoProdottoOrdinatoLavorazione();
+                    }
+                }
+
+            }
+        }
+    }
+
+    public int maxTempoPreparazione()
+    {
+        int max=0;
+
+        for(Ordinazione ord : ordini){
+            if (HomeController.getnTavolo() == ord.getIdTavolo())
+            {
+                for(ProdottoOrdinato p : ord.getOrdini()){
+                    if (p.getProdotto().getTipoPortata()== TipoPortata.PIATTI)
+                    {
+                       if(p.getProdotto().getTempoPreparazione()>=max) {
+                           max = p.getProdotto().getTempoPreparazione();
+                       }
+                    }
+                }
+
+            }
+        }
+        return  max*60;
     }
 }
