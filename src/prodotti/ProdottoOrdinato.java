@@ -51,9 +51,9 @@ public class ProdottoOrdinato {
 		this.tempoInizioLavorazione = LocalDateTime.now();
 	}
 	
-	public int getTempoElaborazioneRimanente() {
+	public int getTempoElaborazioneRimanente(int max) {
 		int tempoPassato = (int)Duration.between(this.tempoInizioLavorazione, LocalDateTime.now()).getSeconds();
-		return this.prodotto.getTempoPreparazione() - tempoPassato;
+		return max - tempoPassato;
 	}
 	
 	public String getAllInfo(){
@@ -65,7 +65,7 @@ public class ProdottoOrdinato {
     	return  '{' + 
     			'\n' + '\t' + "\"prodotto\"" + ':' + '"' + getProdotto() + '"'  + ',' + 
     			'\n' + '\t' + "\"stato\"" + ':' + '"' + getStato() + '"' + ',' + 
-    			'\n' + '\t' + "\"temporimanente\"" + ':' + getTempoElaborazioneRimanente() + 
+    			//'\n' + '\t' + "\"temporimanente\"" + ':' + getTempoElaborazioneRimanente() +
     			'}'  ;
     }
 }
