@@ -8,31 +8,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TimerContoController">
    <children>
-      <Pane prefHeight="162.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
+      <Pane prefHeight="160.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
          <children>
-            <JFXButton layoutX="3.0" layoutY="92.0" prefHeight="56.0" prefWidth="165.0" style="-fx-background-color: #D50000;" text="Home" textFill="WHITE">
+            <JFXButton  onAction="#loadHome" layoutY="90.0" prefHeight="70.0" prefWidth="165.0" text="Home" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
             </JFXButton>
-            <Label layoutX="186.0" layoutY="95.0" prefHeight="56.0" prefWidth="165.0" text="Tavolo: " textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="table" layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
             </Label>
-            <Label layoutX="430.0" layoutY="95.0" prefHeight="56.0" prefWidth="165.0" text=" HH  :  mm" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="time" layoutX="454.0" layoutY="101.0" text="HH : mm" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
             </Label>
-            <Label layoutX="692.0" layoutY="95.0" prefHeight="56.0" prefWidth="196.0" text="Ordinazione: " textFill="WHITE">
+            <Label id="ordinazione" layoutX="729.0" layoutY="101.0" text="Ordinazioni: " textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
             </Label>
-            <JFXButton layoutX="912.0" layoutY="92.0" prefHeight="37.0" prefWidth="68.0" style="-fx-background-color: #FF9800;" text="N" textFill="WHITE">
+            <JFXButton fx:id="carrello" onAction="#loadOrdinazioni" layoutX="912.0" layoutY="84.0" prefHeight="3.0" prefWidth="82.0" ripplerFill="#ebebeb" style="-fx-background-color: #FF9800;" text="0" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
@@ -66,7 +66,7 @@
             <DropShadow color="#0000005a" height="0.0" offsetX="2.0" offsetY="2.0" radius="13.6275" width="56.51" />
          </effect>
       </Pane>
-      <JFXButton buttonType="RAISED" layoutX="369.0" layoutY="491.0" prefHeight="73.0" prefWidth="606.0" style="-fx-background-color: white;" text="RICHIEDI CONTO" textFill="#2e7d32">
+      <JFXButton fx:id="conto" buttonType="RAISED" layoutX="369.0" layoutY="491.0" prefHeight="73.0" prefWidth="606.0" style="-fx-background-color: white;" text="RICHIEDI CONTO" textFill="#2e7d32">
          <font>
             <Font name="Roboto Bold" size="35.0" />
          </font>
