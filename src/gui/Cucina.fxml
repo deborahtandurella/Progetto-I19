@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CucinaController">
    <children>
       <Pane prefHeight="68.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
          <children>
@@ -21,8 +21,8 @@
       </Pane>
       <ScrollPane layoutX="17.0" layoutY="105.0" prefHeight="647.0" prefWidth="981.0" style="-fx-background-color: #FAFAFA; -fx-fit-to-width: true;">
          <content>
-            <VBox prefHeight="659.0" prefWidth="959.0">
-               <children>
+            <VBox fx:id="vbox" prefHeight="659.0" prefWidth="959.0">
+               <!--<children>
                   <AnchorPane prefHeight="115.0" prefWidth="959.0" style="-fx-border-color: grey;">
                      <children>
                         <Text layoutX="7.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TAVOLO N." wrappingWidth="562.0">
@@ -260,7 +260,7 @@
                         </JFXButton>
                      </children>
                   </AnchorPane>
-               </children>
+               </children>-->
             </VBox>
          </content>
       </ScrollPane>
