@@ -22,6 +22,7 @@ public class ConfermaOrdinazioneController implements Initializable
     public VBox vBoxList;
     public JFXButton carrello;
     public Label table;
+    public JFXButton conferma;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -32,6 +33,10 @@ public class ConfermaOrdinazioneController implements Initializable
         ManagerOrdinazioni manager = new ManagerOrdinazioni();
 
         loadProdottiOrdinati(manager.getProdottiOrdinati(), vBoxList);
+
+        if(ManagerOrdinazioni.getNumProdOrd() == 0){
+            conferma.setText(" VISUALIZZA CONTO ");
+        }
     }
 
     public void loadHome(ActionEvent event) throws IOException {
@@ -73,4 +78,17 @@ public class ConfermaOrdinazioneController implements Initializable
         loadProdottiOrdinati(manager.getProdottiOrdinati(), vBoxList);
     }
 
+    public void confermaOrdinazione(ActionEvent event) throws IOException {
+        /*
+        * Ogni volta che si conferma un ordine, il vettore dei prodotti ordinati d'appoggio andrebbe svuotato, tuttavia
+        * svuotandolo, in cucina non vengono caricati i prodotti. Problema che non dovrebbe persistere quando sarà
+        * implementata la parte back-end
+        */
+
+        //ManagerOrdinazioni.confermaOrdinazione();
+
+        CucinaController.setOrdini(HomeController.getnTavolo(), ManagerOrdinazioni.getProdottiOrdinati());
+        //ManagerOrdinazioni.clearOrdinazioni();
+        FXMLManager.loadFXML(event, "/gui/TimerContoFinale.fxml");
+    }
 }

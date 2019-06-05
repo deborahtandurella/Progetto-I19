@@ -38,7 +38,7 @@ public class ManagerOrdinazioni {
         return ordinazioni;
     }
 
-    public ArrayList<ProdottoOrdinato> getProdottiOrdinati() {
+    public static ArrayList<ProdottoOrdinato> getProdottiOrdinati() {
         return prodottiOrdinati;
     }
 

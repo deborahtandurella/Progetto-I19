@@ -74,7 +74,7 @@
             <DropShadow color="#00000059" height="42.39" offsetX="2.0" offsetY="2.0" radius="24.225" width="56.51" />
          </effect>
       </Pane>
-      <JFXButton buttonType="RAISED" layoutX="346.0" layoutY="633.0" prefHeight="70.0" prefWidth="660.0" style="-fx-background-color: white;" text="CONFERMA ORDINAZIONE" textFill="#2e7d32">
+      <JFXButton fx:id="conferma" onAction="#confermaOrdinazione" buttonType="RAISED" layoutX="346.0" layoutY="633.0" prefHeight="70.0" prefWidth="660.0" style="-fx-background-color: white;" text="CONFERMA ORDINAZIONE" textFill="#2e7d32">
          <font>
             <Font name="Roboto Bold" size="30.0" />
          </font>
