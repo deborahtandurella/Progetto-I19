@@ -21,7 +21,8 @@ public class ManagerOrdinazioni {
     }
 
     public static void removeProdottoOrdinato(int id){
-        prodottiOrdinati.remove(getPOrdById(id));
+        prodottiOrdinati.remove(id);
+        //prodottiOrdinati.remove(getPOrdById(id));
     }
 
     public static ProdottoOrdinato getPOrdById(int id){
