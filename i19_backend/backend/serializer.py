@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, IntegerField
+from rest_framework.serializers import ModelSerializer, IntegerField, DateTimeField
 from .models import *
 
 
@@ -32,6 +32,7 @@ class StatoProdottoOrdinatoSerializer(ModelSerializer):
 class ProdottoOrdinatoSerializer(ModelSerializer):
     prodotto = ProdottoSerializer()
     stato = IntegerField(source='stato_prodotto_ordinato.id')
+    tempo_inizio_lavorazione = DateTimeField(format="%Y-%m-%dT%H:%M:%S")
 
     class Meta:
         model = ProdottoOrdinato
