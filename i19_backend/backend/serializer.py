@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer, CharField
+from rest_framework.serializers import ModelSerializer, IntegerField
 from .models import *
 
 
@@ -15,12 +15,12 @@ class TipoPortataSerializer(ModelSerializer):
 
 
 class ProdottoSerializer(ModelSerializer):
-    tipo_prodotto = TipoProdottoSerializer()
-    tipo_portata = TipoPortataSerializer()
+    tipo = IntegerField(source='tipo_prodotto.id')
+    tipoPortata = IntegerField(source='tipo_portata.id')
 
     class Meta:
         model = Prodotto
-        fields = ['id', 'descrizione', 'prezzo', 'tempo_preparazione', 'tipo_prodotto', 'tipo_portata']
+        fields = ['id', 'descrizione', 'prezzo', 'tempo_preparazione', 'tipo', 'tipoPortata']
 
 
 class StatoProdottoOrdinatoSerializer(ModelSerializer):
@@ -31,11 +31,11 @@ class StatoProdottoOrdinatoSerializer(ModelSerializer):
 
 class ProdottoOrdinatoSerializer(ModelSerializer):
     prodotto = ProdottoSerializer()
-    stato_prodotto_ordinato = StatoProdottoOrdinatoSerializer()
+    stato = IntegerField(source='stato_prodotto_ordinato.id')
 
     class Meta:
         model = ProdottoOrdinato
-        fields = ['id', 'quantita', 'tempo_inizio_lavorazione', 'prodotto', 'stato_prodotto_ordinato']
+        fields = ['id', 'quantita', 'tempo_inizio_lavorazione', 'prodotto', 'stato']
 
 
 class OrdinazioneSerializer(ModelSerializer):
