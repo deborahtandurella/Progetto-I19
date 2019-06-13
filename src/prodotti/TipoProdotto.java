@@ -1,5 +1,18 @@
 package prodotti;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum TipoProdotto {
-    CUCINA, CAFFETTERIA
+    CUCINA(1), CAFFETTERIA(2);
+	
+	private final int value;
+	
+	private TipoProdotto(final int value) {
+		this.value = value;
+	}
+	
+	@JsonValue
+	final int value() {
+		return this.value;
+	}
 }

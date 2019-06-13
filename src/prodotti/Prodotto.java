@@ -1,7 +1,10 @@
 package prodotti;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import eccezioni.PrezzoNegativoException;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Prodotto {
     private final int id;
     private final String nome;
@@ -12,6 +15,13 @@ public class Prodotto {
     private TipoPortata tipoPortata;
     private static int newId = 0;
 
+    public Prodotto() {
+    	this.id = 0;
+    	this.nome = "";
+    	this.prezzo = 0;
+    	this.descrizione = "";
+    }
+    
     public Prodotto(String nome,float prezzo, String descrizione, int tempoPreparazione, TipoProdotto tipo, TipoPortata tipoP) throws PrezzoNegativoException {
     	
     	if(prezzo <= 0){
@@ -46,7 +56,7 @@ public class Prodotto {
 
     @Override
     public String toString() {
-        return '\n' + nome + '|' + prezzo;
+        return this.descrizione + " | " + this.prezzo + " | " + this.tipoPortata;
     }
 
     public TipoProdotto getTipo() {
