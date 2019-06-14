@@ -12,7 +12,7 @@ public enum TipoPortata {
 	}
 	
 	@JsonValue
-	final int value() {
+	public final int value() {
 		return this.value;
 	}
 }
