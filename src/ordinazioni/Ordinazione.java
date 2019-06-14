@@ -5,6 +5,11 @@ import eccezioni.OrdinazioneNegativaException;
 import prodotti.*;
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+@JsonSerialize(using = OrdinazioniSerializer.class)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Ordinazione implements OrdinazioneInterface {
 
 	private int idTavolo;
