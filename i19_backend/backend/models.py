@@ -23,7 +23,7 @@ class StatoProdottoOrdinato(models.Model):
 
 class ProdottoOrdinato(models.Model):
     quantita = models.IntegerField()
-    tempo_inizio_lavorazione = models.DateTimeField(auto_now_add=True)
+    tempoInizioLavorazione = models.DateTimeField(auto_now_add=True)
     prodotto = models.ForeignKey(Prodotto, on_delete=models.PROTECT)
     stato_prodotto_ordinato = models.ForeignKey(StatoProdottoOrdinato, on_delete=models.PROTECT)
 

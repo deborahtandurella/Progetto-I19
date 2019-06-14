@@ -32,11 +32,11 @@ class StatoProdottoOrdinatoSerializer(ModelSerializer):
 class ProdottoOrdinatoSerializer(ModelSerializer):
     prodotto = ProdottoSerializer()
     stato = IntegerField(source='stato_prodotto_ordinato.id')
-    tempo_inizio_lavorazione = DateTimeField(format="%Y-%m-%dT%H:%M:%S")
+    tempoInizioLavorazione = DateTimeField(format="%Y-%m-%d %H:%M:%S")
 
     class Meta:
         model = ProdottoOrdinato
-        fields = ['id', 'quantita', 'tempo_inizio_lavorazione', 'prodotto', 'stato']
+        fields = ['id', 'quantita', 'tempoInizioLavorazione', 'prodotto', 'stato']
 
 
 class OrdinazioneSerializer(ModelSerializer):
