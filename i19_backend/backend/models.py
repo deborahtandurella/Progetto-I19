@@ -26,8 +26,4 @@ class ProdottoOrdinato(models.Model):
     tempoInizioLavorazione = models.DateTimeField(auto_now_add=True)
     prodotto = models.ForeignKey(Prodotto, on_delete=models.PROTECT)
     stato_prodotto_ordinato = models.ForeignKey(StatoProdottoOrdinato, on_delete=models.PROTECT)
-
-
-class Ordinazione(models.Model):
     id_tavolo = models.CharField(max_length=5)
-    prodotto_ordinato = models.ForeignKey(ProdottoOrdinato, on_delete=models.CASCADE)

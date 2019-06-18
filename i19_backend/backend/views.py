@@ -24,12 +24,6 @@ class ProdottoOrdinatoViewSet(viewsets.ModelViewSet):
     serializer_class = ProdottoOrdinatoSerializer
 
 
-class OrdinazioneViewSet(viewsets.ModelViewSet):
-
-    queryset = Ordinazione.objects.all()
-    serializer_class = OrdinazioneSerializer
-
-
 class StatoProdottoOrdinatoViewSet(viewsets.ModelViewSet):
 
     queryset = StatoProdottoOrdinato.objects.all()

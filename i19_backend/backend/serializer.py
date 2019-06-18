@@ -32,7 +32,7 @@ class StatoProdottoOrdinatoSerializer(serializers.ModelSerializer):
 class ProdottoOrdinatoSerializer(serializers.ModelSerializer):
     prodotto = serializers.PrimaryKeyRelatedField(queryset=Prodotto.objects.all())
     stato = serializers.IntegerField(source='stato_prodotto_ordinato.id')
-    tempoInizioLavorazione = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S")
+    tempoInizioLavorazione = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
 
     class Meta:
         model = ProdottoOrdinato
@@ -41,16 +41,3 @@ class ProdottoOrdinatoSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         self.fields['prodotto'] = ProdottoSerializer()
         return super(ProdottoOrdinatoSerializer, self).to_representation(instance)
-
-
-class OrdinazioneSerializer(serializers.ModelSerializer):
-    prodotto_ordinato = serializers.PrimaryKeyRelatedField(queryset=ProdottoOrdinato.objects.all())
-
-    class Meta:
-        model = Ordinazione
-        fields = ['id', 'id_tavolo', 'prodotto_ordinato']
-
-    def to_representation(self, instance):
-        self.fields['prodotto_ordinato'] = ProdottoOrdinatoSerializer()
-        return super(OrdinazioneSerializer, self).to_representation(instance)
-
