@@ -10,20 +10,22 @@ class TipoPortata(models.Model):
 
 
 class Prodotto(models.Model):
+    nome = models.CharField(max_length=20)
     descrizione = models.TextField()
     prezzo = models.FloatField()
-    tempo_preparazione = models.IntegerField()
-    tipo_prodotto = models.ForeignKey(TipoProdotto, on_delete=models.PROTECT)
-    tipo_portata = models.ForeignKey(TipoPortata, on_delete=models.PROTECT)
-
-
-class StatoProdottoOrdinato(models.Model):
-    nome = models.CharField(max_length=30)
-
+    tempoPreparazione = models.PositiveIntegerField()
+    tipo = models.ForeignKey(TipoProdotto, on_delete=models.PROTECT)
+    tipoPortata = models.ForeignKey(TipoPortata, on_delete=models.PROTECT)
 
 class ProdottoOrdinato(models.Model):
+    STATO_PRODOTTO_ORDINAZIONE = [
+        (1, 'ORDINATO'),
+        (2, 'LAVORAZIONE'),
+        (3, 'CONSEGNATO')
+    ]
+
     quantita = models.IntegerField()
-    tempoInizioLavorazione = models.DateTimeField(auto_now_add=True)
+    tempoInizioLavorazione = models.DateTimeField(null=True, blank=True)
     prodotto = models.ForeignKey(Prodotto, on_delete=models.PROTECT)
-    stato_prodotto_ordinato = models.ForeignKey(StatoProdottoOrdinato, on_delete=models.PROTECT)
-    id_tavolo = models.CharField(max_length=5)
+    statoProdottoOrdinato = models.PositiveSmallIntegerField(choices=STATO_PRODOTTO_ORDINAZIONE, default=1)
+    idTavolo = models.PositiveSmallIntegerField()

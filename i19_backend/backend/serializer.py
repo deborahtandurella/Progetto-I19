@@ -15,28 +15,21 @@ class TipoPortataSerializer(serializers.ModelSerializer):
 
 
 class ProdottoSerializer(serializers.ModelSerializer):
-    tipo = serializers.IntegerField(source='tipo_prodotto.id')
-    tipoPortata = serializers.IntegerField(source='tipo_portata.id')
+    tipo = serializers.IntegerField(source='tipo.id')
+    tipoPortata = serializers.IntegerField(source='tipoPortata.id')
 
     class Meta:
         model = Prodotto
-        fields = ['id', 'descrizione', 'prezzo', 'tempo_preparazione', 'tipo', 'tipoPortata']
-
-
-class StatoProdottoOrdinatoSerializer(serializers.ModelSerializer):
-     class Meta:
-         model = StatoProdottoOrdinato
-         fields = ['id', 'nome']
+        fields = ['id', 'nome', 'descrizione', 'prezzo', 'tempoPreparazione', 'tipo', 'tipoPortata']
 
 
 class ProdottoOrdinatoSerializer(serializers.ModelSerializer):
     prodotto = serializers.PrimaryKeyRelatedField(queryset=Prodotto.objects.all())
-    stato = serializers.IntegerField(source='stato_prodotto_ordinato.id')
     tempoInizioLavorazione = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
 
     class Meta:
         model = ProdottoOrdinato
-        fields = ['id', 'quantita', 'tempoInizioLavorazione', 'prodotto', 'stato']
+        fields = ['id', 'idTavolo', 'quantita', 'tempoInizioLavorazione', 'prodotto', 'statoProdottoOrdinato']
 
     def to_representation(self, instance):
         self.fields['prodotto'] = ProdottoSerializer()

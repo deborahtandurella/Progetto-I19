@@ -1,4 +1,6 @@
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import status
 from .serializer import *
 from .models import *
 
@@ -23,8 +25,17 @@ class ProdottoOrdinatoViewSet(viewsets.ModelViewSet):
     queryset = ProdottoOrdinato.objects.all()
     serializer_class = ProdottoOrdinatoSerializer
 
+    def create(self, request, *args, **kwargs):
 
-class StatoProdottoOrdinatoViewSet(viewsets.ModelViewSet):
+        is_many = isinstance(request.data, list)
 
-    queryset = StatoProdottoOrdinato.objects.all()
-    serializer_class = StatoProdottoOrdinatoSerializer
+        if not is_many:
+            return super(ProdottoOrdinatoViewSet, self).create(request, *args, **kwargs)
+        else:
+            serializer = self.get_serializer(data=request.data, many=True)
+            serializer.is_valid(raise_exception=True)
+            print(request.data)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
