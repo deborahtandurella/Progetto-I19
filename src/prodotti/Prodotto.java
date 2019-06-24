@@ -13,7 +13,6 @@ public class Prodotto {
     private int tempoPreparazione;
     private TipoProdotto tipo;
     private TipoPortata tipoPortata;
-    private static int newId = 0;
 
     public Prodotto() {
     	this.id = 0;
@@ -22,8 +21,9 @@ public class Prodotto {
     	this.descrizione = "";
     }
     
-    public Prodotto(String nome,float prezzo, String descrizione, int tempoPreparazione, TipoProdotto tipo, TipoPortata tipoP) throws PrezzoNegativoException {
+    public Prodotto(int id, String nome, float prezzo, String descrizione, int tempoPreparazione, TipoProdotto tipo, TipoPortata tipoP) throws PrezzoNegativoException {
     	
+    	this.id = id;
     	if(prezzo <= 0){
             throw new PrezzoNegativoException();
         }
@@ -33,7 +33,6 @@ public class Prodotto {
         this.tempoPreparazione = tempoPreparazione;
         this.tipo = tipo;
         this.tipoPortata = tipoP;
-        this.id = newId++;
     }
 
     public float getPrezzo() {
@@ -52,11 +51,6 @@ public class Prodotto {
 
     public int getId() {
         return id;
-    }
-
-    @Override
-    public String toString() {
-        return this.descrizione + " | " + this.prezzo + " | " + this.tipoPortata;
     }
 
     public TipoProdotto getTipo() {
