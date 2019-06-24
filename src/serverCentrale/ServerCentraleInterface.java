@@ -9,6 +9,7 @@ import eccezioni.ProdottoNonConsegnatoException;
 import ordinazioni.Ordinazione;
 import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
+import prodotti.TipoPortata;
 import prodotti.TipoProdotto;
 
 public interface ServerCentraleInterface
@@ -20,4 +21,6 @@ public interface ServerCentraleInterface
     public ArrayList<Ordinazione> getOrdini(TipoProdotto tipoProdotto);
     public void consegnaProdotto(ProdottoOrdinato prodottoOrdinato);
     public void lavoraProdotto(ProdottoOrdinato prodottoOrdinato);
+    public List<Prodotto> getMenu();
+    public List<Prodotto> getMenu(TipoPortata tipoPortata);
 }

@@ -8,6 +8,7 @@ import ordinazioni.Ordinazione;
 import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
+import prodotti.TipoPortata;
 import prodotti.TipoProdotto;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 public class ServerCentrale implements ServerCentraleInterface {
 
@@ -112,19 +114,35 @@ public class ServerCentrale implements ServerCentraleInterface {
 		return true;
 	}
 
+	@Override
 	public List<Prodotto> getMenu() {
-		ResponseEntity<List<Prodotto>> response = restTemplate.exchange(ApiURL.PRODOTTO,
+		return this.getMenu(ApiURL.PRODOTTO);
+	}
+	
+	@Override
+	public List<Prodotto> getMenu(TipoPortata tipoPortata) {
+		
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO)
+				.queryParam("tipoPortata", tipoPortata.value());
+		
+		return this.getMenu(queryBuilder.toUriString());
+	}
+
+	private List<Prodotto> getMenu(String url) {
+		ResponseEntity<List<Prodotto>> response = restTemplate.exchange(url,
 				HttpMethod.GET,
 				null,
 				new ParameterizedTypeReference<List<Prodotto>>() {});
 		List<Prodotto> menu = response.getBody();
 		return menu;
 	}
-
+	
 	@Override
 	public void aggiungiProdottoMenu(Prodotto prodotto) {
 		this.menu.add(prodotto);
 
 	}
+
+
 
 }
