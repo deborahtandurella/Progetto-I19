@@ -1,4 +1,6 @@
 from rest_framework import serializers
+import datetime
+
 from .models import *
 
 
@@ -34,3 +36,9 @@ class ProdottoOrdinatoSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         self.fields['prodotto'] = ProdottoSerializer()
         return super(ProdottoOrdinatoSerializer, self).to_representation(instance)
+
+    def update(self, instance, validated_data):
+        if validated_data.get('statoProdottoOrdinato') == 2:
+            instance.tempoInizioLavorazione = datetime.datetime.now()
+
+        return super().update(instance, validated_data)
