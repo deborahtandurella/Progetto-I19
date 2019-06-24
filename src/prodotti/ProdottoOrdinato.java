@@ -9,30 +9,43 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
+@JsonSerialize(using = ProdottoOrdinatoSerializer.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProdottoOrdinato {
+
 	private final Prodotto prodotto;
 	private int quantita;
-	private StatoProdottoOrdinato stato;
-	
+	private StatoProdottoOrdinato statoProdottoOrdinato;
+	private int idTavolo;
+
 	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 	private LocalDateTime tempoInizioLavorazione;
 
+	
 	public ProdottoOrdinato() {
 		this.prodotto = null;
 	}
 	
-	public ProdottoOrdinato(Prodotto prodotto, int quantita) throws OrdinazioneNegativaException {
+	public ProdottoOrdinato(Prodotto prodotto, int quantita, int idTavolo) throws OrdinazioneNegativaException {
 		if (quantita <= 0) {
 			throw new OrdinazioneNegativaException();
 		}
 		
 		this.prodotto = prodotto;
 		this.quantita = quantita;
-		this.stato = null;
+		this.statoProdottoOrdinato = StatoProdottoOrdinato.ORDINATO;
 		this.tempoInizioLavorazione = null;
+		this.idTavolo = idTavolo;
+	}
+
+	
+	public LocalDateTime getTempoInizioLavorazione() {
+		return tempoInizioLavorazione;
 	}
 
 	public float getCostoParziale() {
@@ -52,15 +65,15 @@ public class ProdottoOrdinato {
 	}
 
 	public void setStato(StatoProdottoOrdinato stato) {
-		this.stato = stato;
+		this.statoProdottoOrdinato = stato;
 	}
 
 	public StatoProdottoOrdinato getStato() {
-		return stato;
+		return statoProdottoOrdinato;
 	}
 
 	public void setStatoProdottoOrdinatoLavorazione() {
-		this.stato = StatoProdottoOrdinato.LAVORAZIONE;
+		this.statoProdottoOrdinato = StatoProdottoOrdinato.LAVORAZIONE;
 		this.tempoInizioLavorazione = LocalDateTime.now();
 	}
 	
@@ -69,16 +82,15 @@ public class ProdottoOrdinato {
 		return max - tempoPassato;
 	}
 	
-	public String getAllInfo(){
-		return this.toString();
+	public int getIdTavolo() {
+		return idTavolo;
 	}
 	
-    @Override
-    public String toString() {
-    	return  '{' + 
-    			'\n' + '\t' + "\"prodotto\"" + ':' + '"' + getProdotto() + '"'  + ',' + 
-    			'\n' + '\t' + "\"stato\"" + ':' + '"' + getStato() + '"' + ',' + 
-    			//'\n' + '\t' + "\"temporimanente\"" + ':' + getTempoElaborazioneRimanente() +
-    			'}'  ;
-    }
+	public void setStatoProdottoOrdinato(StatoProdottoOrdinato statoProdottoOrdinato) {
+		this.statoProdottoOrdinato = statoProdottoOrdinato;
+	}
+
+	public void setTempoInizioLavorazione(LocalDateTime tempoInizioLavorazione) {
+		this.tempoInizioLavorazione = tempoInizioLavorazione;
+	}
 }
