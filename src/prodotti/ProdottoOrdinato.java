@@ -17,6 +17,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ProdottoOrdinato {
 
+	private final int id;
 	private final Prodotto prodotto;
 	private int quantita;
 	private StatoProdottoOrdinato statoProdottoOrdinato;
@@ -29,6 +30,7 @@ public class ProdottoOrdinato {
 	
 	public ProdottoOrdinato() {
 		this.prodotto = null;
+		this.id = 0;
 	}
 	
 	public ProdottoOrdinato(Prodotto prodotto, int quantita, int idTavolo) throws OrdinazioneNegativaException {
@@ -41,9 +43,14 @@ public class ProdottoOrdinato {
 		this.statoProdottoOrdinato = StatoProdottoOrdinato.ORDINATO;
 		this.tempoInizioLavorazione = null;
 		this.idTavolo = idTavolo;
+		this.id = 0;
 	}
 
 	
+	public int getId() {
+		return id;
+	}
+
 	public LocalDateTime getTempoInizioLavorazione() {
 		return tempoInizioLavorazione;
 	}
