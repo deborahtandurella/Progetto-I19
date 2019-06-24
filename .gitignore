@@ -93,3 +93,4 @@ fabric.properties
 .project
 .classpath
 /bin/
+/target/
