@@ -23,6 +23,7 @@ api_router.register(r'tipo_prodotto', views.TipoProdottoViewSet)
 api_router.register(r'tipo_portata', views.TipoPortataViewSet)
 api_router.register(r'prodotto', views.ProdottoViewSet)
 api_router.register(r'prodotto_ordinato', views.ProdottoOrdinatoViewSet)
+api_router.register(r'id_tavolo', views.IdTavoloViewSet, base_name='id_tavolo')
 
 
 urlpatterns = [
