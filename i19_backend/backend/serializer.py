@@ -4,21 +4,7 @@ import datetime
 from .models import *
 
 
-class TipoProdottoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TipoPortata
-        fields = ['id', 'nome']
-
-
-class TipoPortataSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TipoPortata
-        fields = ['id', 'nome']
-
-
 class ProdottoSerializer(serializers.ModelSerializer):
-    tipo = serializers.IntegerField(source='tipo.id')
-    tipoPortata = serializers.IntegerField(source='tipoPortata.id')
 
     class Meta:
         model = Prodotto

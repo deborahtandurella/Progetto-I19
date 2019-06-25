@@ -7,16 +7,6 @@ from .serializer import *
 from .models import *
 
 
-class TipoProdottoViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = TipoProdotto.objects.all()
-    serializer_class = TipoProdottoSerializer
-
-
-class TipoPortataViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = TipoPortata.objects.all()
-    serializer_class = TipoPortataSerializer
-
-
 class ProdottoViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Prodotto.objects.all()
     serializer_class = ProdottoSerializer

@@ -1,27 +1,32 @@
 from django.db import models
 
 
-class TipoProdotto(models.Model):
-    nome = models.CharField(max_length=30)
-
-
-class TipoPortata(models.Model):
-    nome = models.CharField(max_length=30)
-
-
 class Prodotto(models.Model):
+
+    TIPO_PRODOTTO = [
+        (0, 'CUCINA'),
+        (1, 'CAFFETTERIA')
+    ]
+
+    TIPO_PORTATA = [
+        (0, 'PIATTI'),
+        (1, 'BEVANDE'),
+        (2, 'VINI'),
+        (3, 'DOLCI')
+    ]
+
     nome = models.CharField(max_length=20)
     descrizione = models.TextField()
     prezzo = models.FloatField()
     tempoPreparazione = models.PositiveIntegerField()
-    tipo = models.ForeignKey(TipoProdotto, on_delete=models.PROTECT)
-    tipoPortata = models.ForeignKey(TipoPortata, on_delete=models.PROTECT)
+    tipo = models.SmallIntegerField(choices=TIPO_PRODOTTO)
+    tipoPortata = models.SmallIntegerField(choices=TIPO_PORTATA)
 
 class ProdottoOrdinato(models.Model):
     STATO_PRODOTTO_ORDINAZIONE = [
-        (1, 'ORDINATO'),
-        (2, 'LAVORAZIONE'),
-        (3, 'CONSEGNATO')
+        (0, 'ORDINATO'),
+        (1, 'LAVORAZIONE'),
+        (2, 'CONSEGNATO')
     ]
 
     quantita = models.IntegerField()
