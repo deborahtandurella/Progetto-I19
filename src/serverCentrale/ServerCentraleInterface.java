@@ -18,7 +18,7 @@ public interface ServerCentraleInterface
     public List<ProdottoOrdinato> inviaOrdine(ArrayList<ProdottoOrdinato> ordini) throws NessunProdottoException;
     public boolean eleminaOrdinazione(long idOrdinazione);
     public void aggiungiProdottoMenu(Prodotto prodotto);
-    public ArrayList<Ordinazione> getOrdini(TipoProdotto tipoProdotto);
+    public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto);
     public void consegnaProdotto(ProdottoOrdinato prodottoOrdinato);
     public void lavoraProdotto(ProdottoOrdinato prodottoOrdinato);
     public List<Prodotto> getMenu();
