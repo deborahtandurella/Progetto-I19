@@ -3,7 +3,7 @@ package prodotti;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TipoProdotto {
-    CUCINA(1), CAFFETTERIA(2);
+    CUCINA(0), CAFFETTERIA(1);
 	
 	private final int value;
 	
