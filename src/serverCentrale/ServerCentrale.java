@@ -71,10 +71,6 @@ public class ServerCentrale implements ServerCentraleInterface {
 
 	}
 
-	public String getStatoOrdinazione(long idOrdinazione) {
-		Ordinazione ordinazione = this.listaOrdinazioni.get(idOrdinazione);
-		return ordinazione.getStatoProdottiOrdinati();
-	}
 
 	@Override
 	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto) {

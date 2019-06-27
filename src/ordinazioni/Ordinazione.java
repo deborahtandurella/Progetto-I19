@@ -36,7 +36,7 @@ public class Ordinazione implements OrdinazioneInterface {
 	@Override
 	public boolean aggiungiOrdini(Prodotto prodotto, int quantita) {
 		try {
-			this.ordini.add(new ProdottoOrdinato(prodotto, quantita));
+			this.ordini.add(new ProdottoOrdinato(prodotto, quantita, 0));
 		} catch (OrdinazioneNegativaException e) {
 			e.getMessage();
 		}
@@ -108,12 +108,5 @@ public class Ordinazione implements OrdinazioneInterface {
 		return true;
 	}
 	
-	public String getStatoProdottiOrdinati(){
-		String output="[";
-		for(ProdottoOrdinato prodottoordinato : this.ordini){
-			output += prodottoordinato.getAllInfo() + ",\n";
-		}
-		output += "]";
-		return output;
-	}
+
 }

@@ -2,6 +2,7 @@ package gui.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
+import gui.HomeController;
 import gui.Launcher;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
@@ -10,25 +11,22 @@ import javafx.scene.text.Text;
 import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 import prodotti.TipoPortata;
+import serverCentrale.ServerCentrale;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListFiller {
 
     static ArrayList<Prodotto> prodotti= new ArrayList<>();
+    private ServerCentrale serverCentrale = new ServerCentrale();
 
-    public ArrayList<Prodotto> searchByType(TipoPortata type){
-        ArrayList<Prodotto> listafull = Launcher.initFullMenu();
-        ArrayList<Prodotto> lista = new ArrayList<>();
-        for (Prodotto p : listafull){
-            if (p.getTipoPortata() == type){
-                lista.add(p);
-            }
-        }
-        return lista;
+    private ArrayList<Prodotto> getMenu(){
+        ServerCentrale serverCentrale = new ServerCentrale();
+        return (ArrayList<Prodotto>) serverCentrale.getMenu();
     }
 
-    public void vBoxFiller(ArrayList<Prodotto> aLP, VBox vbox){
+    public void vBoxFiller(List<Prodotto> aLP, VBox vbox){
 
         for(Prodotto p : aLP){
             AnchorPane tempPane = new AnchorPane();
@@ -56,27 +54,27 @@ public class ListFiller {
     }
 
     public void piatti(VBox vbox){
-        vBoxFiller(searchByType(TipoPortata.PIATTI), vbox);
+        vBoxFiller(serverCentrale.getMenu(TipoPortata.PIATTI), vbox);
     }
 
     public void bevande(VBox vbox){
-        vBoxFiller(searchByType(TipoPortata.BEVANDE), vbox);
+        vBoxFiller(serverCentrale.getMenu(TipoPortata.BEVANDE), vbox);
     }
 
     public void vini(VBox vbox){
-        vBoxFiller(searchByType(TipoPortata.VINI), vbox);
+        vBoxFiller(serverCentrale.getMenu(TipoPortata.VINI), vbox);
     }
 
     public void dolci(VBox vbox){
-        vBoxFiller(searchByType(TipoPortata.DOLCI), vbox);
+        vBoxFiller(serverCentrale.getMenu(TipoPortata.DOLCI), vbox);
     }
 
     public void addProdotto(ActionEvent event)  {
         JFXButton o= (JFXButton) event.getSource();
-        Prodotto pTemp = Launcher.initFullMenu().get(Integer.parseInt(o.getId()));
+        Prodotto pTemp = getMenu().get(Integer.parseInt(o.getId()));
 
         try {
-            ProdottoOrdinato po = new ProdottoOrdinato(pTemp, 1);
+            ProdottoOrdinato po = new ProdottoOrdinato(pTemp, 1, HomeController.getnTavolo());
             ManagerOrdinazioni.addProdOrd(po);
         } catch (OrdinazioneNegativaException e) {
             e.printStackTrace();
