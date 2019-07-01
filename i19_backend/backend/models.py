@@ -22,6 +22,12 @@ class Prodotto(models.Model):
     tipo = models.SmallIntegerField(choices=TIPO_PRODOTTO)
     tipoPortata = models.SmallIntegerField(choices=TIPO_PORTATA)
 
+    class Meta:
+        verbose_name_plural = 'Prodotti'
+
+    def __str__(self):
+        return self.nome
+
 class ProdottoOrdinato(models.Model):
     STATO_PRODOTTO_ORDINAZIONE = [
         (0, 'ORDINATO'),
@@ -34,3 +40,9 @@ class ProdottoOrdinato(models.Model):
     prodotto = models.ForeignKey(Prodotto, on_delete=models.PROTECT)
     statoProdottoOrdinato = models.PositiveSmallIntegerField(choices=STATO_PRODOTTO_ORDINAZIONE, default=1)
     idTavolo = models.PositiveSmallIntegerField()
+
+    class Meta:
+        verbose_name_plural = 'Prodotti Ordinati'
+
+    def __str__(self):
+        return str(self.idTavolo) + ': ' + self.prodotto.__str__()
