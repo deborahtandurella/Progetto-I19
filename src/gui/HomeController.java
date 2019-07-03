@@ -1,10 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import gui.utils.Clock;
-import gui.utils.FXMLManager;
-import gui.utils.LoaderProdotti;
-import gui.utils.RefreshManager;
+import gui.utils.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -32,7 +29,7 @@ public class HomeController extends LoaderProdotti implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
         setTavolo(12);
-        RefreshManager.ordinazioniButton(carrello);
+        ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
     }
 
     public void loadOrdinazioni(ActionEvent event) throws IOException {
