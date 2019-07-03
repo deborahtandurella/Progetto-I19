@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import gui.utils.Clock;
 import gui.utils.FXMLManager;
 import gui.utils.ManagerOrdinazioni;
+import gui.utils.MasterController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TimerContoController implements Initializable {
+public class TimerContoController extends MasterController implements Initializable {
 
 
     public JFXButton conto;
@@ -51,20 +52,9 @@ public class TimerContoController implements Initializable {
         }
     }
 
-
-    public void loadOrdinazioni(ActionEvent event) throws IOException {
-        FXMLManager.loadFXML(event, "/gui/ConfermaOrdinazioni.fxml");
-    }
-
     public void loadVisualizzaProdotti(ActionEvent event) throws IOException {
         FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
     }
-
-
-    public void loadHome(ActionEvent event) throws IOException {
-        FXMLManager.loadFXML(event, "/gui/Home.fxml");
-    }
-
 
     public void richiediConto(ActionEvent event) {
 

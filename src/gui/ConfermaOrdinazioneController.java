@@ -15,8 +15,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ConfermaOrdinazioneController implements Initializable
-{
+public class ConfermaOrdinazioneController extends MasterController implements Initializable {
 
     public Label time;
     public VBox vBoxList;
@@ -37,10 +36,6 @@ public class ConfermaOrdinazioneController implements Initializable
         if(ManagerOrdinazioni.getNumProdOrd() == 0){
             conferma.setText(" VISUALIZZA CONTO ");
         }
-    }
-
-    public void loadHome(ActionEvent event) throws IOException {
-        FXMLManager.loadFXML(event, "/gui/Home.fxml");
     }
 
     public void loadVisualizzaProdotti(ActionEvent event) throws IOException {

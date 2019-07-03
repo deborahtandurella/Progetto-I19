@@ -7,7 +7,7 @@ import prodotti.TipoPortata;
 
 import java.io.IOException;
 
-public class LoaderProdotti {
+public class LoaderProdotti extends MasterController {
 
     public void loadProdotti(ActionEvent event) throws IOException {
         JFXButton button = (JFXButton) event.getSource();
