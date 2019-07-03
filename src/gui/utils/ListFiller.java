@@ -62,19 +62,21 @@ public class ListFiller {
         }
     }
 
-    public void addProdotto(ActionEvent event)  {
+    public void addProdotto(ActionEvent event) {
         JFXButton o= (JFXButton) event.getSource();
-        Prodotto pTemp = getMenu().get(Integer.parseInt(o.getId()));
-
+        Prodotto pTemp = null;
+        for(Prodotto p : getMenu()) {
+            if(p.getId() == Integer.parseInt(o.getId())){
+                pTemp = p;
+                break;
+            }
+        }
         try {
-            ProdottoOrdinato po = new ProdottoOrdinato(pTemp, 1, HomeController.getnTavolo());
-            ManagerOrdinazioni.addProdOrd(po);
-        } catch (OrdinazioneNegativaException e) {
-            e.printStackTrace();
+            ManagerOrdinazioni.addProdOrd(pTemp, visualizzaProdottiController.carrello);
+        } catch(OrdinazioneNegativaException e) {
+            System.err.println(e.getMessage());
         }
 
-        visualizzaProdottiController.referehCarrello();
-        System.out.println(pTemp.getNome());
     }
 
     public ArrayList<Prodotto> getProdotti() {

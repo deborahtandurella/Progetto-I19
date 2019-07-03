@@ -27,7 +27,7 @@ public class ConfermaOrdinazioneController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
-        RefreshManager.ordinazioniButton(carrello);
+        ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
         table.setText(table.getText() + HomeController.getnTavolo());
 
         ManagerOrdinazioni manager = new ManagerOrdinazioni();

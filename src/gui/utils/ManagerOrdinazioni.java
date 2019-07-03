@@ -1,25 +1,37 @@
 package gui.utils;
 
+import com.jfoenix.controls.JFXButton;
+import eccezioni.OrdinazioneNegativaException;
 import gui.HomeController;
-import ordinazioni.Ordinazione;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.util.Duration;
+import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 
 import java.util.ArrayList;
 
 public class ManagerOrdinazioni {
-
-    private static ArrayList<Ordinazione> ordinazioni = new ArrayList<>();
     private static ArrayList<ProdottoOrdinato> prodottiOrdinati = new ArrayList<>();
 
-    static void addProdOrd(ProdottoOrdinato p){
-        if(prodottiOrdinati.contains(p)){
-            p.addQuantita();
+    static void addProdOrd(Prodotto prodotto, JFXButton carrello) throws OrdinazioneNegativaException {
+        for(ProdottoOrdinato prodottoOrdinato1 : prodottiOrdinati){
+            if(prodottoOrdinato1.getProdotto() == prodotto){
+                prodottoOrdinato1.addQuantita();
+                refreshOrdinazioniButton(carrello);
+                return;
+            }
         }
-        else {
-            prodottiOrdinati.add(p);
-        }
+        ProdottoOrdinato prodottoOrdinato = new ProdottoOrdinato(prodotto, 1, HomeController.getnTavolo());
+        prodottiOrdinati.add(prodottoOrdinato);
+        refreshOrdinazioniButton(carrello);
+
     }
 
+    public static void refreshOrdinazioniButton(JFXButton carrello){
+        carrello.setText(String.valueOf(ManagerOrdinazioni.getNumProdOrd()));
+    }
     public static void removeProdottoOrdinato(int id){
         prodottiOrdinati.remove(id);
         //prodottiOrdinati.remove(getPOrdById(id));
@@ -35,17 +47,8 @@ public class ManagerOrdinazioni {
         return po;
     }
 
-    public ArrayList<Ordinazione> getOrdinazioni() {
-        return ordinazioni;
-    }
-
     public static ArrayList<ProdottoOrdinato> getProdottiOrdinati() {
         return prodottiOrdinati;
-    }
-
-    public void confermaOrdinazione(){
-        ordinazioni.add(new Ordinazione(HomeController.getnTavolo(), prodottiOrdinati));
-        prodottiOrdinati.clear();
     }
 
     public static int getNumProdOrd(){

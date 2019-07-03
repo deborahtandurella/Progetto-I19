@@ -29,7 +29,7 @@ public class VisualizzaProdottiController extends LoaderProdotti implements Init
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
-        RefreshManager.ordinazioniButton(carrello);
+        ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
         table.setText(table.getText() + HomeController.getnTavolo());
         new ListFiller(this, this.vBoxList, this.tipoPortata);
     }

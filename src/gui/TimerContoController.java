@@ -1,23 +1,19 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
 import gui.utils.Clock;
 import gui.utils.FXMLManager;
-import gui.utils.RefreshManager;
+import gui.utils.ManagerOrdinazioni;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import ordinazioni.Ordinazione;
 import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
-import prodotti.TipoPortata;
 
 import java.io.IOException;
 import java.net.URL;
@@ -78,7 +74,7 @@ public class TimerContoController implements Initializable {
     public void refresh(){
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
             Clock.initClock(time);
-            RefreshManager.ordinazioniButton(carrello);
+            ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
             conto.setDisable(true);
             checkConto();
             checkStatoProdottoOrdinato();
