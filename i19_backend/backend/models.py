@@ -26,7 +26,7 @@ class Prodotto(models.Model):
         verbose_name_plural = 'Prodotti'
 
     def __str__(self):
-        return self.nome
+        return 'ID:' + str(self.id) + ' Nome:' + self.nome
 
 class ProdottoOrdinato(models.Model):
     STATO_PRODOTTO_ORDINAZIONE = [
