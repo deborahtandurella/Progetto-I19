@@ -52,22 +52,22 @@
             <Font name="Roboto" size="30.0" />
          </font>
       </Text>
-      <JFXButton id="menu_piatti" buttonType="RAISED" layoutX="428.0" layoutY="188.0" onAction="#loadMenuPiatti" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="MENU PIATTI">
+      <JFXButton id="PIATTI" buttonType="RAISED" layoutX="428.0" layoutY="188.0" onAction="#loadProdotti" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="MENU PIATTI">
          <font>
             <Font name="Roboto" size="49.0" />
          </font>
       </JFXButton>
-      <JFXButton id="dolci" buttonType="RAISED" layoutX="428.0" layoutY="620.0" onAction="#loadDolci" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="DOLCI">
+      <JFXButton id="DOLCI" buttonType="RAISED" layoutX="428.0" layoutY="620.0" onAction="#loadProdotti" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="DOLCI">
          <font>
             <Font name="Roboto" size="49.0" />
          </font>
       </JFXButton>
-      <JFXButton id="vini" buttonType="RAISED" layoutX="428.0" layoutY="483.0" onAction="#loadVini" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="CARTA DEI VINI">
+      <JFXButton id="VINI" buttonType="RAISED" layoutX="428.0" layoutY="483.0" onAction="#loadProdotti" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="CARTA DEI VINI">
          <font>
             <Font name="Roboto" size="49.0" />
          </font>
       </JFXButton>
-      <JFXButton id="bevande" buttonType="RAISED" layoutX="428.0" layoutY="332.0" onAction="#loadBevande" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="BEVANDE">
+      <JFXButton id="BEVANDE" buttonType="RAISED" layoutX="428.0" layoutY="332.0" onAction="#loadProdotti" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="BEVANDE">
          <font>
             <Font name="Roboto" size="49.0" />
          </font>

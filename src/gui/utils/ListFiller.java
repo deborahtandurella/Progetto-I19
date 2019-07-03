@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
 import gui.HomeController;
 import gui.Launcher;
+import gui.VisualizzaProdottiController;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -18,8 +19,16 @@ import java.util.List;
 
 public class ListFiller {
 
+    private VisualizzaProdottiController visualizzaProdottiController;
     static ArrayList<Prodotto> prodotti= new ArrayList<>();
     private ServerCentrale serverCentrale = new ServerCentrale();
+
+    public ListFiller (VisualizzaProdottiController visualizzaProdottiController, VBox vBox, TipoPortata tipoPortata){
+        this.visualizzaProdottiController = visualizzaProdottiController;
+        vBoxFiller(serverCentrale.getMenu(tipoPortata), vBox);
+    }
+
+
 
     private ArrayList<Prodotto> getMenu(){
         ServerCentrale serverCentrale = new ServerCentrale();
@@ -53,22 +62,6 @@ public class ListFiller {
         }
     }
 
-    public void piatti(VBox vbox){
-        vBoxFiller(serverCentrale.getMenu(TipoPortata.PIATTI), vbox);
-    }
-
-    public void bevande(VBox vbox){
-        vBoxFiller(serverCentrale.getMenu(TipoPortata.BEVANDE), vbox);
-    }
-
-    public void vini(VBox vbox){
-        vBoxFiller(serverCentrale.getMenu(TipoPortata.VINI), vbox);
-    }
-
-    public void dolci(VBox vbox){
-        vBoxFiller(serverCentrale.getMenu(TipoPortata.DOLCI), vbox);
-    }
-
     public void addProdotto(ActionEvent event)  {
         JFXButton o= (JFXButton) event.getSource();
         Prodotto pTemp = getMenu().get(Integer.parseInt(o.getId()));
@@ -80,6 +73,7 @@ public class ListFiller {
             e.printStackTrace();
         }
 
+        visualizzaProdottiController.referehCarrello();
         System.out.println(pTemp.getNome());
     }
 
