@@ -2,17 +2,15 @@ package gui.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
-import gui.HomeController;
-import gui.Launcher;
 import gui.VisualizzaProdottiController;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import prodotti.Prodotto;
-import prodotti.ProdottoOrdinato;
 import prodotti.TipoPortata;
 import serverCentrale.ServerCentrale;
+import serverCentrale.ServerCentraleEsterno;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +19,12 @@ public class ListFiller {
 
     private VisualizzaProdottiController visualizzaProdottiController;
     static ArrayList<Prodotto> prodotti= new ArrayList<>();
-    private ServerCentrale serverCentrale = new ServerCentrale();
+    private ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
 
     public ListFiller (VisualizzaProdottiController visualizzaProdottiController, VBox vBox, TipoPortata tipoPortata){
         this.visualizzaProdottiController = visualizzaProdottiController;
-        vBoxFiller(serverCentrale.getMenu(tipoPortata), vBox);
+        vBoxFiller(serverCentraleEsterno.getMenu(tipoPortata), vBox);
     }
-
-
 
     private ArrayList<Prodotto> getMenu(){
         ServerCentrale serverCentrale = new ServerCentrale();
@@ -65,12 +61,14 @@ public class ListFiller {
     public void addProdotto(ActionEvent event) {
         JFXButton o= (JFXButton) event.getSource();
         Prodotto pTemp = null;
+
         for(Prodotto p : getMenu()) {
             if(p.getId() == Integer.parseInt(o.getId())){
                 pTemp = p;
                 break;
             }
         }
+
         try {
             ManagerOrdinazioni.addProdOrd(pTemp, visualizzaProdottiController.carrello);
         } catch(OrdinazioneNegativaException e) {
