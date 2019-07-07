@@ -3,10 +3,6 @@ package gui.utils;
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
 import gui.HomeController;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.util.Duration;
 import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 
@@ -30,32 +26,37 @@ public class ManagerOrdinazioni {
     }
 
     public static void refreshOrdinazioniButton(JFXButton carrello){
-        carrello.setText(String.valueOf(ManagerOrdinazioni.getNumProdOrd()));
-    }
-    public static void removeProdottoOrdinato(int id){
-        prodottiOrdinati.remove(id);
-        //prodottiOrdinati.remove(getPOrdById(id));
+        carrello.setText(String.valueOf(getNumeroProdottiOrdinati()));
     }
 
-    public static ProdottoOrdinato getPOrdById(int id){
-        ProdottoOrdinato po = null;
+    public static void removeProdottoOrdinato(int id, JFXButton carrello){
+        prodottiOrdinati.remove(getProdottoOrdinatoById(id));
+        refreshOrdinazioniButton(carrello);
+    }
+
+    private static ProdottoOrdinato getProdottoOrdinatoById(int id){
+        ProdottoOrdinato prodottoOrdinato = null;
         for(ProdottoOrdinato p : prodottiOrdinati){
             if(id == p.getProdotto().getId()){
-                po = p;
+                prodottoOrdinato = p;
             }
         }
-        return po;
+        return prodottoOrdinato;
     }
 
     public static ArrayList<ProdottoOrdinato> getProdottiOrdinati() {
         return prodottiOrdinati;
     }
 
-    public static int getNumProdOrd(){
+    public static int getNumeroProdottiOrdinati(){
         int tot = 0;
         for(ProdottoOrdinato p : prodottiOrdinati){
             tot += p.getQuantita();
         }
         return tot;
+    }
+
+    public static void clearProdottiOrdinatiFromLocal(){
+        prodottiOrdinati.clear();
     }
 }
