@@ -37,19 +37,19 @@ public class TimerContoController extends MasterController implements Initializa
     }
 
     private void checkConto(){
-
-        for (Ordinazione o: CucinaController.getOrdini()) {
-            if(HomeController.getnTavolo() == o.getIdTavolo()){
-                for (ProdottoOrdinato p: o.getOrdini()) {
+        CucinaController c = new CucinaController();
+       // for (Ordinazione o: CucinaController.getOrdini()) {
+           // if(HomeController.getnTavolo() == o.getIdTavolo()){
+                for (ProdottoOrdinato p: c.getOrdini()) {
                     if(p.getStato() != StatoProdottoOrdinato.CONSEGNATO){
                         conto.setDisable(true);
                     }else{
                         conto.setDisable(false);
                     }
                 }
-            }
+           // }
 
-        }
+        //}
     }
 
     public void loadVisualizzaProdotti(ActionEvent event) throws IOException {
@@ -79,23 +79,20 @@ public class TimerContoController extends MasterController implements Initializa
     private void checkStatoProdottoOrdinato()
     {
         CucinaController c= new CucinaController();
-        
-        for(Ordinazione ord : c.getOrdini()){
-            if (HomeController.getnTavolo() == ord.getIdTavolo())
-            {
-                for(ProdottoOrdinato p : ord.getOrdini()){
-                    if (p.getStato()==StatoProdottoOrdinato.LAVORAZIONE)
-                    {
-                        if(p.getTempoElaborazioneRimanente(c.maxTempoPreparazione())>=0) {
-                            String temp = ""+p.getTempoElaborazioneRimanente(c.maxTempoPreparazione())/60+" Minuti "+ p.getTempoElaborazioneRimanente(c.maxTempoPreparazione())%60+" Secondi";
+
+       // for(Ordinazione ord : c.getOrdini()) {
+           // if (HomeController.getnTavolo() == ord.getIdTavolo()) {
+                for (ProdottoOrdinato p : c.getOrdini()) {
+                    if (p.getStato() == StatoProdottoOrdinato.LAVORAZIONE) {
+                        if (p.getTempoElaborazioneRimanente(c.maxTempoPreparazione()) >= 0) {
+                            String temp = "" + p.getTempoElaborazioneRimanente(c.maxTempoPreparazione()) / 60 + " Minuti " + p.getTempoElaborazioneRimanente(c.maxTempoPreparazione()) % 60 + " Secondi";
                             Tempo.setLayoutX(504);
                             Tempo.setText(temp);
                         }
                     }
                 }
-
-            }
-        }
+            //}
+       // }
     }
 
 }

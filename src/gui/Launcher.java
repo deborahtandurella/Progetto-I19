@@ -20,10 +20,10 @@ public class Launcher extends Application {
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
 
-//        Stage secondStage = new Stage();
-//        Parent cucina = FXMLLoader.load(getClass().getResource("Cucina.fxml"));
-//        secondStage.setTitle("Cucina");
-//        secondStage.setScene(new Scene(cucina));
-//        secondStage.show();
+        Stage secondStage = new Stage();
+        Parent cucina = FXMLLoader.load(getClass().getResource("Cucina.fxml"));
+        secondStage.setTitle("Cucina");
+        secondStage.setScene(new Scene(cucina));
+        secondStage.show();
     }
 }

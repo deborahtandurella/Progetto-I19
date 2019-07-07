@@ -81,9 +81,9 @@ public class ConfermaOrdinazioneController extends MasterController implements I
         */
 
         ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
-
+        CucinaController CucinaController = new CucinaController();
         serverCentraleEsterno.inviaOrdine(ManagerOrdinazioni.getProdottiOrdinati());
-        CucinaController.setOrdini(HomeController.getnTavolo(), ManagerOrdinazioni.getProdottiOrdinati());
+        CucinaController.setOrdini();
         //ManagerOrdinazioni.clearOrdinazioni();
         FXMLManager.loadFXML(event, "/gui/TimerContoFinale.fxml");
     }
