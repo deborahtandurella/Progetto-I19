@@ -9,7 +9,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import prodotti.Prodotto;
 import prodotti.TipoPortata;
-import serverCentrale.ServerCentrale;
 import serverCentrale.ServerCentraleEsterno;
 
 import java.util.ArrayList;
@@ -17,9 +16,9 @@ import java.util.List;
 
 public class ListFiller {
 
-    private VisualizzaProdottiController visualizzaProdottiController;
-    static ArrayList<Prodotto> prodotti= new ArrayList<>();
     private ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
+    private VisualizzaProdottiController visualizzaProdottiController;
+    public static ArrayList<Prodotto> prodotti= new ArrayList<>();
 
     public ListFiller (VisualizzaProdottiController visualizzaProdottiController, VBox vBox, TipoPortata tipoPortata){
         this.visualizzaProdottiController = visualizzaProdottiController;
@@ -27,11 +26,10 @@ public class ListFiller {
     }
 
     private ArrayList<Prodotto> getMenu(){
-        ServerCentrale serverCentrale = new ServerCentrale();
-        return (ArrayList<Prodotto>) serverCentrale.getMenu();
+        return (ArrayList<Prodotto>) serverCentraleEsterno.getMenu();
     }
 
-    public void vBoxFiller(List<Prodotto> aLP, VBox vbox){
+    private void vBoxFiller(List<Prodotto> aLP, VBox vbox){
 
         for(Prodotto p : aLP){
             AnchorPane tempPane = new AnchorPane();
@@ -58,7 +56,7 @@ public class ListFiller {
         }
     }
 
-    public void addProdotto(ActionEvent event) {
+    private void addProdotto(ActionEvent event) {
         JFXButton o= (JFXButton) event.getSource();
         Prodotto pTemp = null;
 
