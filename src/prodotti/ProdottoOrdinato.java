@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @JsonSerialize(using = ProdottoOrdinatoSerializer.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProdottoOrdinato implements ProdottoOrdinatoInterface{
+public class ProdottoOrdinato {
 
 	private final int id;
 	private final Prodotto prodotto;

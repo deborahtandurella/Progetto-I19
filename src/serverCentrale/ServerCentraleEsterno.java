@@ -18,7 +18,7 @@ import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 import prodotti.TipoPortata;
 
-public class ServerCentraleEsterno implements ServerCentraleEsternoInterface{
+public class ServerCentraleEsterno {
 
 	private RestTemplate restTemplate;
 	
