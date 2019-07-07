@@ -45,6 +45,10 @@ public class ServerCentraleEsterno implements ServerCentraleEsternoInterface{
 
 		return this.getMenu(queryBuilder.toUriString());
 	}
+	
+	public List<Prodotto> getMenu() {
+		return this.getMenu(ApiURL.PRODOTTO);
+	}
 
 	private List<Prodotto> getMenu(String url) {
 		ResponseEntity<List<Prodotto>> response = restTemplate.exchange(url, HttpMethod.GET, null,
