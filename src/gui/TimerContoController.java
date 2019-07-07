@@ -52,10 +52,6 @@ public class TimerContoController extends MasterController implements Initializa
         //}
     }
 
-    public void loadVisualizzaProdotti(ActionEvent event) throws IOException {
-        FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml");
-    }
-
     public void richiediConto(ActionEvent event) {
 
 

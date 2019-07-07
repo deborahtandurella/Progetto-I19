@@ -39,11 +39,6 @@ public class ConfermaOrdinazioneController extends MasterController implements I
         }
     }
 
-    public void loadVisualizzaProdotti(ActionEvent event) throws IOException {
-        VisualizzaProdottiController visualizzaProdottiController = new VisualizzaProdottiController(TipoPortata.PIATTI);
-        FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml", visualizzaProdottiController);
-    }
-
     private void loadProdottiOrdinati(ArrayList<ProdottoOrdinato> aPO, VBox vBox){
         for(ProdottoOrdinato p : aPO){
             AnchorPane tempPane = new AnchorPane();
