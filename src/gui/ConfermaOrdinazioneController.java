@@ -10,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import prodotti.ProdottoOrdinato;
-import prodotti.TipoPortata;
 import serverCentrale.ServerCentraleEsterno;
 
 import java.io.IOException;
@@ -32,9 +31,9 @@ public class ConfermaOrdinazioneController extends MasterController implements I
         ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
         table.setText(table.getText() + HomeController.getnTavolo());
 
-        loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
+        this.loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
 
-        if(ManagerOrdinazioni.getNumProdOrd() == 0){
+        if(ManagerOrdinazioni.getNumeroProdottiOrdinati() == 0){
             conferma.setText(" VISUALIZZA CONTO ");
         }
     }
@@ -60,26 +59,20 @@ public class ConfermaOrdinazioneController extends MasterController implements I
     }
 
     private void removeProdotto(ActionEvent event) {
-        JFXButton o = (JFXButton) event.getSource();
-        ManagerOrdinazioni.removeProdottoOrdinato(Integer.parseInt(o.getId()));
+        JFXButton removeButton = (JFXButton) event.getSource();
+        ManagerOrdinazioni.removeProdottoOrdinato(Integer.parseInt(removeButton.getId()), carrello);
 
         vBoxList.getChildren().clear();
 
-        loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
+        this.loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
     }
 
     public void confermaOrdinazione(ActionEvent event) throws IOException, NessunProdottoException {
-        /*
-        * Ogni volta che si conferma un ordine, il vettore dei prodotti ordinati d'appoggio andrebbe svuotato, tuttavia
-        * svuotandolo, in cucina non vengono caricati i prodotti. Problema che non dovrebbe persistere quando sarà
-        * implementata la parte back-end
-        */
-
         ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
-        CucinaController CucinaController = new CucinaController();
+
         serverCentraleEsterno.inviaOrdine(ManagerOrdinazioni.getProdottiOrdinati());
-        CucinaController.setOrdini();
-        //ManagerOrdinazioni.clearOrdinazioni();
+        ManagerOrdinazioni.clearProdottiOrdinatiFromLocal();
+
         FXMLManager.loadFXML(event, "/gui/TimerContoFinale.fxml");
     }
 }
