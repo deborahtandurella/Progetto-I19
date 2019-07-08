@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import eccezioni.PrezzoNegativoException;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Prodotto {
+public class Prodotto{
     private final int id;
     private final String nome;
     private final float prezzo;
@@ -63,6 +63,20 @@ public class Prodotto {
 
     public TipoPortata getTipoPortata() {
         return tipoPortata;
+    }
+
+    @Override
+    public boolean equals(Object o){
+
+        Prodotto p = (Prodotto) o;
+
+        return p.getNome().equals(this.getNome()) &&
+               p.getDescrizione().equals(this.getDescrizione()) &&
+                p.getTempoPreparazione() == this.getTempoPreparazione() &&
+                p.getId() == this.getId() &&
+                p.getTipo() == this.getTipo() &&
+                p.getTipoPortata() == this.getTipoPortata() &&
+                p.getPrezzo() == this.getPrezzo();
     }
 }
 
