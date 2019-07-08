@@ -42,7 +42,7 @@ public class CucinaController implements Initializable {
        // vbox.getChildren().clear();
         int indiceBottone=0;
 
-        ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA);
+        ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA,StatoProdottoOrdinato.ORDINATO);
         vettore = serverCentraleInterno.getTavoli();
 
         VBox vBox = new VBox();
@@ -134,8 +134,8 @@ public class CucinaController implements Initializable {
             {
                     if (ord.getProdotto().getTipoPortata()== TipoPortata.PIATTI || ord.getProdotto().getTipoPortata()== TipoPortata.DOLCI)
                     {
-                        System.out.println("prova");
-                        ord.setStatoProdottoOrdinatoLavorazione();
+                        //System.out.println("prova");
+                        ord.setStatoProdottoOrdinatoLavorazione(); //DA SETTARE NEL DB TEMPO INIZIO LAVRAZIONE
                         serverCentraleInterno.changeStatoProdottoOrdinato(ord, StatoProdottoOrdinato.LAVORAZIONE);
                     }
             }
@@ -167,11 +167,8 @@ public class CucinaController implements Initializable {
             if (HomeController.getnTavolo() == ord.getIdTavolo()) {
                     if (o.getId().equals(Integer.toString(index)))
                     {
-                        System.out.println("prova2");
-                        //ManagerOrdinazioni.removeProdottoOrdinato(Integer.parseInt(o.getId()));
-                        ordini.remove(Integer.parseInt(o.getId()));
+                        serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
                         index=0;
-                        //System.out.println(o.getId());
                         break;
                     }
                     index++;
