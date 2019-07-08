@@ -27,7 +27,7 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto) {
 
 		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO_ORDINATO)
-				.queryParam("tipo", tipoProdotto.value());
+				.queryParam("prodotto__tipo", tipoProdotto.value());
 
 		return this.getOrdini(queryBuilder.toUriString());
 	}
@@ -52,6 +52,15 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 				entity,
 				new ParameterizedTypeReference<ProdottoOrdinato>() {});
 		return response.getBody();
+	}
+
+	@Override
+	public List<Integer> getTavoli() {
+		ResponseEntity<List<Integer>> ret = restTemplate.exchange(ApiURL.ID_TAVOLO, HttpMethod.GET,
+				null, new ParameterizedTypeReference<List<Integer>>() {
+				});
+
+		return ret.getBody();
 	}
 	
 }

@@ -10,4 +10,6 @@ public interface ServerCentraleInternoInterface {
 
 	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto);
 	public ProdottoOrdinato changeStatoProdottoOrdinato(ProdottoOrdinato prodottoOrdinato, StatoProdottoOrdinato statoProdottoOrdinato);
+	public List<Integer> getTavoli();
+	
 }
