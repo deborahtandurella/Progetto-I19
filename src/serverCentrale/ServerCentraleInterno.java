@@ -27,7 +27,7 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto) {
 
 		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO_ORDINATO)
-				.queryParam("tipo", tipoProdotto.value());
+				.queryParam("prodotto__tipo", tipoProdotto.value());
 
 		return this.getOrdini(queryBuilder.toUriString());
 	}
