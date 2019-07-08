@@ -100,4 +100,14 @@ public class ProdottoOrdinato implements ProdottoOrdinatoInterface{
 	public void setTempoInizioLavorazione(LocalDateTime tempoInizioLavorazione) {
 		this.tempoInizioLavorazione = tempoInizioLavorazione;
 	}
+
+	@Override
+	public boolean equals(Object o){
+
+		ProdottoOrdinato p = (ProdottoOrdinato) o;
+
+		return p.getProdotto().equals(this) &&
+				p.getQuantita() == this.getQuantita() &&
+				p.getIdTavolo() == this.getIdTavolo();
+	}
 }

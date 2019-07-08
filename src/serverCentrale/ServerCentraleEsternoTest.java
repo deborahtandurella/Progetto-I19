@@ -4,7 +4,6 @@ import eccezioni.NessunProdottoException;
 import eccezioni.OrdinazioneNegativaException;
 import eccezioni.PrezzoNegativoException;
 import org.junit.jupiter.api.BeforeEach;
-import static org.hamcrest.CoreMatchers.*;
 import org.junit.jupiter.api.Test;
 import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
