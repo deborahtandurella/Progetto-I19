@@ -9,6 +9,7 @@ import prodotti.TipoProdotto;
 public interface ServerCentraleInternoInterface {
 
 	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto);
+	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto, StatoProdottoOrdinato statoProdottoOrdinato);
 	public ProdottoOrdinato changeStatoProdottoOrdinato(ProdottoOrdinato prodottoOrdinato, StatoProdottoOrdinato statoProdottoOrdinato);
 	public List<Integer> getTavoli();
 	

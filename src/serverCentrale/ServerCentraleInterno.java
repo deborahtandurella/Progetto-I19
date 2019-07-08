@@ -24,10 +24,20 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 		this.restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
 	}
 	
+	@Override
 	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto) {
 
 		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO_ORDINATO)
 				.queryParam("prodotto__tipo", tipoProdotto.value());
+
+		return this.getOrdini(queryBuilder.toUriString());
+	}
+	
+	@Override
+	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto, StatoProdottoOrdinato statoProdottoOrdinato) {
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO_ORDINATO)
+				.queryParam("prodotto__tipo", tipoProdotto.value())
+				.queryParam("statoProdottoOrdinato", statoProdottoOrdinato.value());
 
 		return this.getOrdini(queryBuilder.toUriString());
 	}
@@ -41,6 +51,7 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 		return ret.getBody();
 	}
 	
+	@Override
 	public ProdottoOrdinato changeStatoProdottoOrdinato(ProdottoOrdinato prodottoOrdinato, StatoProdottoOrdinato statoProdottoOrdinato) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
