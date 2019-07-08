@@ -25,5 +25,11 @@ public class Launcher extends Application {
         secondStage.setTitle("Cucina");
         secondStage.setScene(new Scene(cucina));
         secondStage.show();
+
+        Stage thirdStage = new Stage();
+        Parent caffetteria = FXMLLoader.load(getClass().getResource("Caffetteria.fxml"));
+        thirdStage.setTitle("Caffetteria");
+        thirdStage.setScene(new Scene(caffetteria));
+        thirdStage.show();
     }
 }

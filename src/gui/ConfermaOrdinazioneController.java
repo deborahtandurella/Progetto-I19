@@ -69,8 +69,9 @@ public class ConfermaOrdinazioneController extends MasterController implements I
 
     public void confermaOrdinazione(ActionEvent event) throws IOException, NessunProdottoException {
         ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
-
+        //CucinaController c=new CucinaController();
         serverCentraleEsterno.inviaOrdine(ManagerOrdinazioni.getProdottiOrdinati());
+        //c.setOrdini();
         ManagerOrdinazioni.clearProdottiOrdinatiFromLocal();
 
         FXMLManager.loadFXML(event, "/gui/TimerContoFinale.fxml");
