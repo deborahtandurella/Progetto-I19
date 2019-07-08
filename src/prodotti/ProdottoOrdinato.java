@@ -106,7 +106,7 @@ public class ProdottoOrdinato implements ProdottoOrdinatoInterface{
 
 		ProdottoOrdinato p = (ProdottoOrdinato) o;
 
-		return p.getProdotto().equals(this) &&
+		return p.getProdotto().equals(this.getProdotto()) &&
 				p.getQuantita() == this.getQuantita() &&
 				p.getIdTavolo() == this.getIdTavolo();
 	}
