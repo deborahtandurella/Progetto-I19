@@ -44,7 +44,7 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 	public ProdottoOrdinato changeStatoProdottoOrdinato(ProdottoOrdinato prodottoOrdinato, StatoProdottoOrdinato statoProdottoOrdinato) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> entity = new HttpEntity<String>(StatoProdottoOrdinato.LAVORAZIONE.toJsonString(), headers);
+		HttpEntity<String> entity = new HttpEntity<String>(statoProdottoOrdinato.toJsonString(), headers);
 		
 		RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
 		ResponseEntity<ProdottoOrdinato> response = restTemplate.exchange(ApiURL.PRODOTTO_ORDINATO + prodottoOrdinato.getId() + ".json",
