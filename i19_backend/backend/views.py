@@ -20,7 +20,7 @@ class ProdottoOrdinatoViewSet(viewsets.ModelViewSet):
     queryset = ProdottoOrdinato.objects.all()
     serializer_class = ProdottoOrdinatoSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter,)
-    filterset_fields = ('idTavolo', 'statoProdottoOrdinato', 'prodotto')
+    filterset_fields = ('idTavolo', 'statoProdottoOrdinato', 'prodotto__tipo')
     ordering_fields = ('id', 'idTavolo')
 
     def create(self, request, *args, **kwargs):
