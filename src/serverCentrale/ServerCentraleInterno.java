@@ -53,5 +53,14 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 				new ParameterizedTypeReference<ProdottoOrdinato>() {});
 		return response.getBody();
 	}
+
+	@Override
+	public List<Integer> getTavoli() {
+		ResponseEntity<List<Integer>> ret = restTemplate.exchange(ApiURL.ID_TAVOLO, HttpMethod.GET,
+				null, new ParameterizedTypeReference<List<Integer>>() {
+				});
+
+		return ret.getBody();
+	}
 	
 }
