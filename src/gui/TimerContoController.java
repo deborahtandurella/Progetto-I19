@@ -33,11 +33,9 @@ public class TimerContoController extends MasterController implements Initializa
     public JFXButton carrello;
     public Label Tempo;
     private List<ProdottoOrdinato> ordini = new ArrayList<>();
-
+    private ServerCentraleInterno serverCentraleInterno =new ServerCentraleInterno();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ServerCentraleInterno serverCentraleInterno =new ServerCentraleInterno();
-        ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA);
         table.setText(table.getText() + HomeController.getnTavolo());
         refresh();
     }
@@ -66,6 +64,7 @@ public class TimerContoController extends MasterController implements Initializa
     public void refresh(){
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
             Clock.initClock(time);
+            ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA);
             ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
             conto.setDisable(true);
             checkConto();

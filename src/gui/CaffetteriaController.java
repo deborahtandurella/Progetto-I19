@@ -39,7 +39,6 @@ public class CaffetteriaController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
 
     public VBox loadProdottiOrdinati(){
-        // vbox.getChildren().clear();
         int indiceBottone=0;
 
         ordini = serverCentraleInterno.getOrdini(TipoProdotto.CAFFETTERIA);
@@ -50,15 +49,14 @@ public class CaffetteriaController implements Initializable {
         for(Integer tavolo : vettore) {
 
             Text table = new Text("TAVOLO N. " + tavolo);
+            VBox vBox1 = new VBox();
 
             for (ProdottoOrdinato ord : ordini) {
                 if(tavolo == ord.getIdTavolo()) {
 
-
-                    VBox vBox1 = new VBox();
                     AnchorPane tempPane1 = new AnchorPane();
 
-                    vBox1.setPrefHeight(217);
+                    vBox1.setPrefHeight(100);
                     vBox1.setPrefWidth(668);
 
                     Text prodotto = new Text(ord.getProdotto().getNome());
@@ -88,8 +86,8 @@ public class CaffetteriaController implements Initializable {
 
 
 
-                    table.setLayoutX(7.0);
-                    table.setLayoutY(22.0);
+                    //table.setLayoutX(7.0);
+                    //table.setLayoutY(22.0);
                     table.setStrokeType(StrokeType.OUTSIDE);
                     vBox1.setLayoutX(14);
                     vBox1.setLayoutY(30);

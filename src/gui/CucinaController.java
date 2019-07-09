@@ -33,31 +33,79 @@ public class CucinaController implements Initializable {
     private List<ProdottoOrdinato> ordini = new ArrayList<>();
     private ServerCentraleInterno serverCentraleInterno = new ServerCentraleInterno();
     private List<Integer> vettore = new ArrayList<>();
-    public VBox vbox;
+    public VBox vbox = new VBox();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
 
-    public VBox loadProdottiOrdinati(){
-       // vbox.getChildren().clear();
-        int indiceBottone=0;
-
+   /* public VBox loadProdottiOrdinati(){
+        AnchorPane PaneTavolo= new AnchorPane();
+        VBox vboxTavolo= new VBox();
         ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA,StatoProdottoOrdinato.ORDINATO);
         vettore = serverCentraleInterno.getTavoli();
+        int indiceBottone=0;
 
+        for(Integer tavolo : vettore) {
+            Text table = new Text("TAVOLO N. " + tavolo);
+            table.setId("tableText");
+            JFXButton startTimer = new JFXButton("START TIMER");
+            startTimer.setId(Integer.toString(tavolo));
+            startTimer.setOnAction(this::setTimer);
+            PaneTavolo.setId("mainAnchor");
+            PaneTavolo.setPrefHeight(300);
+            PaneTavolo.setPrefWidth(959);
+            PaneTavolo.getChildren().add(table);
+            PaneTavolo.getChildren().add(startTimer);
+            PaneTavolo.getStylesheets().add(getClass().getResource("/gui/style/StyleCucina.css").toExternalForm());
+            vboxTavolo.setPrefHeight(300);
+            vboxTavolo.setPrefWidth(959);
+
+            for (ProdottoOrdinato ord : ordini) {
+                if(tavolo == ord.getIdTavolo()) {
+
+                    Text prodotto = new Text(ord.getProdotto().getNome());
+                    JFXButton pronto = new JFXButton("PRONTO");
+                    pronto.setId(Integer.toString(indiceBottone));
+                    indiceBottone++;
+                    pronto.setOnAction(this::setPronto);
+
+                    pronto.setLayoutX(562);
+                    pronto.setLayoutY(50);
+                    pronto.setPrefHeight(39);
+                    pronto.setPrefWidth(130);
+                    prodotto.setLayoutY(100);
+                    PaneTavolo.getChildren().add(prodotto);
+                    PaneTavolo.getChildren().add(pronto);
+                    startTimer.setLayoutX(711);
+                    startTimer.setLayoutY(28);
+                    table.setLayoutX(7.0);
+                    table.setLayoutY(200);
+                    table.setStrokeType(StrokeType.OUTSIDE);
+                }
+            }
+            vboxTavolo.getChildren().add(PaneTavolo);
+        }
+        vbox.getChildren().add(vboxTavolo);
+        return vbox;
+    }*/
+
+    public VBox loadProdottiOrdinati(){
+        int indiceBottone=0;
+        ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA,StatoProdottoOrdinato.ORDINATO);
+        vettore = serverCentraleInterno.getTavoli();
         VBox vBox = new VBox();
         for(Integer tavolo : vettore) {
 
             Text table = new Text("TAVOLO N. " + tavolo);
+            VBox vBox1 = new VBox();
+            JFXButton startTimer = new JFXButton("START TIMER");
+            startTimer.setId(Integer.toString(tavolo));
+            startTimer.setOnAction(this::setTimer);
+            startTimer.setLayoutX(711);
+            startTimer.setLayoutY(28);
 
             for (ProdottoOrdinato ord : ordini) {
                 if(tavolo == ord.getIdTavolo()) {
-                   // Text table = new Text("TAVOLO N. " + ord.getIdTavolo());
-                    JFXButton startTimer = new JFXButton("START TIMER");
-                    startTimer.setId(Integer.toString(ord.getIdTavolo()));
-                    startTimer.setOnAction(this::setTimer);
-
-                    VBox vBox1 = new VBox();
                     AnchorPane tempPane1 = new AnchorPane();
 
                     vBox1.setPrefHeight(217);
@@ -81,7 +129,7 @@ public class CucinaController implements Initializable {
 
                     table.setId("tableText");
 
-                    tempPane1.getChildren().addAll(table, startTimer, vBox1);
+                    tempPane1.getChildren().addAll(startTimer,table, vBox1);
                     tempPane1.setId("mainAnchor");
                     tempPane1.setPrefHeight(115);
                     tempPane1.setPrefWidth(959);
@@ -89,8 +137,7 @@ public class CucinaController implements Initializable {
                     tempPane1.getStylesheets().add(getClass().getResource("/gui/style/StyleCucina.css").toExternalForm());
 
 
-                    startTimer.setLayoutX(711);
-                    startTimer.setLayoutY(28);
+
                     table.setLayoutX(7.0);
                     table.setLayoutY(22.0);
                     table.setStrokeType(StrokeType.OUTSIDE);
@@ -129,15 +176,15 @@ public class CucinaController implements Initializable {
     public void setTimer(ActionEvent event)  {
 
         JFXButton b= (JFXButton)event.getSource();
-        for(ProdottoOrdinato ord : ordini){
-            if (b.getId().equals(Integer.toString(ord.getIdTavolo())))
+        for(Integer tavolo : vettore){
+            if (b.getId().equals(Integer.toString(tavolo)))
             {
-                    if (ord.getProdotto().getTipoPortata()== TipoPortata.PIATTI || ord.getProdotto().getTipoPortata()== TipoPortata.DOLCI)
-                    {
-                        //System.out.println("prova");
-                        ord.setStatoProdottoOrdinatoLavorazione(); //DA SETTARE NEL DB TEMPO INIZIO LAVRAZIONE
+                for (ProdottoOrdinato ord : ordini) {
+                    if (ord.getProdotto().getTipoPortata() == TipoPortata.PIATTI || ord.getProdotto().getTipoPortata() == TipoPortata.DOLCI) {
+                       // ord.setStatoProdottoOrdinatoLavorazione(); //DA SETTARE NEL DB TEMPO INIZIO LAVRAZIONE
                         serverCentraleInterno.changeStatoProdottoOrdinato(ord, StatoProdottoOrdinato.LAVORAZIONE);
                     }
+                }
             }
         }
     }
