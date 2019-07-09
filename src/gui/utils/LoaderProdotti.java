@@ -20,7 +20,7 @@ public class LoaderProdotti extends MasterController {
     ServerCentraleEsterno serverCentrale = this.server;
     protected ActionEvent actionEvent;
 
-    public void loadProdotti(ActionEvent event) throws IOException {
+    public void loadProdotti(ActionEvent event) {
         JFXButton button = (JFXButton) event.getSource();
         this.actionEvent = event;
         ThreadA threadA = new ThreadA(serverCentrale,  TipoPortata.valueOf(button.getId()));

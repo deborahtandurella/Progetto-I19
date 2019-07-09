@@ -1,13 +1,11 @@
 package gui.Threads;
 
-import gui.utils.MasterController;
-import gui.utils.Observer;
+
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import prodotti.Prodotto;
 import prodotti.TipoPortata;
 import serverCentrale.ServerCentraleEsterno;
-import serverCentrale.ServerCentraleInterno;
 
 import java.util.List;
 

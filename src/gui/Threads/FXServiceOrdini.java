@@ -2,13 +2,9 @@ package gui.Threads;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 import serverCentrale.ServerCentraleEsterno;
-import serverCentrale.ServerCentraleInterno;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class FXServiceOrdini extends Service {
 
