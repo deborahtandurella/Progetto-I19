@@ -13,4 +13,5 @@ public interface ServerCentraleEsternoInterface {
 	public List<ProdottoOrdinato> inviaOrdine(ArrayList<ProdottoOrdinato> ordini) throws NessunProdottoException;
 	public List<Prodotto> getMenu(TipoPortata tipoPortata);
 	public List<Prodotto> getMenu();
+	public float getConto(int idTavolo);
 }
