@@ -22,6 +22,7 @@ api_router = DefaultRouter()
 api_router.register(r'prodotto', views.ProdottoViewSet)
 api_router.register(r'prodotto_ordinato', views.ProdottoOrdinatoViewSet)
 api_router.register(r'id_tavolo', views.IdTavoloViewSet, base_name='id_tavolo')
+api_router.register(r'conto', views.ContoViewSet, base_name='conto')
 
 
 urlpatterns = [

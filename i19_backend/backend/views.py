@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
+import django_filters
+from django.db.models import Sum, F, FloatField
 from .serializer import *
 from .models import *
 
@@ -15,12 +17,21 @@ class ProdottoViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_fields = ('tipo', 'tipoPortata')
 
 
+class ProdottoOrdinatoFilter(django_filters.FilterSet):
+
+    not_statoProdottoOrdinato = django_filters.NumberFilter(field_name='statoProdottoOrdinato', exclude=True)
+
+    class Meta:
+        model = ProdottoOrdinato
+        fields = ['idTavolo', 'statoProdottoOrdinato', 'prodotto__tipo']
+
+
 class ProdottoOrdinatoViewSet(viewsets.ModelViewSet):
 
     queryset = ProdottoOrdinato.objects.all()
     serializer_class = ProdottoOrdinatoSerializer
     filter_backends = (DjangoFilterBackend, filters.OrderingFilter,)
-    filterset_fields = ('idTavolo', 'statoProdottoOrdinato', 'prodotto__tipo')
+    filter_class = ProdottoOrdinatoFilter
     ordering_fields = ('id', 'idTavolo')
 
     def create(self, request, *args, **kwargs):
@@ -41,3 +52,14 @@ class IdTavoloViewSet(viewsets.ViewSet):
 
     def list(self, request, format=None):
         return Response(ProdottoOrdinato.objects.values_list('idTavolo', flat=True).distinct())
+
+
+class ContoViewSet(viewsets.ViewSet):
+
+    def list(self, request, format=None):
+        return Response(
+            ProdottoOrdinato.objects
+                .filter(idTavolo=request.query_params.get('idTavolo'))
+                .filter(statoProdottoOrdinato=2)
+                .aggregate(total=Sum(F('quantita')*F('prodotto__prezzo'),output_field=FloatField()))['total']
+        )
