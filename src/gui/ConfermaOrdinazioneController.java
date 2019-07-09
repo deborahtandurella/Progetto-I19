@@ -2,8 +2,11 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.NessunProdottoException;
+import gui.Threads.FXServiceOrdini;
 import gui.utils.*;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -24,6 +27,7 @@ public class ConfermaOrdinazioneController extends MasterController implements I
     public JFXButton carrello;
     public Label table;
     public JFXButton conferma;
+    private ActionEvent actionEvent;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -63,17 +67,27 @@ public class ConfermaOrdinazioneController extends MasterController implements I
         ManagerOrdinazioni.removeProdottoOrdinato(Integer.parseInt(removeButton.getId()), carrello);
 
         vBoxList.getChildren().clear();
-
         this.loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
     }
 
     public void confermaOrdinazione(ActionEvent event) throws IOException, NessunProdottoException {
-        ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
-        //CucinaController c=new CucinaController();
-        serverCentraleEsterno.inviaOrdine(ManagerOrdinazioni.getProdottiOrdinati());
-        //c.setOrdini();
-        ManagerOrdinazioni.clearProdottiOrdinatiFromLocal();
+        super.server.inviaOrdine(ManagerOrdinazioni.getProdottiOrdinati());
+        this.actionEvent = event;
 
-        FXMLManager.loadFXML(event, "/gui/TimerContoFinale.fxml");
+        FXServiceOrdini fxServiceOrdini = new FXServiceOrdini(server, ManagerOrdinazioni.getProdottiOrdinati());
+        fxServiceOrdini.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+
+                ManagerOrdinazioni.clearProdottiOrdinatiFromLocal();
+                try {
+                    FXMLManager.loadFXML(actionEvent, "/gui/TimerContoFinale.fxml");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        fxServiceOrdini.start();
     }
 }

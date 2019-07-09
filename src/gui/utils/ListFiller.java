@@ -8,7 +8,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import prodotti.Prodotto;
-import prodotti.TipoPortata;
 import serverCentrale.ServerCentraleEsterno;
 
 import java.util.ArrayList;
@@ -20,9 +19,9 @@ public class ListFiller {
     private VisualizzaProdottiController visualizzaProdottiController;
     public static ArrayList<Prodotto> prodotti= new ArrayList<>();
 
-    public ListFiller (VisualizzaProdottiController visualizzaProdottiController, VBox vBox, TipoPortata tipoPortata){
+    public ListFiller (VisualizzaProdottiController visualizzaProdottiController, VBox vBox, ArrayList menu){
         this.visualizzaProdottiController = visualizzaProdottiController;
-        vBoxFiller(serverCentraleEsterno.getMenu(tipoPortata), vBox);
+        this.vBoxFiller(menu, vBox);
     }
 
     private ArrayList<Prodotto> getMenu(){
