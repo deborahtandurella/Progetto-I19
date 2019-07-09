@@ -3,10 +3,14 @@ package gui.utils;
 import gui.VisualizzaProdottiController;
 import javafx.event.ActionEvent;
 import prodotti.TipoPortata;
+import serverCentrale.ServerCentraleEsterno;
+import serverCentrale.ServerCentraleInterno;
 
 import java.io.IOException;
 
 public class MasterController {
+
+    protected ServerCentraleEsterno server  = new ServerCentraleEsterno();
 
     public void loadOrdinazioni(ActionEvent event) throws IOException {
         FXMLManager.loadFXML(event, "/gui/ConfermaOrdinazioni.fxml");
@@ -17,7 +21,6 @@ public class MasterController {
     }
 
     public void loadVisualizzaProdotti(ActionEvent event) throws IOException {
-        VisualizzaProdottiController visualizzaProdottiController = new VisualizzaProdottiController(TipoPortata.PIATTI);
-        FXMLManager.loadFXML(event, "/gui/VisualizzaProdotti.fxml", visualizzaProdottiController);
+        this.loadHome(event);
     }
 }

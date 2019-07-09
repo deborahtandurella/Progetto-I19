@@ -5,8 +5,10 @@ import gui.utils.*;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import prodotti.Prodotto;
 import prodotti.TipoPortata;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class VisualizzaProdottiController extends LoaderProdotti implements Initializable{
@@ -16,10 +18,11 @@ public class VisualizzaProdottiController extends LoaderProdotti implements Init
     public JFXButton carrello;
     public Label table;
 
-    private TipoPortata tipoPortata;
+    private ArrayList<Prodotto> menu;
 
-    public VisualizzaProdottiController(TipoPortata tipoPortata) {
-       this.tipoPortata = tipoPortata;
+    public VisualizzaProdottiController(ArrayList<Prodotto> menu) {
+
+        this.menu = menu;
     }
 
     @Override
@@ -27,6 +30,6 @@ public class VisualizzaProdottiController extends LoaderProdotti implements Init
         Clock.initClock(time);
         ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
         table.setText(table.getText() + HomeController.getnTavolo());
-        new ListFiller(this, this.vBoxList, this.tipoPortata);
+        new ListFiller(this, this.vBoxList, this.menu);
     }
 }
