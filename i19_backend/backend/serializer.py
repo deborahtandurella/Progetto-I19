@@ -24,7 +24,8 @@ class ProdottoOrdinatoSerializer(serializers.ModelSerializer):
         return super(ProdottoOrdinatoSerializer, self).to_representation(instance)
 
     def update(self, instance, validated_data):
-        if validated_data.get('statoProdottoOrdinato') == 2:
+        if validated_data.get('statoProdottoOrdinato') == 1: # LAVORAZIONE
+            print('Lavorazione')
             instance.tempoInizioLavorazione = datetime.datetime.now()
 
         return super().update(instance, validated_data)
