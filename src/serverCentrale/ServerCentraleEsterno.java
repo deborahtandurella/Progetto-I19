@@ -58,4 +58,15 @@ public class ServerCentraleEsterno implements ServerCentraleEsternoInterface{
 		return menu;
 	}
 	
+	@Override
+	public float getConto(int idTavolo) {
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.CONTO)
+				.queryParam("idTavolo", idTavolo);
+		ResponseEntity<Float> ret = restTemplate.exchange(queryBuilder.toUriString(), HttpMethod.GET,
+				null, new ParameterizedTypeReference<Float>() {
+				});
+
+		return ret.getBody();
+	}
+	
 }
