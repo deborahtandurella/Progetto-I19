@@ -59,6 +59,17 @@ public class ServerCentraleEsterno implements ServerCentraleEsternoInterface{
 	}
 	
 	@Override
+	public List<ProdottoOrdinato> getOrdini(int idTavolo) {
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO_ORDINATO)
+				.queryParam("idTavolo", idTavolo);
+		ResponseEntity<List<ProdottoOrdinato>> ret = restTemplate.exchange(queryBuilder.toUriString(), HttpMethod.GET,
+				null, new ParameterizedTypeReference<List<ProdottoOrdinato>>() {
+				});
+
+		return ret.getBody();
+	}
+	
+	@Override
 	public float getConto(int idTavolo) {
 		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.CONTO)
 				.queryParam("idTavolo", idTavolo);
