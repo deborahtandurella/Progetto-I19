@@ -13,16 +13,12 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
-import prodotti.TipoPortata;
 import prodotti.TipoProdotto;
 import serverCentrale.ServerCentraleInterno;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-
-import static java.lang.StrictMath.abs;
 
 public class CucinaController implements Initializable {
 
@@ -106,9 +102,11 @@ public class CucinaController implements Initializable {
     }
 
     private void getTavoliAperti(){
-        for(ProdottoOrdinato p : ordini) {
-            if (!tavoli.contains(p.getIdTavolo())) {
-                tavoli.add(p.getIdTavolo());
+        tavoli.clear();
+        tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO);
+        for(Integer tavolo : serverCentraleInterno.getTavoli(StatoProdottoOrdinato.LAVORAZIONE)) {
+            if (!tavoli.contains(tavolo)) {
+                tavoli.add(tavolo);
             }
         }
     }
