@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
+import prodotti.TipoPortata;
 import prodotti.TipoProdotto;
 import serverCentrale.ServerCentraleEsterno;
 import serverCentrale.ServerCentraleInterno;
@@ -77,23 +78,33 @@ public class TimerContoController extends MasterController implements Initializa
         this.clock.play();
     }
 
-    private void checkStatoProdottoOrdinato()
-    {
-        CucinaController c= new CucinaController();
+    private void checkStatoProdottoOrdinato() {
 
-       // for(Ordinazione ord : c.getOrdini()) {
-           // if (HomeController.getnTavolo() == ord.getIdTavolo()) {
-                for (ProdottoOrdinato p : ordini) {
-                    if (p.getStato() == StatoProdottoOrdinato.LAVORAZIONE) {
-                        if (p.getTempoElaborazioneRimanente(c.maxTempoPreparazione()) >= 0) { // QUESTO IF COSI NON FUNZIONA, DA SISTEMARE TEMPO INIZIO LAVORAZIONE
-                            String temp = "" + p.getTempoElaborazioneRimanente(c.maxTempoPreparazione()) / 60 + " Minuti " + p.getTempoElaborazioneRimanente(c.maxTempoPreparazione()) % 60 + " Secondi";
-                            Tempo.setLayoutX(504);
-                            Tempo.setText(temp);
-                        }
-                    }
+        String temp="";
+        ProdottoOrdinato p = ordini.get(1);
+        float delta = p.getTempoElaborazioneRimanente(maxTempoPreparazione());
+        if(delta>=0)
+        {
+             temp = "" + (int)(delta / 60) + " Minuti " + (int)(delta % 60) + " Secondi";
+        }
+        else{ temp = "Tempo Scaduto";}
+
+        Tempo.setLayoutX(504);
+        Tempo.setText(temp);
+
+    }
+
+    private int maxTempoPreparazione() {
+        int max=0;
+        for(ProdottoOrdinato ord : ordini){
+            // Prelevo il tempo di preparazione massimo
+                if(ord.getProdotto().getTempoPreparazione()>max) {
+                    max = ord.getProdotto().getTempoPreparazione();
                 }
-            //}
-       // }
+
+
+        }
+        return  max*60; // MAX in minuti
     }
 
     public void loadConto(ActionEvent event) {

@@ -125,24 +125,6 @@ public class CucinaController implements Initializable {
         }
     }
 
-    public int maxTempoPreparazione()
-    {
-        int max=0;
-        for(ProdottoOrdinato ord : ordini){
-            if (HomeController.getnTavolo() == ord.getIdTavolo())
-            {
-                    if (ord.getProdotto().getTipoPortata()== TipoPortata.PIATTI || ord.getProdotto().getTipoPortata()== TipoPortata.DOLCI)
-                    {
-                       if(ord.getProdotto().getTempoPreparazione()>=max) {
-                           max = ord.getProdotto().getTempoPreparazione();
-                       }
-                    }
-            }
-        }
-        return  max*60;
-    }
-
-
     public void setPronto(ActionEvent event)  {
         JFXButton o = (JFXButton) event.getSource();
         int  index = 0;
