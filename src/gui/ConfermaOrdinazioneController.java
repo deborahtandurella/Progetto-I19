@@ -67,18 +67,15 @@ public class ConfermaOrdinazioneController extends MasterController implements I
 
         vBoxList.getChildren().clear();
         this.loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
-    }
+}
 
     public void confermaOrdinazione(ActionEvent event) throws IOException, NessunProdottoException {
-        super.server.inviaOrdine(ManagerOrdinazioni.getProdottiOrdinati());
         this.actionEvent = event;
-
-        FXServiceOrdini fxServiceOrdini = new FXServiceOrdini(server, ManagerOrdinazioni.getProdottiOrdinati());
+        FXServiceOrdini fxServiceOrdini = new FXServiceOrdini(super.server, ManagerOrdinazioni.getProdottiOrdinati());
+        ManagerOrdinazioni.clearProdottiOrdinatiFromLocal();
         fxServiceOrdini.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent event) {
-
-                ManagerOrdinazioni.clearProdottiOrdinatiFromLocal();
                 try {
                     FXMLManager.loadFXML(actionEvent, "/gui/TimerContoFinale.fxml");
                 } catch (IOException e) {

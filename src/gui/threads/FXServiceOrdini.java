@@ -13,7 +13,7 @@ public class FXServiceOrdini extends Service {
 
 
     public FXServiceOrdini(ServerCentraleEsterno server, ArrayList<ProdottoOrdinato> ordine) {
-        this.ordine = ordine;
+        this.ordine = new ArrayList<ProdottoOrdinato>(ordine) ;
         this.server = server;
     }
 

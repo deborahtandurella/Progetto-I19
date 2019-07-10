@@ -9,12 +9,12 @@ import serverCentrale.ServerCentraleEsterno;
 
 import java.util.List;
 
-public class ThreadA extends Service {
+public class FXServiceMenu extends Service {
 
     private ServerCentraleEsterno server;
     private TipoPortata tipoPortata;
 
-    public ThreadA(ServerCentraleEsterno server, TipoPortata tipoPortata){
+    public FXServiceMenu(ServerCentraleEsterno server, TipoPortata tipoPortata){
         this.server = server;
         this.tipoPortata = tipoPortata;
     }
