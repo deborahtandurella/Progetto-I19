@@ -65,7 +65,7 @@
             <DropShadow color="#0000005a" height="0.0" offsetX="2.0" offsetY="2.0" radius="13.6275" width="56.51" />
          </effect>
       </Pane>
-      <JFXButton fx:id="conto" buttonType="RAISED" layoutX="369.0" layoutY="491.0" prefHeight="73.0" prefWidth="606.0" style="-fx-background-color: white;" text="RICHIEDI CONTO" textFill="#2e7d32">
+      <JFXButton fx:id="conto" buttonType="RAISED" layoutX="369.0" layoutY="491.0" prefHeight="73.0" prefWidth="606.0" style="-fx-background-color: white;" onAction="#loadConto" text="RICHIEDI CONTO" textFill="#2e7d32">
          <font>
             <Font name="Roboto Bold" size="35.0" />
          </font>
@@ -85,7 +85,7 @@
             <Font name="Roboto" size="40.0" />
          </font>
       </Text>
-      <Text fill="#424242" layoutX="369.0" layoutY="638.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conto totale:" textAlignment="CENTER" wrappingWidth="606.0">
+      <Text fx:id="txtConto" fill="#424242" layoutX="369.0" layoutY="638.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conto totale:" textAlignment="CENTER" wrappingWidth="606.0">
          <font>
             <Font name="Roboto" size="40.0" />
          </font>

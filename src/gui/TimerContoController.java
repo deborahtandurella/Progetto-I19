@@ -1,6 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import gui.threads.FXServiceConto;
 import gui.utils.Clock;
 import gui.utils.FXMLManager;
 import gui.utils.ManagerOrdinazioni;
@@ -8,13 +9,17 @@ import gui.utils.MasterController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
 import prodotti.TipoProdotto;
+import serverCentrale.ServerCentraleEsterno;
 import serverCentrale.ServerCentraleInterno;
 
 import java.io.IOException;
@@ -31,8 +36,14 @@ public class TimerContoController extends MasterController implements Initializa
     public Label time;
     public JFXButton carrello;
     public Label Tempo;
+    public Text txtConto;
+    private Timeline clock;
+
+    protected ActionEvent actionEvent;
+
     private List<ProdottoOrdinato> ordini = new ArrayList<>();
     private ServerCentraleInterno serverCentraleInterno =new ServerCentraleInterno();
+    private ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         table.setText(table.getText() + HomeController.getnTavolo());
@@ -40,30 +51,20 @@ public class TimerContoController extends MasterController implements Initializa
     }
 
     private void checkConto(){
-        CucinaController c = new CucinaController();
-       // for (Ordinazione o: CucinaController.getOrdini()) {
-           // if(HomeController.getnTavolo() == o.getIdTavolo()){
-                for (ProdottoOrdinato p: c.getOrdini()) {
-                    if(p.getStato() != StatoProdottoOrdinato.CONSEGNATO){
-                        conto.setDisable(true);
-                    }else{
-                        conto.setDisable(false);
-                    }
-                }
-           // }
-
-        //}
+        conto.setDisable(true);
+        for (ProdottoOrdinato p: ordini) {
+            if (p.getStato() != StatoProdottoOrdinato.CONSEGNATO) {
+                return;
+            }
+        }
+        conto.setDisable(false);
     }
 
-    public void richiediConto(ActionEvent event) {
-
-
-    }
 
     public void refresh(){
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
+        this.clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
             Clock.initClock(time);
-            ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA);
+            ordini = serverCentraleEsterno.getOrdini(HomeController.getnTavolo());
             ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
             conto.setDisable(true);
             checkConto();
@@ -72,8 +73,8 @@ public class TimerContoController extends MasterController implements Initializa
         }
         ),
                 new KeyFrame(Duration.seconds(1)));
-        clock.setCycleCount(Animation.INDEFINITE);
-        clock.play();
+        this.clock.setCycleCount(Animation.INDEFINITE);
+        this.clock.play();
     }
 
     private void checkStatoProdottoOrdinato()
@@ -95,4 +96,21 @@ public class TimerContoController extends MasterController implements Initializa
        // }
     }
 
+    public void loadConto(ActionEvent event) {
+
+        this.actionEvent = event;
+        //txtConto.setText(txtConto.getText() + serverCentraleEsterno.getConto(HomeController.getnTavolo()));
+
+        FXServiceConto fxServiceConto = new FXServiceConto(super.server, HomeController.getnTavolo());
+        fxServiceConto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+                txtConto.setText(txtConto.getText() + " " + event.getSource().getValue() );
+                clock.stop();
+                conto.setVisible(false);
+            }
+        });
+        fxServiceConto.start();
+
+    }
 }
