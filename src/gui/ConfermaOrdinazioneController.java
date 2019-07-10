@@ -2,7 +2,7 @@ package gui;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.NessunProdottoException;
-import gui.Threads.FXServiceOrdini;
+import gui.threads.FXServiceOrdini;
 import gui.utils.*;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -13,7 +13,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import prodotti.ProdottoOrdinato;
-import serverCentrale.ServerCentraleEsterno;
 
 import java.io.IOException;
 import java.net.URL;

@@ -1,4 +1,4 @@
-package gui.Threads;
+package gui.threads;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;

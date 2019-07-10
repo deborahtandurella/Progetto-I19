@@ -1,11 +1,10 @@
 package gui.utils;
 
 import com.jfoenix.controls.JFXButton;
-import gui.Threads.ThreadA;
+import gui.threads.ThreadA;
 import gui.VisualizzaProdottiController;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import prodotti.Prodotto;
 import prodotti.TipoPortata;
@@ -13,7 +12,6 @@ import serverCentrale.ServerCentraleEsterno;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LoaderProdotti extends MasterController {
 
