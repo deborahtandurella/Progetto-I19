@@ -1,8 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import gui.utils.FXMLManager;
-import gui.utils.ManagerOrdinazioni;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,7 +17,6 @@ import prodotti.TipoPortata;
 import prodotti.TipoProdotto;
 import serverCentrale.ServerCentraleInterno;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +35,11 @@ public class CucinaController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
 
     public VBox loadProdottiOrdinati(){
+
         int indiceBottone=0;
-        this.tavoli = serverCentraleInterno.getTavoli();
+        this.getTavoliAperti();
         this.ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA, StatoProdottoOrdinato.ORDINATO);
+        this.ordini.addAll(serverCentraleInterno.getOrdini(TipoProdotto.CUCINA, StatoProdottoOrdinato.LAVORAZIONE));
 
         VBox vBox = new VBox();
         for(Integer tavolo : this.tavoli){
@@ -58,15 +57,15 @@ public class CucinaController implements Initializable {
 
             for(ProdottoOrdinato p : this.ordini){
                 if(tavolo == p.getIdTavolo()){
-                    Text prodotto = new Text(p.getProdotto().getNome());
+                    Text prodotto = new Text(p.getProdotto().getNome() + " (" + p.getStato() + ")");
                     JFXButton pronto = new JFXButton("PRONTO");
                     pronto.setId(Integer.toString(indiceBottone));
                     indiceBottone++;
                     pronto.setOnAction(this::setPronto);
 
-                    pronto.setLayoutX(562);
+                    pronto.setLayoutX(532);
                     pronto.setPrefHeight(39);
-                    pronto.setPrefWidth(106);
+                    pronto.setPrefWidth(135);
                     prodotto.setLayoutY(27);
 
                     AnchorPane pane = new AnchorPane(prodotto, pronto);
@@ -95,69 +94,7 @@ public class CucinaController implements Initializable {
         }
         return vBox;
     }
-/*
-    public VBox loadProdottiOrdinati(){
-        int indiceBottone=0;
 
-        this.ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA,StatoProdottoOrdinato.ORDINATO);
-        this.tavoli = serverCentraleInterno.getTavoli();
-
-        VBox vBox = new VBox();
-        for(Integer tavolo : this.tavoli) {
-
-            Text table = new Text("TAVOLO N. " + tavolo);
-            JFXButton startTimer = new JFXButton("START TIMER");
-            startTimer.setId(Integer.toString(tavolo));
-            startTimer.setOnAction(this::setTimer);
-
-            startTimer.setLayoutX(711);
-            startTimer.setLayoutY(28);
-
-            VBox vBox1 = new VBox();
-            AnchorPane tempPane1 = new AnchorPane();
-
-            vBox1.setPrefHeight(217);
-            vBox1.setPrefWidth(668);
-
-            for (ProdottoOrdinato ord : ordini) {
-                if(tavolo == ord.getIdTavolo()) {
-
-                    Text prodotto = new Text(ord.getProdotto().getNome());
-                    JFXButton pronto = new JFXButton("PRONTO");
-                    pronto.setId(Integer.toString(indiceBottone));
-                    indiceBottone++;
-                    pronto.setOnAction(this::setPronto);
-
-                    pronto.setLayoutX(562);
-                    pronto.setPrefHeight(39);
-                    pronto.setPrefWidth(106);
-                    prodotto.setLayoutY(27);
-
-                    AnchorPane pane = new AnchorPane(prodotto, pronto);
-                    pane.setId("secondAnchor");
-                    vBox1.getChildren().add(pane);
-
-                    table.setId("tableText");
-
-                    tempPane1.getChildren().addAll(startTimer,table, vBox1);
-                    tempPane1.setId("mainAnchor");
-                    tempPane1.setPrefHeight(115);
-                    tempPane1.setPrefWidth(959);
-
-                    tempPane1.getStylesheets().add(getClass().getResource("/gui/style/StyleCucina.css").toExternalForm());
-
-                    table.setLayoutX(7.0);
-                    table.setLayoutY(22.0);
-                    table.setStrokeType(StrokeType.OUTSIDE);
-                    vBox1.setLayoutX(14);
-                    vBox1.setLayoutY(30);
-                    vBox1.getChildren().addAll(tempPane1);
-                }
-            }
-        }
-        return vBox;
-    }
-*/
     public void refresh(VBox vbox){
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
             this.vbox.getChildren().clear();
@@ -169,20 +106,12 @@ public class CucinaController implements Initializable {
         clock.play();
     }
 
-    private void removeTavoliPronti(){
-        
-    }
-
-/*
-    public void setOrdini() {
-        ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA);
-        vettore = serverCentraleInterno.getTavoli();
-        System.out.println(vettore);
-        System.out.println(ordini.toString());
-    }
-*/
-    public  List<ProdottoOrdinato> getOrdini() {
-        return ordini;
+    private void getTavoliAperti(){
+        for(ProdottoOrdinato p : ordini) {
+            if (!tavoli.contains(p.getIdTavolo())) {
+                tavoli.add(p.getIdTavolo());
+            }
+        }
     }
 
     public void setTimer(ActionEvent event)  {
