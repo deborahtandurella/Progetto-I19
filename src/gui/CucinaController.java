@@ -30,6 +30,7 @@ public class CucinaController implements Initializable {
     private ServerCentraleInterno serverCentraleInterno = new ServerCentraleInterno();
     private List<Integer> tavoli = new ArrayList<>();
     public VBox vbox;
+    public final int REFRESH_RATE = 3;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
@@ -50,7 +51,6 @@ public class CucinaController implements Initializable {
 
             VBox vBox1 = new VBox();
             AnchorPane tempPane1 = new AnchorPane();
-
 
             vBox1.setPrefHeight(217);
             vBox1.setPrefWidth(668);
@@ -99,9 +99,8 @@ public class CucinaController implements Initializable {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
             this.vbox.getChildren().clear();
             vbox.getChildren().add(this.loadProdottiOrdinati());
-        }
-        ),
-                new KeyFrame(Duration.seconds(5)));
+        }),
+                new KeyFrame(Duration.seconds(REFRESH_RATE)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
@@ -116,16 +115,12 @@ public class CucinaController implements Initializable {
 
     public void setTimer(ActionEvent event)  {
 
-        JFXButton b= (JFXButton)event.getSource();
-        for(Integer tavolo : this.tavoli){
-            if (b.getId().equals(Integer.toString(tavolo)))
-            {
-                for (ProdottoOrdinato ord : ordini) {
-                    if (ord.getProdotto().getTipoPortata() == TipoPortata.PIATTI || ord.getProdotto().getTipoPortata() == TipoPortata.DOLCI) {
-                       // ord.setStatoProdottoOrdinatoLavorazione(); //DA SETTARE NEL DB TEMPO INIZIO LAVRAZIONE
-                        serverCentraleInterno.changeStatoProdottoOrdinato(ord, StatoProdottoOrdinato.LAVORAZIONE);
-                    }
-                }
+        JFXButton button = (JFXButton)event.getSource();
+        int idTavolo = Integer.parseInt(button.getId());
+
+        for (ProdottoOrdinato prodottoOrdinato : ordini){
+            if(prodottoOrdinato.getIdTavolo() == idTavolo){
+                serverCentraleInterno.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
             }
         }
     }
@@ -152,15 +147,12 @@ public class CucinaController implements Initializable {
         JFXButton o = (JFXButton) event.getSource();
         int  index = 0;
         for(ProdottoOrdinato ord : ordini){
-            if (HomeController.getnTavolo() == ord.getIdTavolo()) {
-                    if (o.getId().equals(Integer.toString(index)))
-                    {
-                        serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
-                        index=0;
-                        break;
-                    }
-                    index++;
-            }
+                if (o.getId().equals(Integer.toString(index))) {
+                    serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
+                    index=0;
+                    break;
+                }
+                index++;
         }
     }
 }

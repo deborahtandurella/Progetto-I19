@@ -19,7 +19,6 @@ public class FXServiceConto extends Service {
         return new Task<Float>() {
             @Override
             protected Float call() throws Exception {
-                System.out.println("---------------"+Float.valueOf(serverCentraleEsterno.getConto(idTavolo)));
                 return Float.valueOf(serverCentraleEsterno.getConto(idTavolo));
             }
         };
