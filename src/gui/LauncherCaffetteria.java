@@ -16,7 +16,7 @@ public class LauncherCaffetteria extends Application {
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Caffetteria.fxml"));
 
-        primaryStage.setTitle("Cucina");
+        primaryStage.setTitle("Caffetteria");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }

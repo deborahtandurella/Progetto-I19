@@ -81,17 +81,20 @@ public class TimerContoController extends MasterController implements Initializa
     private void checkStatoProdottoOrdinato() {
 
         String temp="";
-        ProdottoOrdinato p = ordini.get(1);
-        float delta = p.getTempoElaborazioneRimanente(maxTempoPreparazione());
-        if(delta>=0)
-        {
-             temp = "" + (int)(delta / 60) + " Minuti " + (int)(delta % 60) + " Secondi";
+        //ProdottoOrdinato p = ordini.get(1);
+        float delta;
+        for(ProdottoOrdinato p : ordini) {
+            if(p.getStato()==StatoProdottoOrdinato.LAVORAZIONE) {
+                delta= p.getTempoElaborazioneRimanente(maxTempoPreparazione());
+                if (delta >= 0) {
+                    temp = "" + (int) (delta / 60) + " Minuti " + (int) (delta % 60) + " Secondi";
+                } else {
+                    temp = "Tempo Scaduto";
+                }
+            }
         }
-        else{ temp = "Tempo Scaduto";}
-
         Tempo.setLayoutX(504);
         Tempo.setText(temp);
-
     }
 
     private int maxTempoPreparazione() {
