@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import sun.nio.cs.ext.MacThai;
 
 @JsonSerialize(using = ProdottoOrdinatoSerializer.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -86,7 +87,7 @@ public class ProdottoOrdinato implements ProdottoOrdinatoInterface{
 	
 	public int getTempoElaborazioneRimanente(int max) {
 		int tempoPassato = (int)Duration.between(this.tempoInizioLavorazione, LocalDateTime.now()).getSeconds();
-		return max - tempoPassato;
+		return Math.abs(max) - tempoPassato;
 	}
 	
 	public int getIdTavolo() {
