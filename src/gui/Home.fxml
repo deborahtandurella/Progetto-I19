@@ -47,7 +47,7 @@
             <Font name="Roboto" size="60.0" />
          </font>
       </Text>
-      <Text layoutX="53.0" layoutY="519.0" lineSpacing="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tocca 'Ordinazione' per visualizzare i prodotti ordinati, il loro stato e chiedere il conto." textAlignment="CENTER" wrappingWidth="330.0">
+      <Text layoutX="53.0" layoutY="519.0" lineSpacing="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tocca 'Ordinazione' per visualizzare i prodotti ordinati oppure chiedere il conto." textAlignment="CENTER" wrappingWidth="330.0">
          <font>
             <Font name="Roboto" size="30.0" />
          </font>

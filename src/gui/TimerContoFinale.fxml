@@ -40,12 +40,12 @@
       </Pane>
       <Pane layoutY="162.0" prefHeight="605.0" prefWidth="320.0" style="-fx-background-color: #FAFAFA;">
          <children>
-            <Text fill="#424242" layoutX="20.0" layoutY="68.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qui a lato vi è un tempo indicativo affinchè la tua arrivi al tavolo." textAlignment="CENTER" wrappingWidth="282.0">
+            <Text fill="#424242" layoutX="20.0" layoutY="68.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qui a lato vi è un tempo indicativo affinchè il primo prodotto della tua ordinazione arrivi al tavolo." textAlignment="CENTER" wrappingWidth="282.0">
                <font>
                   <Font name="Roboto" size="22.0" />
                </font>
             </Text>
-            <Text fill="#424242" layoutX="19.0" layoutY="204.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricevuti i piatti potrai richiedere il conto e procedere al pagamento in cassa." textAlignment="CENTER" wrappingWidth="282.0">
+            <Text fill="#424242" layoutX="19.0" layoutY="224.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricevuti i piatti potrai richiedere il conto e procedere al pagamento in cassa." textAlignment="CENTER" wrappingWidth="282.0">
                <font>
                   <Font name="Roboto" size="22.0" />
                </font>
@@ -80,12 +80,12 @@
             <Font name="Roboto" size="40.0" />
          </font>
       </Label>
-      <Text fill="#424242" layoutX="369.0" layoutY="704.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Euro " textAlignment="CENTER" wrappingWidth="606.0">
+      <Text fx:id="txtConto" fill="#424242" layoutX="369.0" layoutY="704.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Euro " textAlignment="CENTER" wrappingWidth="606.0">
          <font>
             <Font name="Roboto" size="40.0" />
          </font>
       </Text>
-      <Text fx:id="txtConto" fill="#424242" layoutX="369.0" layoutY="638.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conto totale:" textAlignment="CENTER" wrappingWidth="606.0">
+      <Text fill="#424242" layoutX="369.0" layoutY="638.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conto totale:" textAlignment="CENTER" wrappingWidth="606.0">
          <font>
             <Font name="Roboto" size="40.0" />
          </font>
