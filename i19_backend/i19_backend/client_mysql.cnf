@@ -1,0 +1,5 @@
+[client]
+database = progetto_i19
+user = admin
+password = progettoi19
+default-character-set = utf8
