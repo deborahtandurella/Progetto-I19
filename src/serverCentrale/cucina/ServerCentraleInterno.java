@@ -87,4 +87,17 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface {
 		return ret.getBody();
 	}
 	
+	@Override
+	public List<Integer> getTavoli(StatoProdottoOrdinato statoProdottoOrdinato, TipoProdotto tipoProdotto) {
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.ID_TAVOLO)
+				.queryParam("statoProdottoOrdinato", statoProdottoOrdinato.value())
+				.queryParam("tipo", tipoProdotto.value());
+		
+		ResponseEntity<List<Integer>> ret = restTemplate.exchange(queryBuilder.toUriString(), HttpMethod.GET,
+				null, new ParameterizedTypeReference<List<Integer>>() {
+				});
+
+		return ret.getBody();
+	}
+	
 }
