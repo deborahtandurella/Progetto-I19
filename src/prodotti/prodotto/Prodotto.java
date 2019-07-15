@@ -1,4 +1,4 @@
-package prodotti;
+package prodotti.prodotto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

@@ -11,10 +11,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import prodotti.ProdottoOrdinato;
-import prodotti.StatoProdottoOrdinato;
-import prodotti.TipoProdotto;
-import serverCentrale.ServerCentraleInterno;
+import prodotti.prodotto_ordinato.ProdottoOrdinato;
+import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
+import prodotti.prodotto.TipoProdotto;
+import serverCentrale.cucina.ServerCentraleInterno;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -78,7 +78,7 @@ public class CucinaController implements Initializable {
             tempPane1.setPrefHeight(115);
             tempPane1.setPrefWidth(959);
 
-            tempPane1.getStylesheets().add(getClass().getResource("/gui/style/StyleCucina.css").toExternalForm());
+            tempPane1.getStylesheets().add(getClass().getResource("/gui/cucina/style/StyleCucina.css").toExternalForm());
 
             startTimer.setLayoutX(711);
             startTimer.setLayoutY(28);

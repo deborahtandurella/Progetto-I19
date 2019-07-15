@@ -1,11 +1,11 @@
-package gui.threads;
+package gui.cliente.thread;
 
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import prodotti.Prodotto;
-import prodotti.TipoPortata;
-import serverCentrale.ServerCentraleEsterno;
+import prodotti.prodotto.Prodotto;
+import prodotti.prodotto.TipoPortata;
+import serverCentrale.cliente.ServerCentraleEsterno;
 
 import java.util.List;
 

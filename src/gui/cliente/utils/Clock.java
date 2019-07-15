@@ -1,4 +1,4 @@
-package gui.utils;
+package gui.cliente.utils;
 
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;

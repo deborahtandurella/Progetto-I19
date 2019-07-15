@@ -1,14 +1,15 @@
-package gui.utils;
+package gui.cliente.utils;
 
 import com.jfoenix.controls.JFXButton;
-import gui.threads.FXServiceMenu;
+import gui.cliente.thread.FXServiceMenu;
 import gui.cliente.controller.VisualizzaProdottiController;
+import gui.cliente.general_controller.MasterController;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import prodotti.Prodotto;
-import prodotti.TipoPortata;
-import serverCentrale.ServerCentraleEsterno;
+import prodotti.prodotto.Prodotto;
+import prodotti.prodotto.TipoPortata;
+import serverCentrale.cliente.ServerCentraleEsterno;
 
 import java.io.IOException;
 import java.util.ArrayList;

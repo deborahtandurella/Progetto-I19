@@ -1,4 +1,4 @@
-package prodotti;
+package prodotti.prodotto_ordinato;
 
 import eccezioni.OrdinazioneNegativaException;
 
@@ -9,14 +9,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import sun.nio.cs.ext.MacThai;
+import prodotti.prodotto.Prodotto;
 
 @JsonSerialize(using = ProdottoOrdinatoSerializer.class)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ProdottoOrdinato implements ProdottoOrdinatoInterface{
+public class ProdottoOrdinato implements ProdottoOrdinatoInterface {
 
 	private final int id;
 	private final Prodotto prodotto;

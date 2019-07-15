@@ -1,8 +1,8 @@
-package gui.threads;
+package gui.cliente.thread;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import serverCentrale.ServerCentraleEsterno;
+import serverCentrale.cliente.ServerCentraleEsterno;
 
 public class FXServiceConto extends Service {
 

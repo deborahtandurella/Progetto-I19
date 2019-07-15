@@ -2,8 +2,11 @@ package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.NessunProdottoException;
-import gui.threads.FXServiceOrdini;
-import gui.utils.*;
+import gui.cliente.general_controller.MasterController;
+import gui.cliente.thread.FXServiceOrdini;
+import gui.cliente.utils.Clock;
+import gui.cliente.utils.FXMLManager;
+import gui.cliente.utils.ManagerOrdinazioni;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import prodotti.ProdottoOrdinato;
+import prodotti.prodotto_ordinato.ProdottoOrdinato;
 
 import java.io.IOException;
 import java.net.URL;
@@ -49,7 +52,7 @@ public class ConfermaOrdinazioneController extends MasterController implements I
             titleTemp.setId("titletemp");
 
             tempPane.getChildren().addAll(titleTemp, remove);
-            tempPane.getStylesheets().add(getClass().getResource("/gui/style/StyleConfermaProdotti.css").toExternalForm());
+            tempPane.getStylesheets().add(getClass().getResource("/gui/cliente/style/StyleConfermaProdotti.css").toExternalForm());
 
             remove.setLayoutX(514);
             remove.setLayoutY(2);

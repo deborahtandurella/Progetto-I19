@@ -1,4 +1,4 @@
-package gui.utils;
+package gui.cliente.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
@@ -7,8 +7,8 @@ import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import prodotti.Prodotto;
-import serverCentrale.ServerCentraleEsterno;
+import prodotti.prodotto.Prodotto;
+import serverCentrale.cliente.ServerCentraleEsterno;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class ListFiller {
             descTemp.setId("desctemp");
 
             tempPane.getChildren().addAll(titleTemp, descTemp, addTemp);
-            tempPane.getStylesheets().add(getClass().getResource("/gui/style/Style.css").toExternalForm());
+            tempPane.getStylesheets().add(getClass().getResource("/gui/cliente/style/Style.css").toExternalForm());
 
             addTemp.setLayoutX(562.0);
             addTemp.setLayoutY(6.0);

@@ -1,4 +1,4 @@
-package gui.utils;
+package gui.cliente.utils;
 
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
