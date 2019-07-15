@@ -1,7 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import com.sun.xml.internal.bind.v2.TODO;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,6 +15,7 @@ import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
 import prodotti.TipoProdotto;
 import serverCentrale.ServerCentraleInterno;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

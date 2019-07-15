@@ -12,6 +12,7 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import prodotti.ProdottoOrdinato;
+import prodotti.StatoProdottoOrdinato;
 import prodotti.TipoProdotto;
 import serverCentrale.ServerCentraleInterno;
 
@@ -20,74 +21,73 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static java.lang.StrictMath.abs;
-
 public class CaffetteriaController implements Initializable {
 
     private List<ProdottoOrdinato> ordini = new ArrayList<>();
     private ServerCentraleInterno serverCentraleInterno = new ServerCentraleInterno();
-    private List<Integer> vettore = new ArrayList<>();
+    private List<Integer> tavoli = new ArrayList<>();
     public VBox vbox;
+    public final int REFRESH_RATE = 3;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
 
     public VBox loadProdottiOrdinati(){
-        int indiceBottone=0;
 
-        ordini = serverCentraleInterno.getOrdini(TipoProdotto.CAFFETTERIA);
-        vettore = serverCentraleInterno.getTavoli();
+        int indiceBottone=0;
+        this.getTavoliAperti();
+        this.ordini = serverCentraleInterno.getOrdini(TipoProdotto.CAFFETTERIA, StatoProdottoOrdinato.ORDINATO);
+        this.ordini.addAll(serverCentraleInterno.getOrdini(TipoProdotto.CAFFETTERIA, StatoProdottoOrdinato.LAVORAZIONE));
 
         VBox vBox = new VBox();
-
-        for(Integer tavolo : vettore) {
-
+        for(Integer tavolo : this.tavoli){
             Text table = new Text("TAVOLO N. " + tavolo);
+            JFXButton startTimer = new JFXButton("START TIMER");
+            startTimer.setId(String.valueOf(tavolo));
+            startTimer.setOnAction(this::setTimer);
+
             VBox vBox1 = new VBox();
+            AnchorPane tempPane1 = new AnchorPane();
 
-            for (ProdottoOrdinato ord : ordini) {
-                if(tavolo == ord.getIdTavolo()) {
+            vBox1.setPrefHeight(217);
+            vBox1.setPrefWidth(668);
 
-                    AnchorPane tempPane1 = new AnchorPane();
-
-                    vBox1.setPrefHeight(100);
-                    vBox1.setPrefWidth(668);
-
-                    Text prodotto = new Text(ord.getProdotto().getNome());
+            for(ProdottoOrdinato p : this.ordini){
+                if(tavolo == p.getIdTavolo()){
+                    Text prodotto = new Text(p.getProdotto().getNome() + " (" + p.getStato() + ")");
                     JFXButton pronto = new JFXButton("PRONTO");
                     pronto.setId(Integer.toString(indiceBottone));
                     indiceBottone++;
                     pronto.setOnAction(this::setPronto);
 
-                    pronto.setLayoutX(562);
+                    pronto.setLayoutX(532);
                     pronto.setPrefHeight(39);
-                    pronto.setPrefWidth(106);
+                    pronto.setPrefWidth(135);
                     prodotto.setLayoutY(27);
 
                     AnchorPane pane = new AnchorPane(prodotto, pronto);
                     pane.setId("secondAnchor");
                     vBox1.getChildren().add(pane);
-
-
-                    table.setId("tableText");
-
-                    tempPane1.getChildren().addAll(table, vBox1);
-                    tempPane1.setId("mainAnchor");
-                    tempPane1.setPrefHeight(115);
-                    tempPane1.setPrefWidth(959);
-
-                    tempPane1.getStylesheets().add(getClass().getResource("/gui/style/StyleCucina.css").toExternalForm());
-
-
-
-                    //table.setLayoutX(7.0);
-                    //table.setLayoutY(22.0);
-                    table.setStrokeType(StrokeType.OUTSIDE);
-                    vBox1.setLayoutX(14);
-                    vBox1.setLayoutY(30);
-                    vBox.getChildren().addAll(tempPane1);
                 }
             }
+
+            table.setId("tableText");
+
+            tempPane1.getChildren().addAll(table, startTimer, vBox1);
+            tempPane1.setId("mainAnchor");
+            tempPane1.setPrefHeight(115);
+            tempPane1.setPrefWidth(959);
+
+            tempPane1.getStylesheets().add(getClass().getResource("/gui/style/StyleCucina.css").toExternalForm());
+
+            startTimer.setLayoutX(711);
+            startTimer.setLayoutY(28);
+            table.setLayoutX(7.0);
+            table.setLayoutY(22.0);
+            table.setStrokeType(StrokeType.OUTSIDE);
+            vBox1.setLayoutX(14);
+            vBox1.setLayoutY(30);
+            vBox.getChildren().addAll(tempPane1);
         }
         return vBox;
     }
@@ -96,44 +96,45 @@ public class CaffetteriaController implements Initializable {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
             this.vbox.getChildren().clear();
             vbox.getChildren().add(this.loadProdottiOrdinati());
-        }
-        ),
-                new KeyFrame(Duration.seconds(5)));
+        }),
+                new KeyFrame(Duration.seconds(REFRESH_RATE)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
 
-    /*
-        public void setOrdini() {
-            ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA);
-            vettore = serverCentraleInterno.getTavoli();
-            System.out.println(vettore);
-            System.out.println(ordini.toString());
+    private void getTavoliAperti(){
+        // TODO (TOFIX) Servirebbe un getTavoli() parametrizzato anche su TipoProdotto. Da Valutare durante reactor
+        this.tavoli.clear();
+        this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO);
+        for(Integer tavolo : serverCentraleInterno.getTavoli(StatoProdottoOrdinato.LAVORAZIONE)) {
+            if (!this.tavoli.contains(tavolo)) {
+                this.tavoli.add(tavolo);
+            }
         }
-    */
-    public  List<ProdottoOrdinato> getOrdini() {
-        return ordini;
     }
 
+    public void setTimer(ActionEvent event)  {
 
+        JFXButton button = (JFXButton)event.getSource();
+        int idTavolo = Integer.parseInt(button.getId());
 
+        for (ProdottoOrdinato prodottoOrdinato : ordini){
+            if(prodottoOrdinato.getIdTavolo() == idTavolo){
+                serverCentraleInterno.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
+            }
+        }
+    }
 
     public void setPronto(ActionEvent event)  {
         JFXButton o = (JFXButton) event.getSource();
         int  index = 0;
         for(ProdottoOrdinato ord : ordini){
-            if (TableIdController.idTavolo == ord.getIdTavolo()) {
-                if (o.getId().equals(Integer.toString(index)))
-                {
-                    System.out.println("prova2");
-                    //ManagerOrdinazioni.removeProdottoOrdinato(Integer.parseInt(o.getId()));
-                    ordini.remove(Integer.parseInt(o.getId()));
-                    index=0;
-                    //System.out.println(o.getId());
-                    break;
-                }
-                index++;
+            if (o.getId().equals(Integer.toString(index))) {
+                serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
+                index=0;
+                break;
             }
+            index++;
         }
     }
 }
