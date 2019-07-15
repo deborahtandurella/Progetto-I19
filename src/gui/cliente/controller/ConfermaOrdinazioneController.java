@@ -1,4 +1,4 @@
-package gui;
+package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.NessunProdottoException;
@@ -77,7 +77,7 @@ public class ConfermaOrdinazioneController extends MasterController implements I
             @Override
             public void handle(WorkerStateEvent event) {
                 try {
-                    FXMLManager.loadFXML(actionEvent, "/gui/TimerContoFinale.fxml");
+                    FXMLManager.loadFXML(actionEvent, "/gui/cliente/resources/TimerContoFinale.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

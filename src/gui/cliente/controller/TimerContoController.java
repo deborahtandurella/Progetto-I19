@@ -1,6 +1,7 @@
-package gui;
+package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXButton;
+import gui.cliente.controller.TableIdController;
 import gui.threads.FXServiceConto;
 import gui.utils.Clock;
 import gui.utils.ManagerOrdinazioni;

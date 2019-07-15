@@ -1,4 +1,4 @@
-package gui;
+package gui.cucina.controller;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.animation.Animation;
@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CucinaController implements Initializable {
+public class CaffetteriaController implements Initializable {
 
     private List<ProdottoOrdinato> ordini = new ArrayList<>();
     private ServerCentraleInterno serverCentraleInterno = new ServerCentraleInterno();
@@ -36,8 +36,8 @@ public class CucinaController implements Initializable {
 
         int indiceBottone=0;
         this.getTavoliAperti();
-        this.ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA, StatoProdottoOrdinato.ORDINATO);
-        this.ordini.addAll(serverCentraleInterno.getOrdini(TipoProdotto.CUCINA, StatoProdottoOrdinato.LAVORAZIONE));
+        this.ordini = serverCentraleInterno.getOrdini(TipoProdotto.CAFFETTERIA, StatoProdottoOrdinato.ORDINATO);
+        this.ordini.addAll(serverCentraleInterno.getOrdini(TipoProdotto.CAFFETTERIA, StatoProdottoOrdinato.LAVORAZIONE));
 
         VBox vBox = new VBox();
         for(Integer tavolo : this.tavoli){
@@ -129,12 +129,12 @@ public class CucinaController implements Initializable {
         JFXButton o = (JFXButton) event.getSource();
         int  index = 0;
         for(ProdottoOrdinato ord : ordini){
-                if (o.getId().equals(Integer.toString(index))) {
-                    serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
-                    index=0;
-                    break;
-                }
-                index++;
+            if (o.getId().equals(Integer.toString(index))) {
+                serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
+                index=0;
+                break;
+            }
+            index++;
         }
     }
 }

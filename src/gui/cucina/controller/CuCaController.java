@@ -1,4 +1,4 @@
-package gui;
+package gui.cucina.controller;
 
 import gui.utils.FXMLManager;
 import javafx.event.ActionEvent;
@@ -9,11 +9,11 @@ public class CuCaController {
 
     public void loadCucina(ActionEvent event ) throws IOException {
 
-        FXMLManager.loadFXML(event, "/gui/Cucina.fxml");
+        FXMLManager.loadFXML(event, "/gui/cucina/resources/Cucina.fxml");
     }
 
     public void loadCaffetteria(ActionEvent event) throws IOException{
 
-        FXMLManager.loadFXML(event, "/gui/Caffetteria.fxml");
+        FXMLManager.loadFXML(event, "/gui/cucina/resources/Caffetteria.fxml");
     }
 }

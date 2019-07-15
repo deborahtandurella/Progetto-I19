@@ -1,4 +1,4 @@
-package gui;
+package gui.cucina;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +14,7 @@ public class LauncherCucinaCaffetteria extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("SelectCuCa.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/SelectCuCa.fxml"));
         primaryStage.setTitle("Cucina-Caffetteria");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();

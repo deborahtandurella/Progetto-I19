@@ -2,7 +2,7 @@ package gui.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
-import gui.TableIdController;
+import gui.cliente.controller.TableIdController;
 import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 

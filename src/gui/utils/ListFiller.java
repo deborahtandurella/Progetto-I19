@@ -2,7 +2,7 @@ package gui.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
-import gui.VisualizzaProdottiController;
+import gui.cliente.controller.VisualizzaProdottiController;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;

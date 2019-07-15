@@ -1,6 +1,7 @@
-package gui;
+package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXButton;
+import gui.cliente.controller.TableIdController;
 import gui.utils.*;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;

@@ -1,4 +1,4 @@
-package gui;
+package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXTextField;
 import gui.utils.FXMLManager;
@@ -13,6 +13,6 @@ public class TableIdController {
 
     public void getIdTavolo(ActionEvent event) throws IOException {
         idTavolo = Integer.valueOf(tavolo.getText());
-        FXMLManager.loadFXML(event, "/gui/Home.fxml");
+        FXMLManager.loadFXML(event, "/gui/cliente/resources/Home.fxml");
     }
 }
