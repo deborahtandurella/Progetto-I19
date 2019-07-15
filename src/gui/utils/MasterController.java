@@ -1,10 +1,7 @@
 package gui.utils;
 
-import gui.VisualizzaProdottiController;
 import javafx.event.ActionEvent;
-import prodotti.TipoPortata;
 import serverCentrale.ServerCentraleEsterno;
-import serverCentrale.ServerCentraleInterno;
 
 import java.io.IOException;
 
@@ -22,5 +19,15 @@ public class MasterController {
 
     public void loadVisualizzaProdotti(ActionEvent event) throws IOException {
         this.loadHome(event);
+    }
+
+    public void loadCucina(ActionEvent event ) throws IOException{
+
+        FXMLManager.loadFXML(event, "/gui/Cucina.fxml");
+    }
+
+    public void loadCaffetteria(ActionEvent event) throws IOException{
+
+        FXMLManager.loadFXML(event, "/gui/Caffetteria.fxml");
     }
 }

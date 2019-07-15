@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.utils.MasterController">
+   <children>
+      <Pane layoutX="212.0" layoutY="184.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #eeeeee;">
+         <effect>
+            <DropShadow height="68.44" radius="33.7225" width="68.45" />
+         </effect>
+         <children>
+            <Pane prefHeight="79.0" prefWidth="600.0" style="-fx-background-color: #D50000;">
+               <children>
+                  <Label layoutX="9.0" layoutY="31.0" text="Scegliere tipologia" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Regular" size="30.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXButton onAction="#loadCucina" buttonType="RAISED" layoutX="47.0" layoutY="200.0" prefHeight="95.0" prefWidth="164.0" ripplerFill="#d50000" style="-fx-background-color: white;" text="Cucina">
+               <font>
+                  <Font name="Roboto Regular" size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton onAction="#loadCaffetteria" buttonType="RAISED" layoutX="394.0" layoutY="200.0" prefHeight="95.0" prefWidth="164.0" ripplerFill="#d50000" style="-fx-background-color: white;" text="Caffetteria">
+               <font>
+                  <Font name="Roboto Regular" size="20.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+   </children>
+</Pane>

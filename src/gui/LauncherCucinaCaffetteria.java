@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class LauncherCaffetteria extends Application {
+public class LauncherCucinaCaffetteria extends Application {
 
     public static void main(String[] args) {
         launch(args);
@@ -14,9 +14,8 @@ public class LauncherCaffetteria extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Caffetteria.fxml"));
-
-        primaryStage.setTitle("Caffetteria");
+        Parent root = FXMLLoader.load(getClass().getResource("SelectCuCa.fxml"));
+        primaryStage.setTitle("Cucina-Caffetteria");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
