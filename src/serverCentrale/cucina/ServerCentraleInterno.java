@@ -15,7 +15,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
 import prodotti.prodotto.TipoProdotto;
-import serverCentrale.ApiURL;
 import serverCentrale.Server;
 
 public class ServerCentraleInterno extends Server implements ServerCentraleInternoInterface{
@@ -69,13 +68,17 @@ public class ServerCentraleInterno extends Server implements ServerCentraleInter
 		return response.getBody();
 	}
 
-	@Override
-	public List<Integer> getTavoli() {
-		ResponseEntity<List<Integer>> ret = restTemplate.exchange(super.apiURL.getIDTavolo(), HttpMethod.GET,
+	private List<Integer> getTavoli(String url) {
+		ResponseEntity<List<Integer>> ret = restTemplate.exchange(url, HttpMethod.GET,
 				null, new ParameterizedTypeReference<List<Integer>>() {
 				});
 
 		return ret.getBody();
+	}
+	
+	@Override
+	public List<Integer> getTavoli() {
+		return this.getTavoli(super.apiURL.getIDTavolo());
 	}
 	
 	@Override
@@ -84,11 +87,7 @@ public class ServerCentraleInterno extends Server implements ServerCentraleInter
 		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(super.apiURL.getIDTavolo())
 				.queryParam("statoProdottoOrdinato", statoProdottoOrdinato.value());
 		
-		ResponseEntity<List<Integer>> ret = restTemplate.exchange(queryBuilder.toUriString(), HttpMethod.GET,
-				null, new ParameterizedTypeReference<List<Integer>>() {
-				});
-
-		return ret.getBody();
+		return this.getTavoli(queryBuilder.toUriString());
 	}
 	
 	@Override
@@ -97,11 +96,7 @@ public class ServerCentraleInterno extends Server implements ServerCentraleInter
 				.queryParam("statoProdottoOrdinato", statoProdottoOrdinato.value())
 				.queryParam("tipo", tipoProdotto.value());
 		
-		ResponseEntity<List<Integer>> ret = restTemplate.exchange(queryBuilder.toUriString(), HttpMethod.GET,
-				null, new ParameterizedTypeReference<List<Integer>>() {
-				});
-
-		return ret.getBody();
+		return this.getTavoli(queryBuilder.toUriString());
 	}
 	
 }

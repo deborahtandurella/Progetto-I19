@@ -9,15 +9,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import eccezioni.NessunProdottoException;
 import prodotti.prodotto.Prodotto;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 import prodotti.prodotto.TipoPortata;
-import serverCentrale.ApiURL;
 import serverCentrale.Server;
 
 public class ServerCentraleEsterno extends Server implements ServerCentraleEsternoInterface{
