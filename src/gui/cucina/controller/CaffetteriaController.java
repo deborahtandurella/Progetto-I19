@@ -103,9 +103,8 @@ public class CaffetteriaController implements Initializable {
     }
 
     private void getTavoliAperti(){
-        // TODO (TOFIX) Servirebbe un getTavoli() parametrizzato anche su TipoProdotto. Da Valutare durante reactor
         this.tavoli.clear();
-        this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO);
+        this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO, TipoProdotto.CAFFETTERIA);
         for(Integer tavolo : serverCentraleInterno.getTavoli(StatoProdottoOrdinato.LAVORAZIONE)) {
             if (!this.tavoli.contains(tavolo)) {
                 this.tavoli.add(tavolo);
