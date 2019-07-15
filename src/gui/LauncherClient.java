@@ -14,7 +14,7 @@ public class LauncherClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("SetId.fxml"));
 
         primaryStage.setTitle("Ristorante");
         primaryStage.setScene(new Scene(root));

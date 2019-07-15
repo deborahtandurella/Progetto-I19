@@ -32,7 +32,7 @@ public class ConfermaOrdinazioneController extends MasterController implements I
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
         ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
-        table.setText(table.getText() + HomeController.getnTavolo());
+        table.setText(table.getText() + TableIdController.idTavolo);
 
         this.loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
 

@@ -3,7 +3,6 @@ package gui;
 import com.jfoenix.controls.JFXButton;
 import gui.threads.FXServiceConto;
 import gui.utils.Clock;
-import gui.utils.FXMLManager;
 import gui.utils.ManagerOrdinazioni;
 import gui.utils.MasterController;
 import javafx.animation.Animation;
@@ -18,12 +17,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
-import prodotti.TipoPortata;
-import prodotti.TipoProdotto;
 import serverCentrale.ServerCentraleEsterno;
-import serverCentrale.ServerCentraleInterno;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,11 +37,10 @@ public class TimerContoController extends MasterController implements Initializa
     protected ActionEvent actionEvent;
 
     private List<ProdottoOrdinato> ordini = new ArrayList<>();
-    private ServerCentraleInterno serverCentraleInterno =new ServerCentraleInterno();
     private ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        table.setText(table.getText() + HomeController.getnTavolo());
+        table.setText(table.getText() + TableIdController.idTavolo);
         refresh();
     }
 
@@ -65,7 +58,7 @@ public class TimerContoController extends MasterController implements Initializa
     public void refresh(){
         this.clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
             Clock.initClock(time);
-            ordini = serverCentraleEsterno.getOrdini(HomeController.getnTavolo());
+            ordini = serverCentraleEsterno.getOrdini(TableIdController.idTavolo);
             ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
             conto.setDisable(true);
             checkConto();
@@ -91,6 +84,7 @@ public class TimerContoController extends MasterController implements Initializa
                 } else {
                     temp = "Tempo Scaduto";
                 }
+                break;
             }
         }
         Tempo.setLayoutX(504);
@@ -111,11 +105,9 @@ public class TimerContoController extends MasterController implements Initializa
     }
 
     public void loadConto(ActionEvent event) {
-
         this.actionEvent = event;
-        //txtConto.setText(txtConto.getText() + serverCentraleEsterno.getConto(HomeController.getnTavolo()));
 
-        FXServiceConto fxServiceConto = new FXServiceConto(super.server, HomeController.getnTavolo());
+        FXServiceConto fxServiceConto = new FXServiceConto(super.server, TableIdController.idTavolo);
         fxServiceConto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent event) {
@@ -125,6 +117,5 @@ public class TimerContoController extends MasterController implements Initializa
             }
         });
         fxServiceConto.start();
-
     }
 }

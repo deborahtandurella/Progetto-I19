@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane style="-fx-background-color: #212121;" maxHeight="400" maxWidth="500" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.TableIdController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #eeeeee;">
+         <children>
+            <Pane prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: #D50000;">
+               <children>
+                  <Label layoutX="12.0" layoutY="40.0" text="Inserire il numero del tavolo" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <JFXTextField fx:id="tavolo" focusColor="#d50000" layoutX="137.0" layoutY="180.0" prefHeight="40.0" prefWidth="226.0" promptText="N tavolo" unFocusColor="WHITE"  style="-fx-alignment: center"/>
+            <JFXButton fx:id="submit" onAction="#getIdTavolo" buttonType="RAISED" layoutX="137.0" layoutY="278.0" prefHeight="40.0" prefWidth="226.0" style="-fx-background-color: white;" text="Apri tavolo" />
+         </children>
+         <effect>
+            <DropShadow height="38.79" radius="18.895" width="38.79" />
+         </effect>
+      </Pane>
+   </children>
+</Pane>

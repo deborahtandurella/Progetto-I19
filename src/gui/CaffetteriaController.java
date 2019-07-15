@@ -1,8 +1,6 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
-import gui.utils.FXMLManager;
-import gui.utils.ManagerOrdinazioni;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -14,12 +12,9 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import prodotti.ProdottoOrdinato;
-import prodotti.StatoProdottoOrdinato;
-import prodotti.TipoPortata;
 import prodotti.TipoProdotto;
 import serverCentrale.ServerCentraleInterno;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,7 +122,7 @@ public class CaffetteriaController implements Initializable {
         JFXButton o = (JFXButton) event.getSource();
         int  index = 0;
         for(ProdottoOrdinato ord : ordini){
-            if (HomeController.getnTavolo() == ord.getIdTavolo()) {
+            if (TableIdController.idTavolo == ord.getIdTavolo()) {
                 if (o.getId().equals(Integer.toString(index)))
                 {
                     System.out.println("prova2");

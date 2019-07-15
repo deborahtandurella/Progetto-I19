@@ -1,6 +1,7 @@
 package gui;
 
 import com.jfoenix.controls.JFXButton;
+import com.sun.xml.internal.bind.v2.TODO;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -102,11 +103,12 @@ public class CucinaController implements Initializable {
     }
 
     private void getTavoliAperti(){
-        tavoli.clear();
-        tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO);
+        // TODO (TOFIX) Servirebbe un getTavoli() parametrizzato anche su TipoProdotto. Da Valutare durante reactor
+        this.tavoli.clear();
+        this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO);
         for(Integer tavolo : serverCentraleInterno.getTavoli(StatoProdottoOrdinato.LAVORAZIONE)) {
-            if (!tavoli.contains(tavolo)) {
-                tavoli.add(tavolo);
+            if (!this.tavoli.contains(tavolo)) {
+                this.tavoli.add(tavolo);
             }
         }
     }

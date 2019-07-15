@@ -2,7 +2,7 @@ package gui.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
-import gui.HomeController;
+import gui.TableIdController;
 import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 
@@ -19,7 +19,7 @@ public class ManagerOrdinazioni {
                 return;
             }
         }
-        ProdottoOrdinato prodottoOrdinato = new ProdottoOrdinato(prodotto, 1, HomeController.getnTavolo());
+        ProdottoOrdinato prodottoOrdinato = new ProdottoOrdinato(prodotto, 1, TableIdController.idTavolo);
         prodottiOrdinati.add(prodottoOrdinato);
         refreshOrdinazioniButton(carrello);
 
