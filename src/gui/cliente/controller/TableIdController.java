@@ -1,7 +1,7 @@
 package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXTextField;
-import gui.utils.FXMLManager;
+import gui.cliente.utils.FXMLManager;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;

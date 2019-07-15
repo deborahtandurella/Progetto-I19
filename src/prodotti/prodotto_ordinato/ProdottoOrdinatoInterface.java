@@ -1,4 +1,4 @@
-package prodotti;
+package prodotti.prodotto_ordinato;
 
 public interface ProdottoOrdinatoInterface {
 

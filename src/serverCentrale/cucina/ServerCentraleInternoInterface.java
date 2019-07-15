@@ -1,10 +1,10 @@
-package serverCentrale;
+package serverCentrale.cucina;
 
 import java.util.List;
 
-import prodotti.ProdottoOrdinato;
-import prodotti.StatoProdottoOrdinato;
-import prodotti.TipoProdotto;
+import prodotti.prodotto_ordinato.ProdottoOrdinato;
+import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
+import prodotti.prodotto.TipoProdotto;
 
 public interface ServerCentraleInternoInterface {
 

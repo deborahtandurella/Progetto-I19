@@ -1,6 +1,6 @@
 package gui.cucina.controller;
 
-import gui.utils.FXMLManager;
+import gui.cliente.utils.FXMLManager;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package serverCentrale;
+package serverCentrale.cliente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,11 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import eccezioni.NessunProdottoException;
-import prodotti.Prodotto;
-import prodotti.ProdottoOrdinato;
-import prodotti.TipoPortata;
+import prodotti.prodotto.Prodotto;
+import prodotti.prodotto_ordinato.ProdottoOrdinato;
+import prodotti.prodotto.TipoPortata;
+import serverCentrale.ApiURL;
+import serverCentrale.Server;
 
 public class ServerCentraleEsterno extends Server implements ServerCentraleEsternoInterface{
 	

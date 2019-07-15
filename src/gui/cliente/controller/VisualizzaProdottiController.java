@@ -1,12 +1,14 @@
 package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXButton;
-import gui.cliente.controller.TableIdController;
-import gui.utils.*;
+import gui.cliente.utils.Clock;
+import gui.cliente.utils.ListFiller;
+import gui.cliente.utils.LoaderProdotti;
+import gui.cliente.utils.ManagerOrdinazioni;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
-import prodotti.Prodotto;
+import prodotti.prodotto.Prodotto;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;

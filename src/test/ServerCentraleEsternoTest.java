@@ -1,17 +1,17 @@
-package serverCentrale;
+package test;
 
 import eccezioni.NessunProdottoException;
 import eccezioni.OrdinazioneNegativaException;
 import eccezioni.PrezzoNegativoException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import prodotti.Prodotto;
-import prodotti.ProdottoOrdinato;
-import prodotti.TipoPortata;
-import prodotti.TipoProdotto;
+import prodotti.prodotto.Prodotto;
+import prodotti.prodotto_ordinato.ProdottoOrdinato;
+import prodotti.prodotto.TipoPortata;
+import prodotti.prodotto.TipoProdotto;
+import serverCentrale.cliente.ServerCentraleEsterno;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 

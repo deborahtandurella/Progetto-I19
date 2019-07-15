@@ -1,4 +1,4 @@
-package serverCentrale;
+package serverCentrale.cucina;
 
 import java.util.List;
 
@@ -12,9 +12,11 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import prodotti.ProdottoOrdinato;
-import prodotti.StatoProdottoOrdinato;
-import prodotti.TipoProdotto;
+import prodotti.prodotto_ordinato.ProdottoOrdinato;
+import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
+import prodotti.prodotto.TipoProdotto;
+import serverCentrale.ApiURL;
+import serverCentrale.Server;
 
 public class ServerCentraleInterno extends Server implements ServerCentraleInternoInterface{
 	

@@ -1,11 +1,10 @@
 package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXButton;
-import gui.cliente.controller.TableIdController;
-import gui.threads.FXServiceConto;
-import gui.utils.Clock;
-import gui.utils.ManagerOrdinazioni;
-import gui.utils.MasterController;
+import gui.cliente.thread.FXServiceConto;
+import gui.cliente.utils.Clock;
+import gui.cliente.utils.ManagerOrdinazioni;
+import gui.cliente.general_controller.MasterController;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,9 +15,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
-import prodotti.ProdottoOrdinato;
-import prodotti.StatoProdottoOrdinato;
-import serverCentrale.ServerCentraleEsterno;
+import prodotti.prodotto_ordinato.ProdottoOrdinato;
+import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
+import serverCentrale.cliente.ServerCentraleEsterno;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;

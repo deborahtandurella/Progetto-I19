@@ -1,10 +1,10 @@
-package gui.utils;
+package gui.cliente.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
 import gui.cliente.controller.TableIdController;
-import prodotti.Prodotto;
-import prodotti.ProdottoOrdinato;
+import prodotti.prodotto.Prodotto;
+import prodotti.prodotto_ordinato.ProdottoOrdinato;
 
 import java.util.ArrayList;
 

@@ -1,7 +1,8 @@
-package gui.utils;
+package gui.cliente.general_controller;
 
+import gui.cliente.utils.FXMLManager;
 import javafx.event.ActionEvent;
-import serverCentrale.ServerCentraleEsterno;
+import serverCentrale.cliente.ServerCentraleEsterno;
 
 import java.io.IOException;
 
