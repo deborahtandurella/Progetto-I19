@@ -51,16 +51,18 @@ class ProdottoOrdinatoViewSet(viewsets.ModelViewSet):
 class IdTavoloViewSet(viewsets.ViewSet):
 
     def list(self, request, format=None):
-        statoProdottoOrdinato = request.query_params.get('statoProdottoOrdinato')
-        if statoProdottoOrdinato:
+        _statoProdottoOrdinato = request.query_params.get('statoProdottoOrdinato')
+        _tipo = request.query_params.get('tipo')
 
-            return Response(ProdottoOrdinato.objects
-                        .filter(statoProdottoOrdinato=statoProdottoOrdinato)
-                        .values_list('idTavolo', flat=True).distinct())
-        else:
+        _list_prodotto_ordinato = ProdottoOrdinato.objects
 
-            return Response(ProdottoOrdinato.objects
-                            .values_list('idTavolo', flat=True).distinct())
+        if _statoProdottoOrdinato:
+            _list_prodotto_ordinato = _list_prodotto_ordinato.filter(statoProdottoOrdinato=_statoProdottoOrdinato)
+
+        if _tipo:
+            _list_prodotto_ordinato = _list_prodotto_ordinato.filter(prodotto__tipo=_tipo)
+
+        return Response(_list_prodotto_ordinato.values_list('idTavolo', flat=True).distinct())
 
 
 class ContoViewSet(viewsets.ViewSet):
