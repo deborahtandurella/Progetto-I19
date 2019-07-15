@@ -16,18 +16,20 @@ import prodotti.ProdottoOrdinato;
 import prodotti.StatoProdottoOrdinato;
 import prodotti.TipoProdotto;
 
-public class ServerCentraleInterno implements ServerCentraleInternoInterface{
-
-	private RestTemplate restTemplate;
+public class ServerCentraleInterno extends Server implements ServerCentraleInternoInterface{
 	
 	public ServerCentraleInterno() {
-		this.restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+		super(false);
+	}
+	
+	public ServerCentraleInterno(boolean test) {
+		super(test);
 	}
 	
 	@Override
 	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto) {
 
-		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO_ORDINATO)
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(super.apiURL.getProdottoOrdinato())
 				.queryParam("prodotto__tipo", tipoProdotto.value());
 
 		return this.getOrdini(queryBuilder.toUriString());
@@ -35,7 +37,7 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 	
 	@Override
 	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto, StatoProdottoOrdinato statoProdottoOrdinato) {
-		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO_ORDINATO)
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(super.apiURL.getProdottoOrdinato())
 				.queryParam("prodotto__tipo", tipoProdotto.value())
 				.queryParam("statoProdottoOrdinato", statoProdottoOrdinato.value());
 
@@ -58,7 +60,7 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 		HttpEntity<String> entity = new HttpEntity<String>(statoProdottoOrdinato.toJsonString(), headers);
 		
 		RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
-		ResponseEntity<ProdottoOrdinato> response = restTemplate.exchange(ApiURL.PRODOTTO_ORDINATO + prodottoOrdinato.getId() + ".json",
+		ResponseEntity<ProdottoOrdinato> response = restTemplate.exchange(super.apiURL.getProdottoOrdinato() + prodottoOrdinato.getId() + ".json",
 				HttpMethod.PATCH,
 				entity,
 				new ParameterizedTypeReference<ProdottoOrdinato>() {});
@@ -67,7 +69,7 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 
 	@Override
 	public List<Integer> getTavoli() {
-		ResponseEntity<List<Integer>> ret = restTemplate.exchange(ApiURL.ID_TAVOLO, HttpMethod.GET,
+		ResponseEntity<List<Integer>> ret = restTemplate.exchange(super.apiURL.getIDTavolo(), HttpMethod.GET,
 				null, new ParameterizedTypeReference<List<Integer>>() {
 				});
 
@@ -76,7 +78,8 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 	
 	@Override
 	public List<Integer> getTavoli(StatoProdottoOrdinato statoProdottoOrdinato) {
-		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.ID_TAVOLO)
+		System.out.println(super.apiURL.getIDTavolo());
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(super.apiURL.getIDTavolo())
 				.queryParam("statoProdottoOrdinato", statoProdottoOrdinato.value());
 		
 		ResponseEntity<List<Integer>> ret = restTemplate.exchange(queryBuilder.toUriString(), HttpMethod.GET,
@@ -88,7 +91,7 @@ public class ServerCentraleInterno implements ServerCentraleInternoInterface{
 	
 	@Override
 	public List<Integer> getTavoli(StatoProdottoOrdinato statoProdottoOrdinato, TipoProdotto tipoProdotto) {
-		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.ID_TAVOLO)
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(super.apiURL.getIDTavolo())
 				.queryParam("statoProdottoOrdinato", statoProdottoOrdinato.value())
 				.queryParam("tipo", tipoProdotto.value());
 		

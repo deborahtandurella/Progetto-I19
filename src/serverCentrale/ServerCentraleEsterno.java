@@ -18,12 +18,14 @@ import prodotti.Prodotto;
 import prodotti.ProdottoOrdinato;
 import prodotti.TipoPortata;
 
-public class ServerCentraleEsterno implements ServerCentraleEsternoInterface{
-
-	private RestTemplate restTemplate;
+public class ServerCentraleEsterno extends Server implements ServerCentraleEsternoInterface{
 	
 	public ServerCentraleEsterno() {
-		this.restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+		super(false);
+	}
+	
+	public ServerCentraleEsterno(boolean test) {
+		super(test);
 	}
 	
 	public List<ProdottoOrdinato> inviaOrdine(ArrayList<ProdottoOrdinato> ordini) throws NessunProdottoException {
@@ -31,7 +33,7 @@ public class ServerCentraleEsterno implements ServerCentraleEsternoInterface{
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		HttpEntity<List<ProdottoOrdinato>> entity = new HttpEntity<List<ProdottoOrdinato>>(ordini, headers);
-		ResponseEntity<List<ProdottoOrdinato>> ret = restTemplate.exchange(ApiURL.PRODOTTO_ORDINATO, HttpMethod.POST,
+		ResponseEntity<List<ProdottoOrdinato>> ret = restTemplate.exchange(this.apiURL.getProdottoOrdinato(), HttpMethod.POST,
 				entity, new ParameterizedTypeReference<List<ProdottoOrdinato>>() {
 				});
 		return ret.getBody();
@@ -40,14 +42,14 @@ public class ServerCentraleEsterno implements ServerCentraleEsternoInterface{
 	
 	public List<Prodotto> getMenu(TipoPortata tipoPortata) {
 
-		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO).queryParam("tipoPortata",
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(this.apiURL.getProdotto()).queryParam("tipoPortata",
 				tipoPortata.value());
 
 		return this.getMenu(queryBuilder.toUriString());
 	}
 	
 	public List<Prodotto> getMenu() {
-		return this.getMenu(ApiURL.PRODOTTO);
+		return this.getMenu(super.apiURL.getProdotto());
 	}
 
 	private List<Prodotto> getMenu(String url) {
@@ -60,7 +62,7 @@ public class ServerCentraleEsterno implements ServerCentraleEsternoInterface{
 	
 	@Override
 	public List<ProdottoOrdinato> getOrdini(int idTavolo) {
-		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.PRODOTTO_ORDINATO)
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(this.apiURL.getProdottoOrdinato())
 				.queryParam("idTavolo", idTavolo);
 		ResponseEntity<List<ProdottoOrdinato>> ret = restTemplate.exchange(queryBuilder.toUriString(), HttpMethod.GET,
 				null, new ParameterizedTypeReference<List<ProdottoOrdinato>>() {
@@ -71,7 +73,7 @@ public class ServerCentraleEsterno implements ServerCentraleEsternoInterface{
 	
 	@Override
 	public float getConto(int idTavolo) {
-		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(ApiURL.CONTO)
+		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(this.apiURL.getConto())
 				.queryParam("idTavolo", idTavolo);
 		ResponseEntity<Float> ret = restTemplate.exchange(queryBuilder.toUriString(), HttpMethod.GET,
 				null, new ParameterizedTypeReference<Float>() {
