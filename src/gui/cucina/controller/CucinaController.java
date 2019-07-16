@@ -39,14 +39,28 @@ public class CucinaController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
 
-    public VBox loadProdottiOrdinati(){
+    public void refresh(VBox vbox){
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
+            this.vbox.getChildren().clear();
+            vbox.getChildren().add(this.loadProdottiOrdinati());
+        }),
+                new KeyFrame(Duration.seconds(REFRESH_RATE)));
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
+    }
 
-        int indiceBottone=0;
+    public VBox loadProdottiOrdinati(){
         this.getTavoliAperti();
         this.ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA, StatoProdottoOrdinato.ORDINATO);
         this.ordini.addAll(serverCentraleInterno.getOrdini(TipoProdotto.CUCINA, StatoProdottoOrdinato.LAVORAZIONE));
-
         VBox vBox = new VBox();
+        return vBox=loadProdottiTemp();
+    }
+
+    public VBox loadProdottiTemp(){
+        int indiceBottone=0;
+        VBox vBox = new VBox();
+
         for(Integer tavolo : this.tavoli){
             Text table = new Text("TAVOLO N. " + tavolo);
             JFXButton startTimer = new JFXButton("START TIMER");
@@ -99,16 +113,6 @@ public class CucinaController implements Initializable {
         return vBox;
     }
 
-    public void refresh(VBox vbox){
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
-            this.vbox.getChildren().clear();
-            vbox.getChildren().add(this.loadProdottiOrdinati());
-        }),
-                new KeyFrame(Duration.seconds(REFRESH_RATE)));
-        clock.setCycleCount(Animation.INDEFINITE);
-        clock.play();
-    }
-
     private void getTavoliAperti(){
         this.tavoli.clear();
         System.out.println(serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO, TipoProdotto.CUCINA));
@@ -156,7 +160,8 @@ public class CucinaController implements Initializable {
                 public void handle(WorkerStateEvent event) {
                     //DOVREI CANCELLARE PRODOTTO DA ARRAY LIST LOCALE
                     ordini.remove(p);
-                    refresh(vbox); // DA CONTROLLARE QUESTO REFRESH
+                    vbox.getChildren().clear();
+                    vbox.getChildren().add(loadProdottiTemp()); // DA CONTROLLARE QUESTO REFRESH
                 }
             });
             fxServicePronto.start();
