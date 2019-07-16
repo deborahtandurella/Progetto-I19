@@ -50,8 +50,10 @@ public class ConfermaOrdinazioneController extends MasterController implements I
             JFXButton remove = new JFXButton("RIMUOVI");
             Text titleTemp = new Text(p.getProdotto().getNome());
             titleTemp.setId("titletemp");
+            Text quantTemp = new Text(""+p.getQuantita());
+            quantTemp.setId("quantTemp");
 
-            tempPane.getChildren().addAll(titleTemp, remove);
+            tempPane.getChildren().addAll(titleTemp, quantTemp, remove);
             tempPane.getStylesheets().add(getClass().getResource("/gui/cliente/style/StyleConfermaProdotti.css").toExternalForm());
 
             remove.setLayoutX(514);
@@ -60,6 +62,8 @@ public class ConfermaOrdinazioneController extends MasterController implements I
             remove.setOnAction(this::removeProdotto);
             titleTemp.setLayoutX(7.0);
             titleTemp.setLayoutY(29.0);
+            quantTemp.setLayoutX(200);
+            quantTemp.setLayoutY(29);
             vBox.getChildren().addAll(tempPane);
         }
     }
