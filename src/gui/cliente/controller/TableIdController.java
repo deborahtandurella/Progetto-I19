@@ -2,6 +2,7 @@ package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
+import eccezioni.ErrorTableException;
 import gui.cliente.utils.FXMLManager;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
@@ -18,10 +19,16 @@ public class TableIdController {
 
     public void getIdTavolo(ActionEvent event) throws IOException {
         submit.setId("submit");
+        textTavolo.setId("tavolo");
         //submit.getStylesheets().add("/gui/cliente/style/StyleTavolo.css");
         submit.getStylesheets().add(getClass().getResource("/gui/cliente/style/StyleTavolo.css").toExternalForm());
-        idTavolo = Integer.valueOf(textTavolo.getText());
-        textTavolo.setId("tavolo");
-        FXMLManager.loadFXML(event, "/gui/cliente/resources/Home.fxml");
+        try {
+            idTavolo = Integer.valueOf(textTavolo.getText());
+            FXMLManager.loadFXML(event, "/gui/cliente/resources/Home.fxml");
+        }catch (NumberFormatException e )
+        {
+            FXMLManager.loadFXML(event, "/gui/cliente/resources/SetId.fxml");
+        }
+
     }
 }
