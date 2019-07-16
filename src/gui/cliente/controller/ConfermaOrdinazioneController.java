@@ -45,6 +45,8 @@ public class ConfermaOrdinazioneController extends MasterController implements I
     }
 
     private void loadProdottiOrdinati(ArrayList<ProdottoOrdinato> aPO, VBox vBox){
+        int indiceBottone=0;
+
         for(ProdottoOrdinato p : aPO){
             AnchorPane tempPane = new AnchorPane();
             JFXButton remove = new JFXButton("RIMUOVI");
@@ -58,7 +60,9 @@ public class ConfermaOrdinazioneController extends MasterController implements I
 
             remove.setLayoutX(514);
             remove.setLayoutY(2);
-            remove.setId(Integer.toString(p.getProdotto().getId()));
+            //remove.setId(Integer.toString(p.getProdotto().getId()));
+            remove.setId(""+indiceBottone);
+            indiceBottone++;
             remove.setOnAction(this::removeProdotto);
             titleTemp.setLayoutX(7.0);
             titleTemp.setLayoutY(29.0);

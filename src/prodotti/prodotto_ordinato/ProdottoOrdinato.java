@@ -109,4 +109,8 @@ public class ProdottoOrdinato implements ProdottoOrdinatoInterface {
 				p.getQuantita() == this.getQuantita() &&
 				p.getIdTavolo() == this.getIdTavolo();
 	}
+
+	public void minusQuantita() {
+		this.quantita--;
+	}
 }
