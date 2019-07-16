@@ -13,7 +13,7 @@ public class ManagerOrdinazioni {
 
     static void addProdOrd(Prodotto prodotto, JFXButton carrello) throws OrdinazioneNegativaException {
         for(ProdottoOrdinato prodottoOrdinato1 : prodottiOrdinati){
-            if(prodottoOrdinato1.getProdotto() == prodotto){
+            if(prodottoOrdinato1.getProdotto().getId() == prodotto.getId()){
                 prodottoOrdinato1.addQuantita();
                 refreshOrdinazioniButton(carrello);
                 return;
