@@ -42,9 +42,6 @@ public class CaffetteriaController implements Initializable {
         VBox vBox = new VBox();
         for(Integer tavolo : this.tavoli){
             Text table = new Text("TAVOLO N. " + tavolo);
-            JFXButton startTimer = new JFXButton("START TIMER");
-            startTimer.setId(String.valueOf(tavolo));
-            startTimer.setOnAction(this::setTimer);
 
             VBox vBox1 = new VBox();
             AnchorPane tempPane1 = new AnchorPane();
@@ -54,7 +51,7 @@ public class CaffetteriaController implements Initializable {
 
             for(ProdottoOrdinato p : this.ordini){
                 if(tavolo == p.getIdTavolo()){
-                    Text prodotto = new Text(p.getProdotto().getNome() + " (" + p.getStato() + ")");
+                    Text prodotto = new Text(p.getQuantita() + "x "+ p.getProdotto().getNome() + " (" + p.getStato() + ")");
                     JFXButton pronto = new JFXButton("PRONTO");
                     pronto.setId(Integer.toString(indiceBottone));
                     indiceBottone++;
@@ -73,15 +70,13 @@ public class CaffetteriaController implements Initializable {
 
             table.setId("tableText");
 
-            tempPane1.getChildren().addAll(table, startTimer, vBox1);
+            tempPane1.getChildren().addAll(table, vBox1);
             tempPane1.setId("mainAnchor");
             tempPane1.setPrefHeight(115);
             tempPane1.setPrefWidth(959);
 
             tempPane1.getStylesheets().add(getClass().getResource("/gui/cucina/style/StyleCucina.css").toExternalForm());
 
-            startTimer.setLayoutX(711);
-            startTimer.setLayoutY(28);
             table.setLayoutX(7.0);
             table.setLayoutY(22.0);
             table.setStrokeType(StrokeType.OUTSIDE);
@@ -103,9 +98,8 @@ public class CaffetteriaController implements Initializable {
     }
 
     private void getTavoliAperti(){
-        // TODO (TOFIX) Servirebbe un getTavoli() parametrizzato anche su TipoProdotto. Da Valutare durante reactor
         this.tavoli.clear();
-        this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO);
+        this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO, TipoProdotto.CAFFETTERIA);
         for(Integer tavolo : serverCentraleInterno.getTavoli(StatoProdottoOrdinato.LAVORAZIONE)) {
             if (!this.tavoli.contains(tavolo)) {
                 this.tavoli.add(tavolo);
@@ -113,17 +107,6 @@ public class CaffetteriaController implements Initializable {
         }
     }
 
-    public void setTimer(ActionEvent event)  {
-
-        JFXButton button = (JFXButton)event.getSource();
-        int idTavolo = Integer.parseInt(button.getId());
-
-        for (ProdottoOrdinato prodottoOrdinato : ordini){
-            if(prodottoOrdinato.getIdTavolo() == idTavolo){
-                serverCentraleInterno.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
-            }
-        }
-    }
 
     public void setPronto(ActionEvent event)  {
         JFXButton o = (JFXButton) event.getSource();

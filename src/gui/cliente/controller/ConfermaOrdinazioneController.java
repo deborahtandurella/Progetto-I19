@@ -45,21 +45,29 @@ public class ConfermaOrdinazioneController extends MasterController implements I
     }
 
     private void loadProdottiOrdinati(ArrayList<ProdottoOrdinato> aPO, VBox vBox){
+        int indiceBottone=0;
+
         for(ProdottoOrdinato p : aPO){
             AnchorPane tempPane = new AnchorPane();
             JFXButton remove = new JFXButton("RIMUOVI");
             Text titleTemp = new Text(p.getProdotto().getNome());
             titleTemp.setId("titletemp");
+            Text quantTemp = new Text(""+p.getQuantita());
+            quantTemp.setId("quantTemp");
 
-            tempPane.getChildren().addAll(titleTemp, remove);
+            tempPane.getChildren().addAll(titleTemp, quantTemp, remove);
             tempPane.getStylesheets().add(getClass().getResource("/gui/cliente/style/StyleConfermaProdotti.css").toExternalForm());
 
             remove.setLayoutX(514);
             remove.setLayoutY(2);
-            remove.setId(Integer.toString(p.getProdotto().getId()));
+            //remove.setId(Integer.toString(p.getProdotto().getId()));
+            remove.setId(""+indiceBottone);
+            indiceBottone++;
             remove.setOnAction(this::removeProdotto);
             titleTemp.setLayoutX(7.0);
             titleTemp.setLayoutY(29.0);
+            quantTemp.setLayoutX(200);
+            quantTemp.setLayoutY(29);
             vBox.getChildren().addAll(tempPane);
         }
     }

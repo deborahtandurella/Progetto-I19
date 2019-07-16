@@ -37,8 +37,10 @@ public class ListFiller {
             titleTemp.setId("titletemp");
             Text descTemp = new Text(p.getDescrizione());
             descTemp.setId("desctemp");
+            Text valueTemp = new Text("" + p.getPrezzo() +" euro");
+            valueTemp.setId("valuetemp");
 
-            tempPane.getChildren().addAll(titleTemp, descTemp, addTemp);
+            tempPane.getChildren().addAll(titleTemp, descTemp,valueTemp, addTemp);
             tempPane.getStylesheets().add(getClass().getResource("/gui/cliente/style/Style.css").toExternalForm());
 
             addTemp.setLayoutX(562.0);
@@ -47,6 +49,8 @@ public class ListFiller {
             addTemp.setOnAction(this::addProdotto);
             titleTemp.setLayoutX(7.0);
             titleTemp.setLayoutY(22.0);
+            valueTemp.setLayoutX(300);
+            valueTemp.setLayoutY(22);
             descTemp.setLayoutX(7.0);
             descTemp.setLayoutY(42.0);
             descTemp.setWrappingWidth(540.0);

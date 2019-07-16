@@ -1,10 +1,13 @@
 package gui.cucina.controller;
 
 import com.jfoenix.controls.JFXButton;
+import gui.cucina.thread.FXServicePronto;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -29,17 +32,35 @@ public class CucinaController implements Initializable {
     public VBox vbox;
     public final int REFRESH_RATE = 3;
 
+    private ProdottoOrdinato p = new ProdottoOrdinato();
+
+    //protected ActionEvent actionEvent;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
 
-    public VBox loadProdottiOrdinati(){
+    public void refresh(VBox vbox){
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
+            this.vbox.getChildren().clear();
+            vbox.getChildren().add(this.loadProdottiOrdinati());
+        }),
+                new KeyFrame(Duration.seconds(REFRESH_RATE)));
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
+    }
 
-        int indiceBottone=0;
+    public VBox loadProdottiOrdinati(){
         this.getTavoliAperti();
         this.ordini = serverCentraleInterno.getOrdini(TipoProdotto.CUCINA, StatoProdottoOrdinato.ORDINATO);
         this.ordini.addAll(serverCentraleInterno.getOrdini(TipoProdotto.CUCINA, StatoProdottoOrdinato.LAVORAZIONE));
-
         VBox vBox = new VBox();
+        return vBox=loadProdottiTemp();
+    }
+
+    public VBox loadProdottiTemp(){
+        int indiceBottone=0;
+        VBox vBox = new VBox();
+
         for(Integer tavolo : this.tavoli){
             Text table = new Text("TAVOLO N. " + tavolo);
             JFXButton startTimer = new JFXButton("START TIMER");
@@ -54,7 +75,7 @@ public class CucinaController implements Initializable {
 
             for(ProdottoOrdinato p : this.ordini){
                 if(tavolo == p.getIdTavolo()){
-                    Text prodotto = new Text(p.getProdotto().getNome() + " (" + p.getStato() + ")");
+                    Text prodotto = new Text(p.getQuantita() + "x "+ p.getProdotto().getNome() + " (" + p.getStato() + ")");
                     JFXButton pronto = new JFXButton("PRONTO");
                     pronto.setId(Integer.toString(indiceBottone));
                     indiceBottone++;
@@ -92,20 +113,10 @@ public class CucinaController implements Initializable {
         return vBox;
     }
 
-    public void refresh(VBox vbox){
-        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
-            this.vbox.getChildren().clear();
-            vbox.getChildren().add(this.loadProdottiOrdinati());
-        }),
-                new KeyFrame(Duration.seconds(REFRESH_RATE)));
-        clock.setCycleCount(Animation.INDEFINITE);
-        clock.play();
-    }
-
     private void getTavoliAperti(){
-        // TODO (TOFIX) Servirebbe un getTavoli() parametrizzato anche su TipoProdotto. Da Valutare durante reactor
         this.tavoli.clear();
-        this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO);
+        System.out.println(serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO, TipoProdotto.CUCINA));
+        this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO, TipoProdotto.CUCINA);
         for(Integer tavolo : serverCentraleInterno.getTavoli(StatoProdottoOrdinato.LAVORAZIONE)) {
             if (!this.tavoli.contains(tavolo)) {
                 this.tavoli.add(tavolo);
@@ -126,15 +137,36 @@ public class CucinaController implements Initializable {
     }
 
     public void setPronto(ActionEvent event)  {
+        //this.actionEvent = event;
         JFXButton o = (JFXButton) event.getSource();
+        boolean check=false;
         int  index = 0;
+
         for(ProdottoOrdinato ord : ordini){
-                if (o.getId().equals(Integer.toString(index))) {
-                    serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
-                    index=0;
-                    break;
-                }
-                index++;
+            if (o.getId().equals(Integer.toString(index))) {
+                 p = ord;
+                 check=true;
+                //serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
+                //index=0;
+                break;
+            }
+            index++;
         }
+        if(check) {
+            FXServicePronto fxServicePronto;
+            fxServicePronto = new FXServicePronto(serverCentraleInterno, p, StatoProdottoOrdinato.CONSEGNATO);
+            fxServicePronto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent event) {
+                    //DOVREI CANCELLARE PRODOTTO DA ARRAY LIST LOCALE
+                    ordini.remove(p);
+                    vbox.getChildren().clear();
+                    vbox.getChildren().add(loadProdottiTemp()); // DA CONTROLLARE QUESTO REFRESH
+                }
+            });
+            fxServicePronto.start();
+        }
+
+
     }
 }
