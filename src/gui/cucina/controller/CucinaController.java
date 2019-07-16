@@ -1,10 +1,13 @@
 package gui.cucina.controller;
 
 import com.jfoenix.controls.JFXButton;
+import gui.cucina.thread.FXServicePronto;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -28,6 +31,10 @@ public class CucinaController implements Initializable {
     private List<Integer> tavoli = new ArrayList<>();
     public VBox vbox;
     public final int REFRESH_RATE = 3;
+
+    private ProdottoOrdinato p = new ProdottoOrdinato();
+
+    //protected ActionEvent actionEvent;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
@@ -126,15 +133,35 @@ public class CucinaController implements Initializable {
     }
 
     public void setPronto(ActionEvent event)  {
+        //this.actionEvent = event;
         JFXButton o = (JFXButton) event.getSource();
+        boolean check=false;
         int  index = 0;
+
         for(ProdottoOrdinato ord : ordini){
-                if (o.getId().equals(Integer.toString(index))) {
-                    serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
-                    index=0;
-                    break;
-                }
-                index++;
+            if (o.getId().equals(Integer.toString(index))) {
+                 p = ord;
+                 check=true;
+                //serverCentraleInterno.changeStatoProdottoOrdinato(ord,StatoProdottoOrdinato.CONSEGNATO);
+                //index=0;
+                break;
+            }
+            index++;
         }
+        if(check) {
+            FXServicePronto fxServicePronto;
+            fxServicePronto = new FXServicePronto(serverCentraleInterno, p, StatoProdottoOrdinato.CONSEGNATO);
+            fxServicePronto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent event) {
+                    //DOVREI CANCELLARE PRODOTTO DA ARRAY LIST LOCALE
+                    ordini.remove(p);
+                    refresh(vbox); // DA CONTROLLARE QUESTO REFRESH
+                }
+            });
+            fxServicePronto.start();
+        }
+
+
     }
 }
