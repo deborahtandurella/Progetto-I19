@@ -49,7 +49,7 @@ public class ListFiller {
             addTemp.setOnAction(this::addProdotto);
             titleTemp.setLayoutX(7.0);
             titleTemp.setLayoutY(22.0);
-            valueTemp.setLayoutX(200);
+            valueTemp.setLayoutX(300);
             valueTemp.setLayoutY(22);
             descTemp.setLayoutX(7.0);
             descTemp.setLayoutY(42.0);

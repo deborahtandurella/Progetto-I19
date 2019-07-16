@@ -51,7 +51,7 @@ public class CaffetteriaController implements Initializable {
 
             for(ProdottoOrdinato p : this.ordini){
                 if(tavolo == p.getIdTavolo()){
-                    Text prodotto = new Text(p.getProdotto().getNome() + " (" + p.getStato() + ")");
+                    Text prodotto = new Text(p.getQuantita() + "x "+ p.getProdotto().getNome() + " (" + p.getStato() + ")");
                     JFXButton pronto = new JFXButton("PRONTO");
                     pronto.setId(Integer.toString(indiceBottone));
                     indiceBottone++;
