@@ -4,10 +4,15 @@ from rest_framework import status
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
 import django_filters
+from django.core.management import call_command
+from django.db import connection
+from django.utils.six import StringIO
+from django.core.management.commands import sqlsequencereset
 from django.db.models import Sum, F, FloatField
 from .serializer import *
 from .models import *
-
+from django.conf import settings
+import json
 
 class ProdottoViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Prodotto.objects.all()
@@ -51,18 +56,18 @@ class ProdottoOrdinatoViewSet(viewsets.ModelViewSet):
 class IdTavoloViewSet(viewsets.ViewSet):
 
     def list(self, request, format=None):
-        _statoProdottoOrdinato = request.query_params.get('statoProdottoOrdinato')
-        _tipo = request.query_params.get('tipo')
+        statoProdottoOrdinato = request.query_params.get('statoProdottoOrdinato')
+        tipo = request.query_params.get('tipo')
 
-        _list_prodotto_ordinato = ProdottoOrdinato.objects
+        list_prodotto_ordinato = ProdottoOrdinato.objects
 
-        if _statoProdottoOrdinato:
-            _list_prodotto_ordinato = _list_prodotto_ordinato.filter(statoProdottoOrdinato=_statoProdottoOrdinato)
+        if statoProdottoOrdinato:
+            list_prodotto_ordinato = list_prodotto_ordinato.filter(statoProdottoOrdinato=statoProdottoOrdinato)
 
-        if _tipo:
-            _list_prodotto_ordinato = _list_prodotto_ordinato.filter(prodotto__tipo=_tipo)
+        if tipo:
+            list_prodotto_ordinato = list_prodotto_ordinato.filter(prodotto__tipo=tipo)
 
-        return Response(_list_prodotto_ordinato.values_list('idTavolo', flat=True).distinct())
+        return Response(list_prodotto_ordinato.values_list('idTavolo', flat=True).distinct())
 
 
 class ContoViewSet(viewsets.ViewSet):
@@ -74,3 +79,29 @@ class ContoViewSet(viewsets.ViewSet):
                 .filter(statoProdottoOrdinato=2)
                 .aggregate(total=Sum(F('quantita')*F('prodotto__prezzo'),output_field=FloatField()))['total']
         )
+
+
+class ResetTestDBViewSet(viewsets.ViewSet):
+
+    def list(self, request, format=None):
+
+        if settings.DATABASES['default'].get('TEST_SERVER') == True:
+
+            # Pulisco Database
+            ProdottoOrdinato.objects.all().delete()
+            Prodotto.objects.all().delete()
+
+            # Ripopolo con i Prodotti standard
+            with open(settings.BASE_DIR + '/prodotti_standard.json') as f:
+                lista_prodotti = json.load(f)
+
+            prodotto_serializer = ProdottoSerializer(data=lista_prodotti, many=True)
+
+            if prodotto_serializer.is_valid():
+                prodotto_serializer.save()
+                return Response(status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_304_NOT_MODIFIED)
+
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
