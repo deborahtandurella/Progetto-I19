@@ -1,9 +1,17 @@
 package serverCentrale;
 
+import java.util.List;
+
+import org.springframework.aop.ThrowsAdvice;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
+
+import eccezioni.ResetDatabaseException;
+import prodotti.prodotto_ordinato.ProdottoOrdinato;
 
 public class Server {
 	
@@ -16,8 +24,12 @@ public class Server {
 	}
 	
 	protected void resetDatabase() {
-		this.restTemplate.exchange(apiURL.getResetDatabase(), HttpMethod.GET, null, 
+		ResponseEntity<Void> ret = this.restTemplate.exchange(apiURL.getResetDatabase(), HttpMethod.GET, null, 
 				new ParameterizedTypeReference<Void>() {
 				});
+		
+		if(ret.getStatusCode() != HttpStatus.METHOD_NOT_ALLOWED) {
+			 throw new ResetDatabaseException();
+		}
 	}
 }

@@ -4,13 +4,13 @@ import eccezioni.ResetDatabaseException;
 
 public final class ApiURL {
 	
-	private final String VPS_IP = "http://137.74.165.12/";
+	private final String VPS_IP = "http://137.74.165.12";
 	private final String PRODOTTO = "prodotto/";
 	private final String PRODOTTO_ORDINATO = "prodotto_ordinato/";
 	private final String ORDINAZIONE = "ordinazione/";
 	private final String ID_TAVOLO = "id_tavolo/";
 	private final String CONTO = "conto/";
-	private final String RESET_DATABASE = "resetdb/";
+	private final String RESET_DATABASE = "reset_testdb/";
 	
 	private final String base_name;
 	private final boolean test;
@@ -18,9 +18,9 @@ public final class ApiURL {
 	public ApiURL(boolean test) {
 		this.test = test;
 		if(test) {
-			this.base_name = this.VPS_IP + "test/";
+			this.base_name = this.VPS_IP + ":8081/";
 		}else {
-			this.base_name = this.VPS_IP;
+			this.base_name = this.VPS_IP + "/";
 		}
 	}
 
@@ -45,7 +45,7 @@ public final class ApiURL {
 	}
 	
 	public String getResetDatabase() {
-		if(this.test) {
+		if(!this.test) {
 			throw new ResetDatabaseException();
 		}
 		
