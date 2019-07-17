@@ -16,21 +16,21 @@
          <children>
             <Pane prefHeight="79.0" prefWidth="600.0" style="-fx-background-color: #D50000;">
                <children>
-                  <Label layoutX="9.0" layoutY="31.0" text="Scegliere tipologia" textFill="WHITE">
+                  <Label layoutX="12.0" layoutY="31.0" text="Scegliere tipologia" textFill="WHITE">
                      <font>
-                        <Font name="Roboto Regular" size="30.0" />
+                        <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
             <JFXButton onAction="#loadCucina" buttonType="RAISED" layoutX="47.0" layoutY="200.0" prefHeight="95.0" prefWidth="164.0" ripplerFill="#d50000" style="-fx-background-color: white;" text="Cucina">
                <font>
-                  <Font name="Roboto Regular" size="20.0" />
+                  <Font name="Roboto" size="20.0" />
                </font>
             </JFXButton>
             <JFXButton onAction="#loadCaffetteria" buttonType="RAISED" layoutX="394.0" layoutY="200.0" prefHeight="95.0" prefWidth="164.0" ripplerFill="#d50000" style="-fx-background-color: white;" text="Caffetteria">
                <font>
-                  <Font name="Roboto Regular" size="20.0" />
+                  <Font name="Roboto" size="20.0" />
                </font>
             </JFXButton>
          </children>
