@@ -30,8 +30,11 @@ public class TimerContoController extends MasterController implements Initializa
     public Label table;
     public Label time;
     public JFXButton carrello;
+    public JFXButton home;
+    public JFXButton prodotti;
     public Label Tempo;
     public Text txtConto;
+    public Text txtFinale;
     private Timeline clock;
 
     protected ActionEvent actionEvent;
@@ -114,6 +117,10 @@ public class TimerContoController extends MasterController implements Initializa
                 txtConto.setText(txtConto.getText() + " " + event.getSource().getValue() );
                 clock.stop();
                 conto.setVisible(false);
+                carrello.setDisable(true);
+                home.setDisable(true);
+                prodotti.setDisable(true);
+                txtFinale.setText("Ti aspettiamo in cassa");
             }
         });
         fxServiceConto.start();

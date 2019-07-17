@@ -11,7 +11,7 @@
    <children>
       <Pane prefHeight="160.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
          <children>
-            <JFXButton layoutY="90.0" onAction="#loadHome" prefHeight="70.0" prefWidth="165.0" text="Home" textFill="WHITE">
+            <JFXButton fx:id="home" layoutY="90.0" onAction="#loadHome" prefHeight="70.0" prefWidth="165.0" text="Home" textFill="WHITE">
                <font>
                   <Font name="Roboto" size="33.0" />
                </font>
@@ -50,7 +50,7 @@
                   <Font name="Roboto" size="22.0" />
                </font>
             </Text>
-            <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="366.0" onAction="#loadVisualizzaProdotti" prefHeight="73.0" prefWidth="282.0" style="-fx-background-color: white;" text="ORDINA ANCORA" textFill="#ff9800">
+            <JFXButton fx:id="prodotti" buttonType="RAISED" layoutX="20.0" layoutY="366.0" onAction="#loadVisualizzaProdotti" prefHeight="73.0" prefWidth="282.0" style="-fx-background-color: white;" text="ORDINA ANCORA" textFill="#ff9800">
                <font>
                   <Font name="Roboto Bold" size="24.0" />
                </font>
@@ -70,7 +70,7 @@
             <Font name="Roboto Bold" size="35.0" />
          </font>
       </JFXButton>
-      <Text fill="#424242" layoutX="369.0" layoutY="258.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tempo rimanente:" textAlignment="CENTER" wrappingWidth="606.0">
+      <Text fx:id="txtFinale" fill="#424242" layoutX="369.0" layoutY="258.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tempo rimanente:" textAlignment="CENTER" wrappingWidth="606.0">
          <font>
             <Font name="Roboto" size="40.0" />
          </font>
