@@ -23,12 +23,12 @@
                   </Label>
                </children>
             </Pane>
-            <JFXButton onAction="#loadCucina" buttonType="RAISED" layoutX="47.0" layoutY="200.0" prefHeight="95.0" prefWidth="164.0" ripplerFill="#d50000" style="-fx-background-color: white;" text="Cucina">
+            <JFXButton fx:id="CUCINA" onAction="#loadCucinaOrCaffetteria" buttonType="RAISED" layoutX="47.0" layoutY="200.0" prefHeight="95.0" prefWidth="164.0" ripplerFill="#d50000" style="-fx-background-color: white;" text="Cucina">
                <font>
                   <Font name="Roboto" size="20.0" />
                </font>
             </JFXButton>
-            <JFXButton onAction="#loadCaffetteria" buttonType="RAISED" layoutX="394.0" layoutY="200.0" prefHeight="95.0" prefWidth="164.0" ripplerFill="#d50000" style="-fx-background-color: white;" text="Caffetteria">
+            <JFXButton fx:id="CAFFETTERIA" onAction="#loadCucinaOrCaffetteria" buttonType="RAISED" layoutX="394.0" layoutY="200.0" prefHeight="95.0" prefWidth="164.0" ripplerFill="#d50000" style="-fx-background-color: white;" text="Caffetteria">
                <font>
                   <Font name="Roboto" size="20.0" />
                </font>
