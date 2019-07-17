@@ -1,6 +1,7 @@
 package gui.cucina.controller;
 
 import com.jfoenix.controls.JFXButton;
+import gui.cliente.controller.TableIdController;
 import gui.cliente.utils.Clock;
 import gui.cucina.thread.FXServicePronto;
 import javafx.animation.Animation;
@@ -35,7 +36,7 @@ public class CaffetteriaController implements Initializable {
     public final int REFRESH_RATE = 1;
     public Label time;
     protected ProdottoOrdinato p= new ProdottoOrdinato();
-    protected int indiceBottone;
+
 
     protected TipoProdotto tipoProdotto;
 
@@ -57,10 +58,9 @@ public class CaffetteriaController implements Initializable {
     }
 
     public VBox loadProdottiTemp(){
-        this.indiceBottone = 0;
         VBox vBox = new VBox();
         for(Integer tavolo : this.tavoli){
-            VBox vBox1 = initVboxProdotti(tavolo, this.indiceBottone);
+            VBox vBox1 = initVboxProdotti(tavolo);
             AnchorPane tempPane = initPaneTavolo(tavolo, vBox1);
             vBox.getChildren().addAll(tempPane);
         }
@@ -90,14 +90,16 @@ public class CaffetteriaController implements Initializable {
 public void setPronto(ActionEvent event)  {
     JFXButton o = (JFXButton) event.getSource();
     boolean check=false;
-    int  index = 0;
-    for(ProdottoOrdinato ord : ordini){
-        if (o.getId().equals(Integer.toString(index))) {
-            p = ord;
-            check=true;
-            break;
+    for(int tavolo : tavoli) {
+            for (ProdottoOrdinato ord : ordini) {
+                if(tavolo == ord.getIdTavolo()) {
+                    if (o.getId().equals(Integer.toString(ord.getId()))) {
+                        p = ord;
+                        check = true;
+                        break;
+                }
+            }
         }
-        index++;
     }
     if(check) {
         FXServicePronto fxServicePronto;
@@ -114,7 +116,7 @@ public void setPronto(ActionEvent event)  {
     }
 }
 
-    protected VBox initVboxProdotti(int tavolo, int indiceBottone){
+    protected VBox initVboxProdotti(int tavolo){
         VBox vBox1 = new VBox();
         vBox1.setPrefHeight(217);
         vBox1.setPrefWidth(668);
@@ -124,8 +126,7 @@ public void setPronto(ActionEvent event)  {
             if(tavolo == p.getIdTavolo()){
                 Text prodotto = new Text(p.getQuantita() + "x "+ p.getProdotto().getNome() + " (" + p.getStato() + ")");
                 JFXButton pronto = new JFXButton("PRONTO");
-                pronto.setId(Integer.toString(indiceBottone));
-                indiceBottone++;
+                pronto.setId(Integer.toString(p.getId()));
                 pronto.setOnAction(this::setPronto);
                 pronto.setLayoutX(532);
                 pronto.setPrefHeight(39);

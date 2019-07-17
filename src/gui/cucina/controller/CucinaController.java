@@ -41,14 +41,13 @@ public class CucinaController extends CaffetteriaController {
 
     @Override
     public VBox loadProdottiTemp(){
-        int indiceBottone=0;
         VBox vBox = new VBox();
         for(Integer tavolo : this.tavoli){
             this.startTimer = new JFXButton("START TIMER");
             this.startTimer.setId(String.valueOf(tavolo));
             this.startTimer.setOnAction(this::setTimer);
 
-            VBox vBox1 = initVboxProdotti(tavolo, indiceBottone);
+            VBox vBox1 = initVboxProdotti(tavolo);
             AnchorPane tempPane = initPaneTavolo(tavolo, vBox1);
             vBox.getChildren().addAll(tempPane);
         }
