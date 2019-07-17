@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pannello" maxHeight="400" maxWidth="500" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.cliente.controller.TableIdController">
+<Pane maxHeight="400" maxWidth="500" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="500" style="-fx-background-color: #212121;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.cliente.controller.TableIdController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #eeeeee;">
+      <Pane fx:id="pannello" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #eeeeee;">
          <children>
             <Pane prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: #D50000;">
                <children>
@@ -21,7 +21,7 @@
                </children>
             </Pane>
             <JFXTextField fx:id="textTavolo" focusColor="#d50000" layoutX="137.0" layoutY="180.0" prefHeight="40.0" prefWidth="226.0" promptText="N tavolo" style="-fx-alignment: center" unFocusColor="WHITE" />
-            <JFXButton fx:id="submit" buttonType="RAISED" layoutX="137.0" layoutY="278.0" onAction="#getIdTavolo" prefHeight="40.0" prefWidth="226.0" style="-fx-background-color: white;" text="Apri tavolo" />
+            <JFXButton fx:id="submit" buttonType="RAISED" layoutX="137.0" layoutY="278.0" onAction="#getIdTavolo" prefHeight="40.0" prefWidth="226.0"  text="Apri tavolo" />
          </children>
          <effect>
             <DropShadow height="38.79" radius="18.895" width="38.79" />
