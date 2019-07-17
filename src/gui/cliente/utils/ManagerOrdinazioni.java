@@ -30,25 +30,14 @@ public class ManagerOrdinazioni {
     }
 
     public static void removeProdottoOrdinato(int id, JFXButton carrello){
-        if(prodottiOrdinati.get(id).getQuantita()>0)
-        {
+        if(prodottiOrdinati.get(id).getQuantita() > 1) {
             prodottiOrdinati.get(id).minusQuantita();
-        }else //if(prodottiOrdinati.get(id).getQuantita()==0) {
+        } else {
             prodottiOrdinati.remove(prodottiOrdinati.get(id));
-        //}
+        }
         refreshOrdinazioniButton(carrello);
     }
-/*
-    private static ProdottoOrdinato getProdottoOrdinatoById(int id){
-        ProdottoOrdinato prodottoOrdinato = null;
-        for(ProdottoOrdinato p : prodottiOrdinati){
-            if(id == p.getProdotto().getId()){
-                prodottoOrdinato = p;
-            }
-        }
-        return prodottoOrdinato;
-    }
-*/
+
     public static ArrayList<ProdottoOrdinato> getProdottiOrdinati() {
         return prodottiOrdinati;
     }
