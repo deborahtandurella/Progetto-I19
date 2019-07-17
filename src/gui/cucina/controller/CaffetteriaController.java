@@ -1,6 +1,7 @@
 package gui.cucina.controller;
 
 import com.jfoenix.controls.JFXButton;
+import gui.cliente.utils.Clock;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,6 +17,7 @@ import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
 import prodotti.prodotto.TipoProdotto;
 import serverCentrale.cucina.ServerCentraleInterno;
 
+import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +30,12 @@ public class CaffetteriaController implements Initializable {
     private List<Integer> tavoli = new ArrayList<>();
     public VBox vbox;
     public final int REFRESH_RATE = 3;
+    public Label time;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
+    public void initialize(URL location, ResourceBundle resources) {
+        Clock.initClock(time);
+        refresh(vbox); }
 
     public VBox loadProdottiOrdinati(){
 
