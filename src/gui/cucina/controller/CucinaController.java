@@ -1,6 +1,7 @@
 package gui.cucina.controller;
 
 import com.jfoenix.controls.JFXButton;
+import gui.cliente.utils.Clock;
 import gui.cucina.thread.FXServicePronto;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -19,6 +20,7 @@ import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
 import prodotti.prodotto.TipoProdotto;
 import serverCentrale.cucina.ServerCentraleInterno;
 
+import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,13 +33,16 @@ public class CucinaController implements Initializable {
     private List<Integer> tavoli = new ArrayList<>();
     public VBox vbox;
     public final int REFRESH_RATE = 3;
+    public Label time;
 
     private ProdottoOrdinato p = new ProdottoOrdinato();
 
     //protected ActionEvent actionEvent;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) { refresh(vbox); }
+    public void initialize(URL location, ResourceBundle resources) {
+        Clock.initClock(time);
+        refresh(vbox); }
 
     public void refresh(VBox vbox){
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
