@@ -2,8 +2,10 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -65,30 +67,30 @@
             <DropShadow color="#0000005a" height="0.0" offsetX="2.0" offsetY="2.0" radius="13.6275" width="56.51" />
          </effect>
       </Pane>
-      <JFXButton fx:id="conto" buttonType="RAISED" layoutX="369.0" layoutY="491.0" prefHeight="73.0" prefWidth="606.0" style="-fx-background-color: white;" onAction="#loadConto" text="RICHIEDI CONTO" textFill="#2e7d32">
+      <JFXButton fx:id="conto" buttonType="RAISED" layoutX="368.0" layoutY="576.0" onAction="#loadConto" prefHeight="73.0" prefWidth="606.0" style="-fx-background-color: white;" text="RICHIEDI CONTO" textFill="#2e7d32">
          <font>
             <Font name="Roboto Bold" size="35.0" />
          </font>
       </JFXButton>
-      <Text fx:id="txtFinale" fill="#424242" layoutX="369.0" layoutY="258.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tempo rimanente:" textAlignment="CENTER" wrappingWidth="606.0">
+      <Text fx:id="txtFinale" fill="#424242" layoutX="368.0" layoutY="213.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tempo rimanente:" textAlignment="CENTER" wrappingWidth="606.0">
          <font>
-            <Font name="Roboto" size="40.0" />
+            <Font size="30.0" />
          </font>
       </Text>
-      <Label fx:id="Tempo" layoutX="604.0" layoutY="284.0" lineSpacing="7.0" text="MM : ss" textAlignment="CENTER" textFill="#424242">
+      <Label fx:id="Tempo" alignment="TOP_CENTER" layoutX="368.0" layoutY="229.0" lineSpacing="7.0" prefHeight="45.0" prefWidth="606.0" text="MM : ss" textAlignment="CENTER" textFill="#424242">
          <font>
-            <Font name="Roboto" size="40.0" />
+            <Font size="30.0" />
          </font>
       </Label>
-      <Text fx:id="txtConto" fill="#424242" layoutX="369.0" layoutY="704.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Euro " textAlignment="CENTER" wrappingWidth="606.0">
+      <Text fx:id="txtConto" fill="#424242" layoutX="369.0" layoutY="709.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conto totale: € " textAlignment="CENTER" wrappingWidth="606.0">
          <font>
-            <Font name="Roboto" size="40.0" />
+            <Font size="35.0" />
          </font>
       </Text>
-      <Text fill="#424242" layoutX="369.0" layoutY="638.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conto totale:" textAlignment="CENTER" wrappingWidth="606.0">
-         <font>
-            <Font name="Roboto" size="40.0" />
-         </font>
-      </Text>
+      <ScrollPane layoutX="369.0" layoutY="287.0" prefHeight="262.0" prefWidth="606.0">
+         <content>
+            <VBox fx:id="vboxProdotti" prefHeight="258.0" prefWidth="590.0" />
+         </content>
+      </ScrollPane>
    </children>
 </Pane>

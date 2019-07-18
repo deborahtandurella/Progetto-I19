@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CucinaController extends CaffetteriaController {
+public class CucinaController extends CaffetteriaController implements CucinaControllerInterface{
 
     JFXButton startTimer;
 

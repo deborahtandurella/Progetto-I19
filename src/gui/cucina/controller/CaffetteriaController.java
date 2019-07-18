@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CaffetteriaController implements Initializable {
+public class CaffetteriaController implements Initializable, CaffetteriaControllerInterface {
 
     protected List<ProdottoOrdinato> ordini = new ArrayList<>();
     protected ServerCentraleInterno serverCentraleInterno = new ServerCentraleInterno();
@@ -85,10 +85,10 @@ public class CaffetteriaController implements Initializable {
         }
     }
 
-public void setPronto(ActionEvent event)  {
-    JFXButton button = (JFXButton) event.getSource();
-    eliminaProdottoPronto(button);
-}
+    public void setPronto(ActionEvent event)  {
+        JFXButton button = (JFXButton) event.getSource();
+        eliminaProdottoPronto(button);
+    }
 
     protected VBox initVboxProdotti(int tavolo){
         VBox vBox1 = new VBox();

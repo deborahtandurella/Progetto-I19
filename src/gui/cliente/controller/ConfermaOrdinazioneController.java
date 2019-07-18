@@ -47,7 +47,7 @@ public class ConfermaOrdinazioneController extends MasterController implements I
             @Override
             public void handle(WorkerStateEvent event) {
                 try {
-                    FXMLManager.loadFXML(actionEvent, "/gui/cliente/resources/TimerContoFinale.fxml");
+                    FXMLManager.loadFXML(actionEvent, "/gui/cliente/resources/TimerConto.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
