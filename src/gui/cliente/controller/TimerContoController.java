@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
@@ -25,7 +27,6 @@ import java.util.ResourceBundle;
 
 public class TimerContoController extends MasterController implements Initializable {
 
-
     public JFXButton conto;
     public Label table;
     public Label time;
@@ -35,20 +36,27 @@ public class TimerContoController extends MasterController implements Initializa
     public Label Tempo;
     public Text txtConto;
     public Text txtFinale;
+    public VBox vboxProdotti;
     private Timeline clock;
 
     protected ActionEvent actionEvent;
 
     private List<ProdottoOrdinato> ordini = new ArrayList<>();
     private ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Clock.initClock(time);
         table.setText(table.getText() + TableIdController.idTavolo);
+        ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
         refresh();
     }
 
     private void checkConto(){
         conto.setDisable(true);
+        if(ordini.isEmpty()){
+            return;
+        }
         for (ProdottoOrdinato p: ordini) {
             if (p.getStato() != StatoProdottoOrdinato.CONSEGNATO) {
                 return;
@@ -57,16 +65,23 @@ public class TimerContoController extends MasterController implements Initializa
         conto.setDisable(false);
     }
 
+    private void reloadVboxProdotti(){
+        this.vboxProdotti.getChildren().clear();
+        for(ProdottoOrdinato p : serverCentraleEsterno.getOrdini(TableIdController.idTavolo)){
+            Text prodotto = new Text(p.getQuantita() + "x "+ p.getProdotto().getNome() + " (" + p.getStato() + ")");
+            prodotto.setLayoutY(30);
+            prodotto.setLayoutX(15);
+            AnchorPane pane = new AnchorPane(prodotto);
+            this.vboxProdotti.getChildren().add(pane);
+        }
+    }
 
-    public void refresh(){
+    private void refresh(){
         this.clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
-            Clock.initClock(time);
-            ordini = serverCentraleEsterno.getOrdini(TableIdController.idTavolo);
-            ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
-            conto.setDisable(true);
-            checkConto();
-            checkStatoProdottoOrdinato();
-
+            this.ordini = serverCentraleEsterno.getOrdini(TableIdController.idTavolo);
+            this.reloadVboxProdotti();
+            this.checkConto();
+            this.checkStatoProdottoOrdinato();
         }
         ),
                 new KeyFrame(Duration.seconds(1)));
@@ -74,7 +89,7 @@ public class TimerContoController extends MasterController implements Initializa
         this.clock.play();
     }
 
-    private void checkStatoProdottoOrdinato() {
+        private void checkStatoProdottoOrdinato() {
 
         String temp="";
         //ProdottoOrdinato p = ordini.get(1);
@@ -101,8 +116,6 @@ public class TimerContoController extends MasterController implements Initializa
                 if(ord.getProdotto().getTempoPreparazione()>max) {
                     max = ord.getProdotto().getTempoPreparazione();
                 }
-
-
         }
         return  max*60; // MAX in minuti
     }
