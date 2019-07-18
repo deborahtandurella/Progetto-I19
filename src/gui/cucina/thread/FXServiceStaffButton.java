@@ -6,12 +6,12 @@ import prodotti.prodotto_ordinato.ProdottoOrdinato;
 import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
 import serverCentrale.ServerCentraleStaff;
 
-public class FXServicePronto extends Service {
+public class FXServiceStaffButton extends Service {
     private ServerCentraleStaff serverCentraleStaff;
     private  ProdottoOrdinato p;
     private StatoProdottoOrdinato stato;
 
-    public FXServicePronto(ServerCentraleStaff serverCentraleStaff, ProdottoOrdinato p, StatoProdottoOrdinato stato) {
+    public FXServiceStaffButton(ServerCentraleStaff serverCentraleStaff, ProdottoOrdinato p, StatoProdottoOrdinato stato) {
         this.serverCentraleStaff = serverCentraleStaff;
         this.p = p;
         this.stato = stato;

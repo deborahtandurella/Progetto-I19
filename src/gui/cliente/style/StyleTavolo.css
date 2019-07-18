@@ -8,3 +8,8 @@
     -fx-font-family: "Roboto";
     -fx-font-size: 20;
 }
+#errore{
+    color: red;
+    -fx-font-size: 20;
+    -fx-font-family: "Roboto Bold";
+}

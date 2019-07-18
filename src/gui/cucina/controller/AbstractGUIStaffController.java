@@ -2,7 +2,7 @@ package gui.cucina.controller;
 
 import com.jfoenix.controls.JFXButton;
 import gui.cliente.utils.Clock;
-import gui.cucina.thread.FXServicePronto;
+import gui.cucina.thread.FXServiceStaffButton;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -23,7 +23,6 @@ import serverCentrale.ServerCentraleStaff;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -81,14 +80,14 @@ public abstract class AbstractGUIStaffController implements Initializable {
         int idTavolo = Integer.parseInt(button.getId());
         for (ProdottoOrdinato prodottoOrdinato : ordini){
             if(prodottoOrdinato.getIdTavolo() == idTavolo){
-                FXServicePronto fxServicePronto = new FXServicePronto(serverCentraleStaff, prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
-                fxServicePronto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                FXServiceStaffButton fxServiceStaffButton = new FXServiceStaffButton(serverCentraleStaff, prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
+                fxServiceStaffButton.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                     @Override
                     public void handle(WorkerStateEvent event) {
                         startTimer.setDisable(true);
                     }
                 });
-                fxServicePronto.start();
+                fxServiceStaffButton.start();
             }
         }
     }
@@ -154,9 +153,9 @@ public abstract class AbstractGUIStaffController implements Initializable {
             }
         }
         if(check) {
-            FXServicePronto fxServicePronto;
-            fxServicePronto = new FXServicePronto(serverCentraleStaff, p, StatoProdottoOrdinato.CONSEGNATO);
-            fxServicePronto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            FXServiceStaffButton fxServiceStaffButton;
+            fxServiceStaffButton = new FXServiceStaffButton(serverCentraleStaff, p, StatoProdottoOrdinato.CONSEGNATO);
+            fxServiceStaffButton.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                 @Override
                 public void handle(WorkerStateEvent event) {
                     vbox.getChildren().clear();
@@ -165,7 +164,7 @@ public abstract class AbstractGUIStaffController implements Initializable {
                 }
             });
             button.setDisable(true);
-            fxServicePronto.start();
+            fxServiceStaffButton.start();
         }
     }
 }
