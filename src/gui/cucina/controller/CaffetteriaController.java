@@ -35,9 +35,7 @@ public class CaffetteriaController implements Initializable {
     public VBox vbox;
     public final int REFRESH_RATE = 2;
     public Label time;
-    protected ProdottoOrdinato p= new ProdottoOrdinato();
-
-
+    protected ProdottoOrdinato p = new ProdottoOrdinato();
     protected TipoProdotto tipoProdotto;
 
     @Override
@@ -88,32 +86,8 @@ public class CaffetteriaController implements Initializable {
     }
 
 public void setPronto(ActionEvent event)  {
-    JFXButton o = (JFXButton) event.getSource();
-    boolean check=false;
-    for(int tavolo : tavoli) {
-            for (ProdottoOrdinato ord : ordini) {
-                if(tavolo == ord.getIdTavolo()) {
-                    if (o.getId().equals(Integer.toString(ord.getId()))) {
-                        p = ord;
-                        check = true;
-                        break;
-                }
-            }
-        }
-    }
-    if(check) {
-        FXServicePronto fxServicePronto;
-        fxServicePronto = new FXServicePronto(serverCentraleInterno, p, StatoProdottoOrdinato.CONSEGNATO);
-        fxServicePronto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-                ordini.remove(p);
-                vbox.getChildren().clear();
-                vbox.getChildren().add(loadProdottiTemp());
-            }
-        });
-        fxServicePronto.start();
-    }
+    JFXButton button = (JFXButton) event.getSource();
+    eliminaProdottoPronto(button);
 }
 
     protected VBox initVboxProdotti(int tavolo){
@@ -139,7 +113,6 @@ public void setPronto(ActionEvent event)  {
         }
         return vBox1;
     }
-
     protected AnchorPane initPaneTavolo(int tavolo, VBox vBox){
         Text table = new Text("TAVOLO N. " + tavolo);
         table.setId("tableText");
@@ -153,5 +126,32 @@ public void setPronto(ActionEvent event)  {
         tempPane.setPrefWidth(959);
         tempPane.getStylesheets().add(getClass().getResource("/gui/cucina/style/StyleCucina.css").toExternalForm());
         return tempPane;
+    }
+    protected  void eliminaProdottoPronto(JFXButton button){
+        boolean check=false;
+        for(int tavolo : tavoli) {
+            for (ProdottoOrdinato ord : ordini) {
+                if(tavolo == ord.getIdTavolo()) {
+                    if (button.getId().equals(Integer.toString(ord.getId()))) {
+                        p = ord;
+                        check = true;
+                        break;
+                    }
+                }
+            }
+        }
+        if(check) {
+            FXServicePronto fxServicePronto;
+            fxServicePronto = new FXServicePronto(serverCentraleInterno, p, StatoProdottoOrdinato.CONSEGNATO);
+            fxServicePronto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent event) {
+                    ordini.remove(p);
+                    vbox.getChildren().clear();
+                    vbox.getChildren().add(loadProdottiTemp());
+                }
+            });
+            fxServicePronto.start();
+        }
     }
 }

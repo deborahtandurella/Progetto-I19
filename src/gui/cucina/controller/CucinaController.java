@@ -63,12 +63,9 @@ public class CucinaController extends CaffetteriaController {
         return pane;
     }
 
-
     public void setTimer(ActionEvent event)  {
-
         JFXButton button = (JFXButton)event.getSource();
         int idTavolo = Integer.parseInt(button.getId());
-
         for (ProdottoOrdinato prodottoOrdinato : ordini){
             if(prodottoOrdinato.getIdTavolo() == idTavolo){
                 serverCentraleInterno.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
