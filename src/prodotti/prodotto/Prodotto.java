@@ -73,7 +73,6 @@ public class Prodotto{
         return p.getNome().equals(this.getNome()) &&
                p.getDescrizione().equals(this.getDescrizione()) &&
                 p.getTempoPreparazione() == this.getTempoPreparazione() &&
-                p.getId() == this.getId() &&
                 p.getTipo() == this.getTipo() &&
                 p.getTipoPortata() == this.getTipoPortata() &&
                 p.getPrezzo() == this.getPrezzo();
