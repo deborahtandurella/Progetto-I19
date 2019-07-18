@@ -14,7 +14,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TableIdController implements Initializable {
-
     public JFXTextField textTavolo;
     public static Integer idTavolo;
     public JFXButton submit;
@@ -33,16 +32,11 @@ public class TableIdController implements Initializable {
     public void getIdTavolo(ActionEvent event) throws IOException {
         submit.setId("submit");
         textTavolo.setId("tavolo");
-
         try {
             idTavolo = Integer.valueOf(textTavolo.getText());
             FXMLManager.loadFXML(event, "/gui/cliente/resources/Home.fxml");
-        }catch (NumberFormatException e )
-        {
+        }catch (NumberFormatException e ) {
             this.errorMessage();
         }
-
     }
-
-
 }

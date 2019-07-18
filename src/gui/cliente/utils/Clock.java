@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Clock {
-
     public static void initClock(Label time){
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 -> {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -19,5 +18,4 @@ public class Clock {
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
     }
-
 }

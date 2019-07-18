@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class LoaderProdotti extends MasterController {
 
-    ServerCentraleEsterno serverCentrale = this.server;
+    protected ServerCentraleEsterno serverCentrale = this.server;
     protected ActionEvent actionEvent;
 
     public void loadProdotti(ActionEvent event) {

@@ -10,7 +10,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class FXMLManager {
-
     public static void loadFXML(javafx.event.ActionEvent event, String path, Initializable controller) throws IOException {
         FXMLLoader loader = new FXMLLoader(FXMLManager.class.getResource(path));
         loader.setController(controller);

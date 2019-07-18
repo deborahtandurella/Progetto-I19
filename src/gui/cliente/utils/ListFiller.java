@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListFiller {
-
     private ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
     private VisualizzaProdottiController visualizzaProdottiController;
     public static ArrayList<Prodotto> prodotti= new ArrayList<>();
@@ -27,58 +26,60 @@ public class ListFiller {
     private ArrayList<Prodotto> getMenu(){
         return (ArrayList<Prodotto>) serverCentraleEsterno.getMenu();
     }
-
-    private void vBoxFiller(List<Prodotto> aLP, VBox vbox){
-
-        for(Prodotto p : aLP){
-            AnchorPane tempPane = new AnchorPane();
-            JFXButton addTemp = new JFXButton("+");
-            Text titleTemp = new Text(p.getNome());
-            titleTemp.setId("titletemp");
-            Text descTemp = new Text(p.getDescrizione());
-            descTemp.setId("desctemp");
-            Text valueTemp = new Text("" + p.getPrezzo() +" euro");
-            valueTemp.setId("valuetemp");
-
-            tempPane.getChildren().addAll(titleTemp, descTemp,valueTemp, addTemp);
-            tempPane.getStylesheets().add(getClass().getResource("/gui/cliente/style/Style.css").toExternalForm());
-
-            addTemp.setLayoutX(562.0);
-            addTemp.setLayoutY(6.0);
-            addTemp.setId(Integer.toString(p.getId()));
-            addTemp.setOnAction(this::addProdotto);
-            titleTemp.setLayoutX(7.0);
-            titleTemp.setLayoutY(22.0);
-            valueTemp.setLayoutX(300);
-            valueTemp.setLayoutY(22);
-            descTemp.setLayoutX(7.0);
-            descTemp.setLayoutY(42.0);
-            descTemp.setWrappingWidth(540.0);
-
-            vbox.getChildren().addAll(tempPane);
+    private void vBoxFiller(List<Prodotto> lista, VBox vbox){
+        for(Prodotto p : lista){
+            AnchorPane pane = initPane(p);
+            vbox.getChildren().addAll(pane);
         }
-    }
-
-    private void addProdotto(ActionEvent event) {
-        JFXButton o= (JFXButton) event.getSource();
-        Prodotto pTemp = null;
-
-        for(Prodotto p : getMenu()) {
-            if(p.getId() == Integer.parseInt(o.getId())){
-                pTemp = p;
-                break;
-            }
-        }
-
-        try {
-            ManagerOrdinazioni.addProdOrd(pTemp, visualizzaProdottiController.carrello);
-        } catch(OrdinazioneNegativaException e) {
-            System.err.println(e.getMessage());
-        }
-
     }
 
     public ArrayList<Prodotto> getProdotti() {
         return prodotti;
+    }
+
+    private void addProdotto(ActionEvent event) {
+        JFXButton button = (JFXButton) event.getSource();
+        Prodotto temp = null;
+        for(Prodotto prodotto : getMenu()) {
+            if(prodotto.getId() == Integer.parseInt(button.getId())){
+                temp = prodotto;
+                break;
+            }
+        }
+        try {
+            ManagerOrdinazioni.addProdottoOrdinato(temp, visualizzaProdottiController.carrello);
+        } catch(OrdinazioneNegativaException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+    private AnchorPane initPane(Prodotto prodotto){
+        AnchorPane tempPane = new AnchorPane();
+
+        JFXButton addTemp = new JFXButton("+");
+        addTemp.setLayoutX(562.0);
+        addTemp.setLayoutY(6.0);
+        addTemp.setId(Integer.toString(prodotto.getId()));
+        addTemp.setOnAction(this::addProdotto);
+
+        Text titleTemp = new Text(prodotto.getNome());
+        titleTemp.setId("titletemp");
+        titleTemp.setLayoutX(7.0);
+        titleTemp.setLayoutY(22.0);
+
+        Text valueTemp = new Text("" + prodotto.getPrezzo() +" euro");
+        valueTemp.setId("valuetemp");
+        valueTemp.setLayoutX(300);
+        valueTemp.setLayoutY(22);
+
+        Text descTemp = new Text(prodotto.getDescrizione());
+        descTemp.setId("desctemp");
+        descTemp.setLayoutX(7.0);
+        descTemp.setLayoutY(42.0);
+        descTemp.setWrappingWidth(540.0);
+
+        tempPane.getChildren().addAll(titleTemp, descTemp,valueTemp, addTemp);
+        tempPane.getStylesheets().add(getClass().getResource("/gui/cliente/style/Style.css").toExternalForm());
+
+        return tempPane;
     }
 }

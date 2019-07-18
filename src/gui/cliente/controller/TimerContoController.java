@@ -24,23 +24,17 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 public class TimerContoController extends MasterController implements Initializable {
-
-
     public JFXButton conto;
-    public Label table;
-    public Label time;
-    public JFXButton carrello;
     public JFXButton home;
     public JFXButton prodotti;
     public Label Tempo;
     public Text txtConto;
     public Text txtFinale;
     private Timeline clock;
-
     protected ActionEvent actionEvent;
-
     private List<ProdottoOrdinato> ordini = new ArrayList<>();
     private ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         table.setText(table.getText() + TableIdController.idTavolo);
@@ -66,7 +60,6 @@ public class TimerContoController extends MasterController implements Initializa
             conto.setDisable(true);
             checkConto();
             checkStatoProdottoOrdinato();
-
         }
         ),
                 new KeyFrame(Duration.seconds(1)));
@@ -75,7 +68,6 @@ public class TimerContoController extends MasterController implements Initializa
     }
 
     private void checkStatoProdottoOrdinato() {
-
         String temp="";
         //ProdottoOrdinato p = ordini.get(1);
         float delta;

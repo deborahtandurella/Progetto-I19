@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class ManagerOrdinazioni {
     private static ArrayList<ProdottoOrdinato> prodottiOrdinati = new ArrayList<>();
 
-    static void addProdOrd(Prodotto prodotto, JFXButton carrello) throws OrdinazioneNegativaException {
+    static void addProdottoOrdinato(Prodotto prodotto, JFXButton carrello) throws OrdinazioneNegativaException {
         for(ProdottoOrdinato prodottoOrdinato1 : prodottiOrdinati){
             if(prodottoOrdinato1.getProdotto().getId() == prodotto.getId()){
                 prodottoOrdinato1.addQuantita();
@@ -22,7 +22,6 @@ public class ManagerOrdinazioni {
         ProdottoOrdinato prodottoOrdinato = new ProdottoOrdinato(prodotto, 1, TableIdController.idTavolo);
         prodottiOrdinati.add(prodottoOrdinato);
         refreshOrdinazioniButton(carrello);
-
     }
 
     public static void refreshOrdinazioniButton(JFXButton carrello){
