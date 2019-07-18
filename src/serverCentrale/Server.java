@@ -23,12 +23,12 @@ public class Server {
 		this.apiURL = new ApiURL(test);
 	}
 	
-	protected void resetDatabase() {
+	public void resetDatabase() {
 		ResponseEntity<Void> ret = this.restTemplate.exchange(apiURL.getResetDatabase(), HttpMethod.GET, null, 
 				new ParameterizedTypeReference<Void>() {
 				});
 		
-		if(ret.getStatusCode() != HttpStatus.METHOD_NOT_ALLOWED) {
+		if(ret.getStatusCode() == HttpStatus.METHOD_NOT_ALLOWED) {
 			 throw new ResetDatabaseException();
 		}
 	}
