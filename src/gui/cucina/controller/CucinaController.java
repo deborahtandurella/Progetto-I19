@@ -26,18 +26,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CucinaController extends CaffetteriaController implements CucinaControllerInterface{
+public class CucinaController extends AbstractGUIInternoController{
 
-    JFXButton startTimer;
+    public JFXButton startTimer;
 
     public CucinaController(TipoProdotto tipoProdotto) {
         super(tipoProdotto);
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        Clock.initClock(time);
-        refresh(vbox); }
 
     @Override
     public VBox loadProdottiTemp(){
@@ -46,30 +41,15 @@ public class CucinaController extends CaffetteriaController implements CucinaCon
             this.startTimer = new JFXButton("START TIMER");
             this.startTimer.setId(String.valueOf(tavolo));
             this.startTimer.setOnAction(this::setTimer);
+            startTimer.setLayoutX(711);
+            startTimer.setLayoutY(28);
 
             VBox vBox1 = initVboxProdotti(tavolo);
             AnchorPane tempPane = initPaneTavolo(tavolo, vBox1);
+            tempPane.getChildren().add(startTimer);
+
             vBox.getChildren().addAll(tempPane);
         }
         return vBox;
-    }
-
-    public void setTimer(ActionEvent event)  {
-        JFXButton button = (JFXButton)event.getSource();
-        int idTavolo = Integer.parseInt(button.getId());
-        for (ProdottoOrdinato prodottoOrdinato : ordini){
-            if(prodottoOrdinato.getIdTavolo() == idTavolo){
-                serverCentraleInterno.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
-            }
-        }
-    }
-
-    @Override
-    protected AnchorPane initPaneTavolo(int tavolo, VBox vBox){
-        AnchorPane pane = super.initPaneTavolo(tavolo,vBox);
-        pane.getChildren().add(startTimer);
-        startTimer.setLayoutX(711);
-        startTimer.setLayoutY(28);
-        return pane;
     }
 }

@@ -29,10 +29,15 @@ public class ManagerOrdinazioni {
     }
 
     public static void removeProdottoOrdinato(int id, JFXButton carrello){
-        if(prodottiOrdinati.get(id).getQuantita() > 1) {
-            prodottiOrdinati.get(id).minusQuantita();
-        } else {
-            prodottiOrdinati.remove(prodottiOrdinati.get(id));
+        for(ProdottoOrdinato prodottoOrdinato : prodottiOrdinati){
+            if(prodottoOrdinato.getId() == id){
+                if(prodottoOrdinato.getQuantita() > 1){
+                    prodottoOrdinato.minusQuantita();
+                }
+                else {
+                    prodottiOrdinati.remove(prodottoOrdinato);
+                }
+            }
         }
         refreshOrdinazioniButton(carrello);
     }
