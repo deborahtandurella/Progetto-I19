@@ -23,6 +23,7 @@ import serverCentrale.ServerCentraleStaff;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -37,7 +38,7 @@ public abstract class AbstractGUIStaffController implements Initializable {
     protected ProdottoOrdinato p = new ProdottoOrdinato();
     protected TipoProdotto tipoProdotto;
     public JFXButton startTimer;
-
+    protected List<Integer> tavoliInLavorazione;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -46,7 +47,9 @@ public abstract class AbstractGUIStaffController implements Initializable {
     }
 
     public AbstractGUIStaffController(TipoProdotto tipoProdotto) {
+
         this.tipoProdotto = tipoProdotto;
+        this.tavoliInLavorazione = new ArrayList<>();
     }
 
     public abstract VBox loadProdottiTemp();
@@ -93,7 +96,8 @@ public abstract class AbstractGUIStaffController implements Initializable {
     private void getTavoliAperti(){
         this.tavoli.clear();
         this.tavoli = serverCentraleStaff.getTavoli(StatoProdottoOrdinato.ORDINATO, tipoProdotto);
-        for(Integer tavolo : serverCentraleStaff.getTavoli(StatoProdottoOrdinato.LAVORAZIONE, tipoProdotto)) {
+        this.tavoliInLavorazione = serverCentraleStaff.getTavoli(StatoProdottoOrdinato.LAVORAZIONE, tipoProdotto);
+        for(Integer tavolo : this.tavoliInLavorazione) {
             if (!this.tavoli.contains(tavolo)) {
                 this.tavoli.add(tavolo);
             }
