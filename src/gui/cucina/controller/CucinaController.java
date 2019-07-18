@@ -7,8 +7,6 @@ import prodotti.prodotto.TipoProdotto;
 
 public class CucinaController extends AbstractGUIStaffController {
 
-    public JFXButton startTimer;
-
     public CucinaController(TipoProdotto tipoProdotto) {
         super(tipoProdotto);
     }

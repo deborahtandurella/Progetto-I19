@@ -36,6 +36,8 @@ public abstract class AbstractGUIStaffController implements Initializable {
     public Label time;
     protected ProdottoOrdinato p = new ProdottoOrdinato();
     protected TipoProdotto tipoProdotto;
+    public JFXButton startTimer;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -76,7 +78,14 @@ public abstract class AbstractGUIStaffController implements Initializable {
         int idTavolo = Integer.parseInt(button.getId());
         for (ProdottoOrdinato prodottoOrdinato : ordini){
             if(prodottoOrdinato.getIdTavolo() == idTavolo){
-                serverCentraleStaff.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
+                FXServicePronto fxServicePronto = new FXServicePronto(serverCentraleStaff, prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
+                fxServicePronto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                    @Override
+                    public void handle(WorkerStateEvent event) {
+                        startTimer.setDisable(true);
+                    }
+                });
+                fxServicePronto.start();
             }
         }
     }
@@ -151,6 +160,7 @@ public abstract class AbstractGUIStaffController implements Initializable {
                     ordini.remove(p);
                 }
             });
+            button.setDisable(true);
             fxServicePronto.start();
         }
     }
