@@ -2,16 +2,14 @@ package gui.cliente.controller;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.NessunProdottoException;
-import gui.cliente.general_controller.MasterController;
+import gui.cliente.general_controller.GeneralController;
 import gui.cliente.thread.FXServiceOrdini;
 import gui.cliente.utils.Clock;
 import gui.cliente.utils.FXMLManager;
-import gui.cliente.utils.ManagerOrdinazioni;
+import gui.cliente.utils.ManagerCarrello;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -22,7 +20,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class ConfermaOrdinazioneController extends MasterController implements Initializable {
+public class ConfermaOrdinazioneController extends GeneralController {
     public VBox vBoxList;
     public JFXButton conferma;
     private ActionEvent actionEvent;
@@ -30,24 +28,24 @@ public class ConfermaOrdinazioneController extends MasterController implements I
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
-        ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
-        table.setText(table.getText() + TableIdController.idTavolo);
+        ManagerCarrello.refreshOrdinazioniButton(carrello);
+        table.setText(table.getText() + SelectorTableIdController.idTavolo);
 
-        this.loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
-        if(ManagerOrdinazioni.getNumeroProdottiOrdinati() == 0){
+        this.loadProdottiOrdinati(ManagerCarrello.getProdottiOrdinati(), vBoxList);
+        if(ManagerCarrello.getNumeroProdottiOrdinati() == 0){
             conferma.setText(" VISUALIZZA CONTO ");
         }
     }
 
     public void confermaOrdinazione(ActionEvent event) throws IOException, NessunProdottoException {
         this.actionEvent = event;
-        FXServiceOrdini fxServiceOrdini = new FXServiceOrdini(super.server, ManagerOrdinazioni.getProdottiOrdinati());
-        ManagerOrdinazioni.clearProdottiOrdinatiFromLocal();
+        FXServiceOrdini fxServiceOrdini = new FXServiceOrdini(super.serverCentraleCliente, ManagerCarrello.getProdottiOrdinati());
+        ManagerCarrello.clearProdottiOrdinatiFromLocal();
         fxServiceOrdini.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent event) {
                 try {
-                    FXMLManager.loadFXML(actionEvent, "/gui/cliente/resources/TimerConto.fxml");
+                    FXMLManager.loadFXML(actionEvent, "/gui/cliente/resources/StatoOrdinazione.fxml");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -58,10 +56,10 @@ public class ConfermaOrdinazioneController extends MasterController implements I
 
     private void removeProdotto(ActionEvent event) {
         JFXButton removeButton = (JFXButton) event.getSource();
-        ManagerOrdinazioni.removeProdottoOrdinato(Integer.parseInt(removeButton.getId()), carrello);
+        ManagerCarrello.removeProdottoOrdinato(Integer.parseInt(removeButton.getId()), carrello);
 
         vBoxList.getChildren().clear();
-        this.loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
+        this.loadProdottiOrdinati(ManagerCarrello.getProdottiOrdinati(), vBoxList);
     }
     private void loadProdottiOrdinati(ArrayList<ProdottoOrdinato> lista, VBox vBox){
         for(ProdottoOrdinato p : lista){

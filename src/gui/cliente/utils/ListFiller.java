@@ -2,29 +2,29 @@ package gui.cliente.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
-import gui.cliente.controller.VisualizzaProdottiController;
+import gui.cliente.controller.VisualizzaProdottiControllerController;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import prodotti.prodotto.Prodotto;
-import serverCentrale.cliente.ServerCentraleEsterno;
+import serverCentrale.ServerCentraleCliente;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListFiller {
-    private ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
-    private VisualizzaProdottiController visualizzaProdottiController;
+    private ServerCentraleCliente serverCentraleCliente = new ServerCentraleCliente();
+    private VisualizzaProdottiControllerController visualizzaProdottiController;
     public static ArrayList<Prodotto> prodotti= new ArrayList<>();
 
-    public ListFiller (VisualizzaProdottiController visualizzaProdottiController, VBox vBox, ArrayList menu){
+    public ListFiller (VisualizzaProdottiControllerController visualizzaProdottiController, VBox vBox, ArrayList menu){
         this.visualizzaProdottiController = visualizzaProdottiController;
         this.vBoxFiller(menu, vBox);
     }
 
     private ArrayList<Prodotto> getMenu(){
-        return (ArrayList<Prodotto>) serverCentraleEsterno.getMenu();
+        return (ArrayList<Prodotto>) serverCentraleCliente.getMenu();
     }
     private void vBoxFiller(List<Prodotto> lista, VBox vbox){
         for(Prodotto p : lista){
@@ -47,7 +47,7 @@ public class ListFiller {
             }
         }
         try {
-            ManagerOrdinazioni.addProdottoOrdinato(temp, visualizzaProdottiController.carrello);
+            ManagerCarrello.addProdottoOrdinato(temp, visualizzaProdottiController.carrello);
         } catch(OrdinazioneNegativaException e) {
             System.err.println(e.getMessage());
         }

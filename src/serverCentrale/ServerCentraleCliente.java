@@ -1,4 +1,4 @@
-package serverCentrale.cliente;
+package serverCentrale;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,15 +15,14 @@ import eccezioni.NessunProdottoException;
 import prodotti.prodotto.Prodotto;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 import prodotti.prodotto.TipoPortata;
-import serverCentrale.Server;
 
-public class ServerCentraleEsterno extends Server implements ServerCentraleEsternoInterface{
+public class ServerCentraleCliente extends Server implements ServerCentraleClienteInterface {
 	
-	public ServerCentraleEsterno() {
+	public ServerCentraleCliente() {
 		super(false);
 	}
 	
-	public ServerCentraleEsterno(boolean test) {
+	public ServerCentraleCliente(boolean test) {
 		super(test);
 	}
 	

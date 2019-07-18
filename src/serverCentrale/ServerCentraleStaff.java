@@ -1,4 +1,4 @@
-package serverCentrale.cucina;
+package serverCentrale;
 
 import java.util.List;
 
@@ -15,15 +15,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
 import prodotti.prodotto.TipoProdotto;
-import serverCentrale.Server;
 
-public class ServerCentraleInterno extends Server implements ServerCentraleInternoInterface{
+public class ServerCentraleStaff extends Server implements ServerCentraleStaffInterface {
 	
-	public ServerCentraleInterno() {
+	public ServerCentraleStaff() {
 		super(false);
 	}
 	
-	public ServerCentraleInterno(boolean test) {
+	public ServerCentraleStaff(boolean test) {
 		super(test);
 	}
 	

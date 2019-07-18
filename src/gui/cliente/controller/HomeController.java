@@ -1,18 +1,17 @@
 package gui.cliente.controller;
 
 import gui.cliente.utils.Clock;
-import gui.cliente.utils.LoaderProdotti;
-import gui.cliente.utils.ManagerOrdinazioni;
-import javafx.fxml.Initializable;
+import gui.cliente.general_controller.LoaderProdottiController;
+import gui.cliente.utils.ManagerCarrello;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class HomeController extends LoaderProdotti implements Initializable {
+public class HomeController extends LoaderProdottiController {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
-        table.setText(table.getText() + TableIdController.idTavolo);
-        ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
+        table.setText(table.getText() + SelectorTableIdController.idTavolo);
+        ManagerCarrello.refreshOrdinazioniButton(carrello);
     }
 }

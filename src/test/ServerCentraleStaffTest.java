@@ -9,19 +9,19 @@ import prodotti.prodotto.TipoPortata;
 import prodotti.prodotto.TipoProdotto;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
-import serverCentrale.cucina.ServerCentraleInterno;
+import serverCentrale.ServerCentraleStaff;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ServerCentraleInternoTest {
+class ServerCentraleStaffTest {
 
-    ServerCentraleInterno s ;
+    ServerCentraleStaff s ;
 
     @BeforeEach
     void setUp() {
-        s = new ServerCentraleInterno();
+        s = new ServerCentraleStaff();
     }
 
     @Test

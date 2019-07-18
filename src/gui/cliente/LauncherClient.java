@@ -14,22 +14,10 @@ public class LauncherClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("resources/SetId.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("resources/SelectotTableId.fxml"));
 
         primaryStage.setTitle("Ristorante");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
-//        Stage secondStage = new Stage();
-//        Parent cucina = FXMLLoader.load(getClass().getResource("Cucina.fxml"));
-//        secondStage.setTitle("Cucina");
-//        secondStage.setScene(new Scene(cucina));
-//        secondStage.show();
-//
-//        Stage thirdStage = new Stage();
-//        Parent caffetteria = FXMLLoader.load(getClass().getResource("Caffetteria.fxml"));
-//        thirdStage.setTitle("Caffetteria");
-//        thirdStage.setScene(new Scene(caffetteria));
-//        thirdStage.show();
     }
 }

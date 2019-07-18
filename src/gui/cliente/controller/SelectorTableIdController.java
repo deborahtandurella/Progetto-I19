@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class TableIdController implements Initializable {
+public class SelectorTableIdController implements Initializable {
     public JFXTextField textTavolo;
     public static Integer idTavolo;
     public JFXButton submit;

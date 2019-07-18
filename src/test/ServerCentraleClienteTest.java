@@ -9,19 +9,19 @@ import prodotti.prodotto.Prodotto;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 import prodotti.prodotto.TipoPortata;
 import prodotti.prodotto.TipoProdotto;
-import serverCentrale.cliente.ServerCentraleEsterno;
+import serverCentrale.ServerCentraleCliente;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ServerCentraleEsternoTest {
+class ServerCentraleClienteTest {
 
-    ServerCentraleEsterno s;
+    ServerCentraleCliente s;
 
     @BeforeEach
     void setUp() {
-        s = new ServerCentraleEsterno();
+        s = new ServerCentraleCliente();
     }
 
     @Test
