@@ -37,7 +37,6 @@ public class SelectorTableIdController implements Initializable {
         textTavolo.setPromptText("Inserisci solo valori numerici");
     }
 
-
     private void errorText(TavoloIdException e) {
         Text errore = new Text();
         errore.setId("errore");
@@ -49,7 +48,6 @@ public class SelectorTableIdController implements Initializable {
     }
 
     public void getIdTavolo(ActionEvent actionEvent) {
-
         try {
             idTavolo = Integer.valueOf(textTavolo.getText());
             FXServiceIDTavolo fxServiceIDTavolo = new FXServiceIDTavolo(new ServerCentraleStaff());

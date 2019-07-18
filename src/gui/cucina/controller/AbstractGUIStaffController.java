@@ -95,8 +95,7 @@ public abstract class AbstractGUIStaffController implements Initializable {
     private void getTavoliAperti(){
         this.tavoli.clear();
         this.tavoli = serverCentraleStaff.getTavoli(StatoProdottoOrdinato.ORDINATO, tipoProdotto);
-        this.tavoliInLavorazione = serverCentraleStaff.getTavoli(StatoProdottoOrdinato.LAVORAZIONE, tipoProdotto);
-        for(Integer tavolo : this.tavoliInLavorazione) {
+        for(Integer tavolo : serverCentraleStaff.getTavoli(StatoProdottoOrdinato.LAVORAZIONE, tipoProdotto)) {
             if (!this.tavoli.contains(tavolo)) {
                 this.tavoli.add(tavolo);
             }
@@ -118,11 +117,6 @@ public abstract class AbstractGUIStaffController implements Initializable {
                 pronto.setPrefHeight(39);
                 pronto.setPrefWidth(135);
                 prodotto.setLayoutY(27);
-                if(tavoliInLavorazione.contains(tavolo)) {
-                    pronto.setDisable(false);
-                }else{
-                    pronto.setDisable(true);
-                }
                 AnchorPane pane = new AnchorPane(prodotto, pronto);
                 pane.setId("secondAnchor");
                 vBox1.getChildren().add(pane);
