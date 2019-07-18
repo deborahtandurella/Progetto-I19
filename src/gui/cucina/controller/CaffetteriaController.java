@@ -33,7 +33,7 @@ public class CaffetteriaController implements Initializable {
     protected ServerCentraleInterno serverCentraleInterno = new ServerCentraleInterno();
     protected List<Integer> tavoli = new ArrayList<>();
     public VBox vbox;
-    public final int REFRESH_RATE = 1;
+    public final int REFRESH_RATE = 2;
     public Label time;
     protected ProdottoOrdinato p= new ProdottoOrdinato();
 
@@ -80,7 +80,7 @@ public class CaffetteriaController implements Initializable {
     private void getTavoliAperti(){
         this.tavoli.clear();
         this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO, tipoProdotto);
-        for(Integer tavolo : serverCentraleInterno.getTavoli(StatoProdottoOrdinato.LAVORAZIONE)) {
+        for(Integer tavolo : serverCentraleInterno.getTavoli(StatoProdottoOrdinato.LAVORAZIONE, tipoProdotto)) {
             if (!this.tavoli.contains(tavolo)) {
                 this.tavoli.add(tavolo);
             }
