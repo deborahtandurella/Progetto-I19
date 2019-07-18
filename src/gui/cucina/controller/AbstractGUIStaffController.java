@@ -19,17 +19,17 @@ import javafx.util.Duration;
 import prodotti.prodotto.TipoProdotto;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 import prodotti.prodotto_ordinato.StatoProdottoOrdinato;
-import serverCentrale.cucina.ServerCentraleInterno;
+import serverCentrale.ServerCentraleStaff;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public abstract class AbstractGUIInternoController implements Initializable {
+public abstract class AbstractGUIStaffController implements Initializable {
 
     protected List<ProdottoOrdinato> ordini = new ArrayList<>();
-    protected ServerCentraleInterno serverCentraleInterno = new ServerCentraleInterno();
+    protected ServerCentraleStaff serverCentraleStaff = new ServerCentraleStaff();
     protected List<Integer> tavoli = new ArrayList<>();
     public VBox vbox;
     private final int REFRESH_RATE = 2;
@@ -43,18 +43,18 @@ public abstract class AbstractGUIInternoController implements Initializable {
         refresh(vbox);
     }
 
-    public AbstractGUIInternoController(TipoProdotto tipoProdotto) {
+    public AbstractGUIStaffController(TipoProdotto tipoProdotto) {
         this.tipoProdotto = tipoProdotto;
     }
 
+    public abstract VBox loadProdottiTemp();
+
     public VBox loadProdottiOrdinati(){
         this.getTavoliAperti();
-        this.ordini = serverCentraleInterno.getOrdini(tipoProdotto, StatoProdottoOrdinato.ORDINATO);
-        this.ordini.addAll(serverCentraleInterno.getOrdini(tipoProdotto, StatoProdottoOrdinato.LAVORAZIONE));
+        this.ordini = serverCentraleStaff.getOrdini(tipoProdotto, StatoProdottoOrdinato.ORDINATO);
+        this.ordini.addAll(serverCentraleStaff.getOrdini(tipoProdotto, StatoProdottoOrdinato.LAVORAZIONE));
         return loadProdottiTemp();
     }
-
-    public abstract VBox loadProdottiTemp();
 
     public void refresh(VBox vbox){
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
@@ -76,21 +76,20 @@ public abstract class AbstractGUIInternoController implements Initializable {
         int idTavolo = Integer.parseInt(button.getId());
         for (ProdottoOrdinato prodottoOrdinato : ordini){
             if(prodottoOrdinato.getIdTavolo() == idTavolo){
-                serverCentraleInterno.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
+                serverCentraleStaff.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
             }
         }
     }
 
     private void getTavoliAperti(){
         this.tavoli.clear();
-        this.tavoli = serverCentraleInterno.getTavoli(StatoProdottoOrdinato.ORDINATO, tipoProdotto);
-        for(Integer tavolo : serverCentraleInterno.getTavoli(StatoProdottoOrdinato.LAVORAZIONE, tipoProdotto)) {
+        this.tavoli = serverCentraleStaff.getTavoli(StatoProdottoOrdinato.ORDINATO, tipoProdotto);
+        for(Integer tavolo : serverCentraleStaff.getTavoli(StatoProdottoOrdinato.LAVORAZIONE, tipoProdotto)) {
             if (!this.tavoli.contains(tavolo)) {
                 this.tavoli.add(tavolo);
             }
         }
     }
-
     protected VBox initVboxProdotti(int tavolo){
         VBox vBox1 = new VBox();
         vBox1.setPrefHeight(217);
@@ -143,13 +142,13 @@ public abstract class AbstractGUIInternoController implements Initializable {
         }
         if(check) {
             FXServicePronto fxServicePronto;
-            fxServicePronto = new FXServicePronto(serverCentraleInterno, p, StatoProdottoOrdinato.CONSEGNATO);
+            fxServicePronto = new FXServicePronto(serverCentraleStaff, p, StatoProdottoOrdinato.CONSEGNATO);
             fxServicePronto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
                 @Override
                 public void handle(WorkerStateEvent event) {
-                    ordini.remove(p);
                     vbox.getChildren().clear();
                     vbox.getChildren().add(loadProdottiTemp());
+                    ordini.remove(p);
                 }
             });
             fxServicePronto.start();

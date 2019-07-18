@@ -8,13 +8,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import prodotti.prodotto.Prodotto;
-import serverCentrale.cliente.ServerCentraleEsterno;
+import serverCentrale.ServerCentraleCliente;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ListFiller {
-    private ServerCentraleEsterno serverCentraleEsterno = new ServerCentraleEsterno();
+    private ServerCentraleCliente serverCentraleCliente = new ServerCentraleCliente();
     private VisualizzaProdottiController visualizzaProdottiController;
     public static ArrayList<Prodotto> prodotti= new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class ListFiller {
     }
 
     private ArrayList<Prodotto> getMenu(){
-        return (ArrayList<Prodotto>) serverCentraleEsterno.getMenu();
+        return (ArrayList<Prodotto>) serverCentraleCliente.getMenu();
     }
     private void vBoxFiller(List<Prodotto> lista, VBox vbox){
         for(Prodotto p : lista){
@@ -47,7 +47,7 @@ public class ListFiller {
             }
         }
         try {
-            ManagerOrdinazioni.addProdottoOrdinato(temp, visualizzaProdottiController.carrello);
+            ManagerCarrello.addProdottoOrdinato(temp, visualizzaProdottiController.carrello);
         } catch(OrdinazioneNegativaException e) {
             System.err.println(e.getMessage());
         }

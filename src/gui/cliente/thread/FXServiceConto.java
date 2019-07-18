@@ -2,15 +2,15 @@ package gui.cliente.thread;
 
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
-import serverCentrale.cliente.ServerCentraleEsterno;
+import serverCentrale.ServerCentraleCliente;
 
 public class FXServiceConto extends Service {
 
-    private ServerCentraleEsterno serverCentraleEsterno;
+    private ServerCentraleCliente serverCentraleCliente;
     private int idTavolo;
 
-    public FXServiceConto(ServerCentraleEsterno serverCentraleEsterno, int idTavolo) {
-        this.serverCentraleEsterno = serverCentraleEsterno;
+    public FXServiceConto(ServerCentraleCliente serverCentraleCliente, int idTavolo) {
+        this.serverCentraleCliente = serverCentraleCliente;
         this.idTavolo = idTavolo;
     }
 
@@ -19,7 +19,7 @@ public class FXServiceConto extends Service {
         return new Task<Float>() {
             @Override
             protected Float call() throws Exception {
-                return Float.valueOf(serverCentraleEsterno.getConto(idTavolo));
+                return Float.valueOf(serverCentraleCliente.getConto(idTavolo));
             }
         };
     }

@@ -7,7 +7,7 @@ import prodotti.prodotto.TipoProdotto;
 
 import java.io.IOException;
 
-public class CuCaController {
+public class SelectorCucinaCaffetteriaController {
 
     public void loadCucinaOrCaffetteria(ActionEvent event) throws IOException {
         JFXButton button = (JFXButton) event.getSource();

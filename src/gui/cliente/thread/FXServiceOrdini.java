@@ -3,16 +3,16 @@ package gui.cliente.thread;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
-import serverCentrale.cliente.ServerCentraleEsterno;
+import serverCentrale.ServerCentraleCliente;
 import java.util.ArrayList;
 
 public class FXServiceOrdini extends Service {
 
-    private ServerCentraleEsterno server;
+    private ServerCentraleCliente server;
     private ArrayList<ProdottoOrdinato> ordine;
 
 
-    public FXServiceOrdini(ServerCentraleEsterno server, ArrayList<ProdottoOrdinato> ordine) {
+    public FXServiceOrdini(ServerCentraleCliente server, ArrayList<ProdottoOrdinato> ordine) {
         this.ordine = new ArrayList<ProdottoOrdinato>(ordine) ;
         this.server = server;
     }

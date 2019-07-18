@@ -1,22 +1,22 @@
-package gui.cliente.utils;
+package gui.cliente.general_controller;
 
 import com.jfoenix.controls.JFXButton;
 import gui.cliente.thread.FXServiceMenu;
 import gui.cliente.controller.VisualizzaProdottiController;
-import gui.cliente.general_controller.MasterController;
+import gui.cliente.utils.FXMLManager;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import prodotti.prodotto.Prodotto;
 import prodotti.prodotto.TipoPortata;
-import serverCentrale.cliente.ServerCentraleEsterno;
+import serverCentrale.ServerCentraleCliente;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class LoaderProdotti extends MasterController {
+public abstract class LoaderProdottiController extends GeneralController {
 
-    protected ServerCentraleEsterno serverCentrale = this.server;
+    protected ServerCentraleCliente serverCentrale = this.serverCentraleCliente;
     protected ActionEvent actionEvent;
 
     public void loadProdotti(ActionEvent event) {

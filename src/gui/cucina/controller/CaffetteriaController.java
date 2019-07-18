@@ -4,7 +4,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import prodotti.prodotto.TipoProdotto;
 
-public class CaffetteriaController extends AbstractGUIInternoController {
+public class CaffetteriaController extends AbstractGUIStaffController {
 
     public CaffetteriaController(TipoProdotto tipoProdotto) {
         super(tipoProdotto);

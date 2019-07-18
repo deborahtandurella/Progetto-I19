@@ -2,16 +2,15 @@ package gui.cliente.controller;
 
 import gui.cliente.utils.Clock;
 import gui.cliente.utils.ListFiller;
-import gui.cliente.utils.LoaderProdotti;
-import gui.cliente.utils.ManagerOrdinazioni;
-import javafx.fxml.Initializable;
+import gui.cliente.general_controller.LoaderProdottiController;
+import gui.cliente.utils.ManagerCarrello;
 import javafx.scene.layout.VBox;
 import prodotti.prodotto.Prodotto;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class VisualizzaProdottiController extends LoaderProdotti implements Initializable{
+public class VisualizzaProdottiController extends LoaderProdottiController {
     public VBox vBoxList;
     private ArrayList<Prodotto> menu;
 
@@ -20,8 +19,8 @@ public class VisualizzaProdottiController extends LoaderProdotti implements Init
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Clock.initClock(time);
-        ManagerOrdinazioni.refreshOrdinazioniButton(carrello);
-        table.setText(table.getText() + TableIdController.idTavolo);
+        ManagerCarrello.refreshOrdinazioniButton(carrello);
+        table.setText(table.getText() + SelectorTableIdController.idTavolo);
         new ListFiller(this, this.vBoxList, this.menu);
     }
 }

@@ -5,16 +5,16 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import prodotti.prodotto.Prodotto;
 import prodotti.prodotto.TipoPortata;
-import serverCentrale.cliente.ServerCentraleEsterno;
+import serverCentrale.ServerCentraleCliente;
 
 import java.util.List;
 
 public class FXServiceMenu extends Service {
 
-    private ServerCentraleEsterno server;
+    private ServerCentraleCliente server;
     private TipoPortata tipoPortata;
 
-    public FXServiceMenu(ServerCentraleEsterno server, TipoPortata tipoPortata){
+    public FXServiceMenu(ServerCentraleCliente server, TipoPortata tipoPortata){
         this.server = server;
         this.tipoPortata = tipoPortata;
     }

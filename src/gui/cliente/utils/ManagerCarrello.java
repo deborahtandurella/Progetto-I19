@@ -2,13 +2,13 @@ package gui.cliente.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
-import gui.cliente.controller.TableIdController;
+import gui.cliente.controller.SelectorTableIdController;
 import prodotti.prodotto.Prodotto;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 
 import java.util.ArrayList;
 
-public class ManagerOrdinazioni {
+public class ManagerCarrello {
     private static ArrayList<ProdottoOrdinato> prodottiOrdinati = new ArrayList<>();
 
     static void addProdottoOrdinato(Prodotto prodotto, JFXButton carrello) throws OrdinazioneNegativaException {
@@ -19,7 +19,7 @@ public class ManagerOrdinazioni {
                 return;
             }
         }
-        ProdottoOrdinato prodottoOrdinato = new ProdottoOrdinato(prodotto, 1, TableIdController.idTavolo);
+        ProdottoOrdinato prodottoOrdinato = new ProdottoOrdinato(prodotto, 1, SelectorTableIdController.idTavolo);
         prodottiOrdinati.add(prodottoOrdinato);
         refreshOrdinazioniButton(carrello);
     }
