@@ -10,6 +10,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Controller per VisualizzaProdotti.fxml, permette il caricamento dei prodotti
+ */
 public class VisualizzaProdottiController extends LoaderProdottiController {
     public VBox vBoxList;
     private ArrayList<Prodotto> menu;

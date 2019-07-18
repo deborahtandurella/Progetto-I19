@@ -24,6 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Controller per StatoOrdinazione.fxml, permette la visualizzazione dello stato dei prodotti ordinati.
+ * Permette inoltre di richiedere il conto
+ */
 public class StatoOrdinazioneController extends GeneralController {
 
     public JFXButton conto;
@@ -45,6 +49,9 @@ public class StatoOrdinazioneController extends GeneralController {
         refresh();
     }
 
+    /**
+     * Solo se tutti i prodotti sono consegnati posso richiedere il conto
+     */
     private void checkConto(){
         conto.setDisable(true);
         if(ordini.isEmpty()){
@@ -58,6 +65,9 @@ public class StatoOrdinazioneController extends GeneralController {
         conto.setDisable(false);
     }
 
+    /**
+     * Riaggiorna vBox per prodotti
+     */
     private void reloadVboxProdotti(){
         this.vboxProdotti.getChildren().clear();
         for(ProdottoOrdinato p : serverCentraleCliente.getOrdini(SelectorTableIdController.idTavolo)){
@@ -69,6 +79,9 @@ public class StatoOrdinazioneController extends GeneralController {
         }
     }
 
+    /**
+     * refresh grafica tempo reale
+     */
     private void refresh(){
         this.clock = new Timeline(new KeyFrame(Duration.ZERO, event1 ->{
             this.ordini = serverCentraleCliente.getOrdini(SelectorTableIdController.idTavolo);
@@ -81,6 +94,9 @@ public class StatoOrdinazioneController extends GeneralController {
         this.clock.play();
     }
 
+    /**
+     * permette la visualizzazione del timer quando setto i prodotti ordinati in lavorazione
+     */
     private void printTimer() {
         String temp="";
         float delta;
@@ -99,6 +115,10 @@ public class StatoOrdinazioneController extends GeneralController {
         Tempo.setText(temp);
     }
 
+    /**
+     * Ottego il tempo massimo tra i prodotti ordinati quando setto in lavorazione
+     * @return tempo massimo di preparazione
+     */
     private int maxTempoPreparazione() {
         int max=0;
         for(ProdottoOrdinato ord : this.ordini){
@@ -109,6 +129,10 @@ public class StatoOrdinazioneController extends GeneralController {
         return  max*60;
     }
 
+    /**
+     * lancia thread per ottenere conto finale quando clicco bottone
+     * @param event
+     */
     public void loadConto(ActionEvent event) {
         this.actionEvent = event;
         FXServiceConto fxServiceConto = new FXServiceConto(super.serverCentraleCliente, SelectorTableIdController.idTavolo);
