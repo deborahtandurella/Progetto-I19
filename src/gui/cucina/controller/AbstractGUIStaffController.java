@@ -23,6 +23,7 @@ import serverCentrale.ServerCentraleStaff;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -36,6 +37,8 @@ public abstract class AbstractGUIStaffController implements Initializable {
     public Label time;
     protected ProdottoOrdinato p = new ProdottoOrdinato();
     protected TipoProdotto tipoProdotto;
+    public JFXButton startTimer;
+    protected List<Integer> tavoliInLavorazione;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,7 +47,9 @@ public abstract class AbstractGUIStaffController implements Initializable {
     }
 
     public AbstractGUIStaffController(TipoProdotto tipoProdotto) {
+
         this.tipoProdotto = tipoProdotto;
+        this.tavoliInLavorazione = new ArrayList<>();
     }
 
     public abstract VBox loadProdottiTemp();
@@ -76,7 +81,14 @@ public abstract class AbstractGUIStaffController implements Initializable {
         int idTavolo = Integer.parseInt(button.getId());
         for (ProdottoOrdinato prodottoOrdinato : ordini){
             if(prodottoOrdinato.getIdTavolo() == idTavolo){
-                serverCentraleStaff.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
+                FXServicePronto fxServicePronto = new FXServicePronto(serverCentraleStaff, prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
+                fxServicePronto.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                    @Override
+                    public void handle(WorkerStateEvent event) {
+                        startTimer.setDisable(true);
+                    }
+                });
+                fxServicePronto.start();
             }
         }
     }
@@ -84,7 +96,8 @@ public abstract class AbstractGUIStaffController implements Initializable {
     private void getTavoliAperti(){
         this.tavoli.clear();
         this.tavoli = serverCentraleStaff.getTavoli(StatoProdottoOrdinato.ORDINATO, tipoProdotto);
-        for(Integer tavolo : serverCentraleStaff.getTavoli(StatoProdottoOrdinato.LAVORAZIONE, tipoProdotto)) {
+        this.tavoliInLavorazione = serverCentraleStaff.getTavoli(StatoProdottoOrdinato.LAVORAZIONE, tipoProdotto);
+        for(Integer tavolo : this.tavoliInLavorazione) {
             if (!this.tavoli.contains(tavolo)) {
                 this.tavoli.add(tavolo);
             }
@@ -151,6 +164,7 @@ public abstract class AbstractGUIStaffController implements Initializable {
                     ordini.remove(p);
                 }
             });
+            button.setDisable(true);
             fxServicePronto.start();
         }
     }

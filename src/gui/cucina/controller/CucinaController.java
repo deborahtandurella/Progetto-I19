@@ -7,8 +7,6 @@ import prodotti.prodotto.TipoProdotto;
 
 public class CucinaController extends AbstractGUIStaffController {
 
-    public JFXButton startTimer;
-
     public CucinaController(TipoProdotto tipoProdotto) {
         super(tipoProdotto);
     }
@@ -17,12 +15,13 @@ public class CucinaController extends AbstractGUIStaffController {
     public VBox loadProdottiTemp(){
         VBox vBox = new VBox();
         for(Integer tavolo : this.tavoli){
-            this.startTimer = new JFXButton("START TIMER");
-            this.startTimer.setId(String.valueOf(tavolo));
-            this.startTimer.setOnAction(this::setTimer);
-            startTimer.setLayoutX(711);
-            startTimer.setLayoutY(28);
-
+            if(!tavoliInLavorazione.contains(tavolo)) {
+                this.startTimer = new JFXButton("START TIMER");
+                this.startTimer.setId(String.valueOf(tavolo));
+                this.startTimer.setOnAction(this::setTimer);
+                startTimer.setLayoutX(711);
+                startTimer.setLayoutY(28);
+            }
             VBox vBox1 = initVboxProdotti(tavolo);
             AnchorPane tempPane = initPaneTavolo(tavolo, vBox1);
             tempPane.getChildren().add(startTimer);
