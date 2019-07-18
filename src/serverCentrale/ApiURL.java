@@ -1,10 +1,10 @@
 package serverCentrale;
 
 import eccezioni.ResetDatabaseException;
+import gui.cliente.utils.SelectedConnection;
 
 public final class ApiURL {
 	
-	private final String VPS_IP = "http://137.74.165.12";
 	private final String PRODOTTO = "prodotto/";
 	private final String PRODOTTO_ORDINATO = "prodotto_ordinato/";
 	private final String ORDINAZIONE = "ordinazione/";
@@ -18,9 +18,9 @@ public final class ApiURL {
 	public ApiURL(boolean test) {
 		this.test = test;
 		if(test) {
-			this.base_name = this.VPS_IP + ":8081/";
+			this.base_name = SelectedConnection.IP + ":8081/";
 		}else {
-			this.base_name = this.VPS_IP + "/";
+			this.base_name = SelectedConnection.IP + "/";
 		}
 	}
 
