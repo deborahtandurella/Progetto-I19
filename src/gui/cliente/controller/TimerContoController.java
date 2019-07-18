@@ -105,7 +105,7 @@ public class TimerContoController extends MasterController implements Initializa
                 break;
             }
         }
-        Tempo.setLayoutX(504);
+        Tempo.setLayoutX(360);
         Tempo.setText(temp);
     }
 
