@@ -2,7 +2,7 @@ package gui.cliente.general_controller;
 
 import com.jfoenix.controls.JFXButton;
 import gui.cliente.thread.FXServiceMenu;
-import gui.cliente.controller.VisualizzaProdottiControllerController;
+import gui.cliente.controller.VisualizzaProdottiController;
 import gui.cliente.utils.FXMLManager;
 import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
@@ -26,7 +26,7 @@ public abstract class LoaderProdottiController extends GeneralController {
         FXServiceMenu.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
             @Override
             public void handle(WorkerStateEvent event) {
-                VisualizzaProdottiControllerController visualizzaProdottiController = new VisualizzaProdottiControllerController((ArrayList<Prodotto>) event.getSource().getValue());
+                VisualizzaProdottiController visualizzaProdottiController = new VisualizzaProdottiController((ArrayList<Prodotto>) event.getSource().getValue());
                 try {
                     FXMLManager.loadFXML(actionEvent, "/gui/cliente/resources/VisualizzaProdotti.fxml", visualizzaProdottiController);
                 } catch (IOException e) {

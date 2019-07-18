@@ -10,11 +10,11 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class VisualizzaProdottiControllerController extends LoaderProdottiController {
+public class VisualizzaProdottiController extends LoaderProdottiController {
     public VBox vBoxList;
     private ArrayList<Prodotto> menu;
 
-    public VisualizzaProdottiControllerController(ArrayList<Prodotto> menu) { this.menu = menu; }
+    public VisualizzaProdottiController(ArrayList<Prodotto> menu) { this.menu = menu; }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

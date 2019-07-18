@@ -2,7 +2,7 @@ package gui.cliente.utils;
 
 import com.jfoenix.controls.JFXButton;
 import eccezioni.OrdinazioneNegativaException;
-import gui.cliente.controller.VisualizzaProdottiControllerController;
+import gui.cliente.controller.VisualizzaProdottiController;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -15,10 +15,10 @@ import java.util.List;
 
 public class ListFiller {
     private ServerCentraleCliente serverCentraleCliente = new ServerCentraleCliente();
-    private VisualizzaProdottiControllerController visualizzaProdottiController;
+    private VisualizzaProdottiController visualizzaProdottiController;
     public static ArrayList<Prodotto> prodotti= new ArrayList<>();
 
-    public ListFiller (VisualizzaProdottiControllerController visualizzaProdottiController, VBox vBox, ArrayList menu){
+    public ListFiller (VisualizzaProdottiController visualizzaProdottiController, VBox vBox, ArrayList menu){
         this.visualizzaProdottiController = visualizzaProdottiController;
         this.vBoxFiller(menu, vBox);
     }
