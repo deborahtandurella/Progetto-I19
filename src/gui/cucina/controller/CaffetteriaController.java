@@ -33,7 +33,7 @@ public class CaffetteriaController implements Initializable {
     protected ServerCentraleInterno serverCentraleInterno = new ServerCentraleInterno();
     protected List<Integer> tavoli = new ArrayList<>();
     public VBox vbox;
-    public final int REFRESH_RATE = 2;
+    private final int REFRESH_RATE = 2;
     public Label time;
     protected ProdottoOrdinato p = new ProdottoOrdinato();
     protected TipoProdotto tipoProdotto;

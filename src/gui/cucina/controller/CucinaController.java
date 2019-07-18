@@ -54,15 +54,6 @@ public class CucinaController extends CaffetteriaController {
         return vBox;
     }
 
-    @Override
-    protected AnchorPane initPaneTavolo(int tavolo, VBox vBox){
-        AnchorPane pane = super.initPaneTavolo(tavolo,vBox);
-        pane.getChildren().add(startTimer);
-        startTimer.setLayoutX(711);
-        startTimer.setLayoutY(28);
-        return pane;
-    }
-
     public void setTimer(ActionEvent event)  {
         JFXButton button = (JFXButton)event.getSource();
         int idTavolo = Integer.parseInt(button.getId());
@@ -71,5 +62,14 @@ public class CucinaController extends CaffetteriaController {
                 serverCentraleInterno.changeStatoProdottoOrdinato(prodottoOrdinato, StatoProdottoOrdinato.LAVORAZIONE);
             }
         }
+    }
+
+    @Override
+    protected AnchorPane initPaneTavolo(int tavolo, VBox vBox){
+        AnchorPane pane = super.initPaneTavolo(tavolo,vBox);
+        pane.getChildren().add(startTimer);
+        startTimer.setLayoutX(711);
+        startTimer.setLayoutY(28);
+        return pane;
     }
 }
