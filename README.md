@@ -13,7 +13,7 @@ Realizzazione di un programma che gestisca le ordinazioni di un ristorante e i r
 4. All'apertura della CucinaCaffetteria, selezionare se è un terminale di Cucina o Caffetteria. 
 ## Back-end
 
-1. Utilizzare pipenv shell per attivare la virtualenv.
+1. Utilizzare pipenv shell per attivare la virtualenv (pe installare pip: https://pip.pypa.io/en/stable/installing/, per documentazione pipenv: https://github.com/pypa/pipenv).
 2. Spostarsi nella cartella backend/i19_backend.
 3. Lanciare : pyton manage.py runserver --settings=local_db (per lanciare la versione produzione)
 4. Lanciare : pyton manage.py runserver --settings=setting_test (per lanciare il database di test) 
