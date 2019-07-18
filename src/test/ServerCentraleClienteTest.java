@@ -18,8 +18,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 class ServerCentraleClienteTest {
-
-
     ServerCentraleCliente s;
 
     @BeforeEach
@@ -36,10 +34,6 @@ class ServerCentraleClienteTest {
         Prodotto p3 = new Prodotto(3, "Barolo", (float) 35.0, "Descrizione Barolo.", 0 , TipoProdotto.CAFFETTERIA, TipoPortata.VINI);
         Prodotto p4 = new Prodotto(4, "Tiramisù", (float) 8.0, "Descrizione dolce.", 10 , TipoProdotto.CAFFETTERIA, TipoPortata.DOLCI);
 
-        //ObjectMapper mapper = new ObjectMapper();
-        //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(p4));
-        //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(s.getMenu().toArray()[3]));
-
         menu.add(p1);
         menu.add(p2);
         menu.add(p3);
@@ -51,17 +45,13 @@ class ServerCentraleClienteTest {
     @Test
     void inviaOrdine() throws PrezzoNegativoException, OrdinazioneNegativaException, NessunProdottoException {
         ArrayList<ProdottoOrdinato> ordine = new ArrayList<>();
-
         List<Prodotto> lista_prodotti = s.getMenu();
 
         ProdottoOrdinato p1o = new ProdottoOrdinato(lista_prodotti.get(0), 1,1);
         ProdottoOrdinato p2o = new ProdottoOrdinato(lista_prodotti.get(1), 2,2);
-
         ordine.add(p1o);
         ordine.add(p2o);
 
         assertArrayEquals(ordine.toArray(), s.inviaOrdine(ordine).toArray());
     }
-
-
 }
