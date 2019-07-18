@@ -6,6 +6,9 @@ import gui.cliente.utils.ManagerCarrello;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Controller per Home.fxml
+ */
 public class HomeController extends LoaderProdottiController {
 
     @Override

@@ -20,6 +20,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Classe Controller per ConfermaOrdinazione.fxml per confermare ordine
+ */
 public class ConfermaOrdinazioneController extends GeneralController {
     public VBox vBoxList;
     public JFXButton conferma;
@@ -37,6 +40,12 @@ public class ConfermaOrdinazioneController extends GeneralController {
         }
     }
 
+    /**
+     * Lancia thread per settaggio ordinazione nel db
+     * @param event
+     * @throws IOException
+     * @throws NessunProdottoException
+     */
     public void confermaOrdinazione(ActionEvent event) throws IOException, NessunProdottoException {
         this.actionEvent = event;
         FXServiceOrdini fxServiceOrdini = new FXServiceOrdini(super.serverCentraleCliente, ManagerCarrello.getProdottiOrdinati());
@@ -54,6 +63,10 @@ public class ConfermaOrdinazioneController extends GeneralController {
         fxServiceOrdini.start();
     }
 
+    /**
+     * Rimuove prodotto tramite id Bottone cliccato
+     * @param event
+     */
     private void removeProdotto(ActionEvent event) {
         JFXButton removeButton = (JFXButton) event.getSource();
         ManagerCarrello.removeProdottoOrdinato(Integer.parseInt(removeButton.getId()), carrello);
@@ -61,12 +74,24 @@ public class ConfermaOrdinazioneController extends GeneralController {
         vBoxList.getChildren().clear();
         this.loadProdottiOrdinati(ManagerCarrello.getProdottiOrdinati(), vBoxList);
     }
+
+    /**
+     * Riempe vBox di prodotti
+     * @param lista
+     * @param vBox
+     */
     private void loadProdottiOrdinati(ArrayList<ProdottoOrdinato> lista, VBox vBox){
         for(ProdottoOrdinato p : lista){
             AnchorPane tempPane = initPane(p);
             vBox.getChildren().addAll(tempPane);
         }
     }
+
+    /**
+     * Riempe pannello di prodotti ordinati
+     * @param prodottoOrdinato
+     * @return pannello
+     */
     private AnchorPane initPane(ProdottoOrdinato prodottoOrdinato){
         AnchorPane tempPane = new AnchorPane();
 
