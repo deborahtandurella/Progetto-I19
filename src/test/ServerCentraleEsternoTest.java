@@ -1,5 +1,7 @@
 package test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import eccezioni.NessunProdottoException;
 import eccezioni.OrdinazioneNegativaException;
 import eccezioni.PrezzoNegativoException;
@@ -12,39 +14,32 @@ import prodotti.prodotto.TipoProdotto;
 import serverCentrale.cliente.ServerCentraleEsterno;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class ServerCentraleEsternoTest {
 
+
     ServerCentraleEsterno s;
 
     @BeforeEach
     void setUp() {
-        s = new ServerCentraleEsterno();
+        s = new ServerCentraleEsterno(true);
+        s.resetDatabase();
     }
 
     @Test
-    void inviaOrdine() throws PrezzoNegativoException, OrdinazioneNegativaException, NessunProdottoException {
-        ArrayList<ProdottoOrdinato> ordine = new ArrayList<>();
-        Prodotto p1 = new Prodotto(1, "Acqua tranqui", (float) 2.0, "Prodotto interessante la caffetteria.", 0 , TipoProdotto.CAFFETTERIA, TipoPortata.BEVANDE);
-        Prodotto p2 = new Prodotto(2, "Carbonara", (float) 12.0, "descrizione carbonara", 12 , TipoProdotto.CUCINA, TipoPortata.PIATTI);
-        ProdottoOrdinato p1o = new ProdottoOrdinato(p1, 1,1);
-        ProdottoOrdinato p2o = new ProdottoOrdinato(p1, 2,2);
-
-        ordine.add(p1o);
-        ordine.add(p2o);
-
-        assertArrayEquals(ordine.toArray(), s.inviaOrdine(ordine).toArray());
-    }
-
-    @Test
-    void getMenu() throws PrezzoNegativoException {
+    void getMenu() throws PrezzoNegativoException, JsonProcessingException {
         ArrayList<Prodotto> menu = new ArrayList<>();
-        Prodotto p1 = new Prodotto(1, "Acqua tranqui", (float) 2.0, "Prodotto interessante la caffetteria.", 0 , TipoProdotto.CAFFETTERIA, TipoPortata.BEVANDE);
-        Prodotto p2 = new Prodotto(2, "Carbonara", (float) 12.0, "descrizione carbonara", 12 , TipoProdotto.CUCINA, TipoPortata.PIATTI);
-        Prodotto p3 = new Prodotto(3, "Barolo", (float) 35.0, "Il Barolo si presenta di colore rosso granato con riflessi aranciati. Al naso è complesso, persistente ed intenso. A note fruttate e floreaii (viola, vaniglia) si accompagnano note più speziate e di goudron.", 0 , TipoProdotto.CAFFETTERIA, TipoPortata.VINI);
-        Prodotto p4 = new Prodotto(4, "Tiramisù", (float) 8.0, "descrizione dolce", 10 , TipoProdotto.CUCINA, TipoPortata.DOLCI);
+        Prodotto p1 = new Prodotto(1, "Acqua tranqui", (float) 2.0, "Prodotto interessante della caffetteria.", 0 , TipoProdotto.CAFFETTERIA, TipoPortata.BEVANDE);
+        Prodotto p2 = new Prodotto(2, "Carbonara", (float) 12.0, "Descrizione carbonara.", 12 , TipoProdotto.CUCINA, TipoPortata.PIATTI);
+        Prodotto p3 = new Prodotto(3, "Barolo", (float) 35.0, "Descrizione Barolo.", 0 , TipoProdotto.CAFFETTERIA, TipoPortata.VINI);
+        Prodotto p4 = new Prodotto(4, "Tiramisù", (float) 8.0, "Descrizione dolce.", 10 , TipoProdotto.CAFFETTERIA, TipoPortata.DOLCI);
+
+        //ObjectMapper mapper = new ObjectMapper();
+        //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(p4));
+        //System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(s.getMenu().toArray()[3]));
 
         menu.add(p1);
         menu.add(p2);
@@ -53,4 +48,21 @@ class ServerCentraleEsternoTest {
 
         assertArrayEquals(menu.toArray(), s.getMenu().toArray());
     }
+
+    @Test
+    void inviaOrdine() throws PrezzoNegativoException, OrdinazioneNegativaException, NessunProdottoException {
+        ArrayList<ProdottoOrdinato> ordine = new ArrayList<>();
+
+        List<Prodotto> lista_prodotti = s.getMenu();
+
+        ProdottoOrdinato p1o = new ProdottoOrdinato(lista_prodotti.get(0), 1,1);
+        ProdottoOrdinato p2o = new ProdottoOrdinato(lista_prodotti.get(1), 2,2);
+
+        ordine.add(p1o);
+        ordine.add(p2o);
+
+        assertArrayEquals(ordine.toArray(), s.inviaOrdine(ordine).toArray());
+    }
+
+
 }
