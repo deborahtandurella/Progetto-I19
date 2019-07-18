@@ -69,7 +69,7 @@
          </Text>
          <JFXButton fx:id="PIATTI" onAction="#loadProdotti" layoutY="31.0" prefHeight="62.0" prefWidth="320.0" ripplerFill="BLACK" style="-fx-background-color: white;" text="MENU PIATTI">
             <font>
-               <Font name="Roboto Bold" size="33.0" />
+               <Font name="Roboto" size="33.0" />
             </font>
          </JFXButton>
       </children>
