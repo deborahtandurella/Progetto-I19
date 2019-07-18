@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.cliente.controller.HomeController">
+   <children>
+      <Pane prefHeight="160.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
+         <children>
+            <JFXButton layoutY="90.0" prefHeight="70.0" prefWidth="165.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="table" layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="time" layoutX="454.0" layoutY="101.0" text="HH : mm" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+             <Label id="ordinazione" layoutX="729.0" layoutY="101.0" text="Ordinazioni: " textFill="WHITE">
+                 <font>
+                     <Font name="Roboto" size="33.0" />
+                 </font>
+             </Label>
+            <JFXButton fx:id="carrello" onAction="#loadOrdinazioni" layoutX="912.0" layoutY="84.0" prefHeight="3.0" prefWidth="82.0" ripplerFill="#ebebeb" style="-fx-background-color: #FF9800;" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Text layoutX="53.0" layoutY="326.0" lineSpacing="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tocca una delle icone qui a lato per accedervi" textAlignment="CENTER" wrappingWidth="330.0">
+         <font>
+            <Font name="Roboto" size="30.0" />
+         </font>
+      </Text>
+      <Text layoutX="53.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benvenuto," textAlignment="CENTER" wrappingWidth="330.0">
+         <font>
+            <Font name="Roboto" size="60.0" />
+         </font>
+      </Text>
+      <Text layoutX="53.0" layoutY="519.0" lineSpacing="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tocca 'Ordinazione' per visualizzare i prodotti ordinati oppure chiedere il conto." textAlignment="CENTER" wrappingWidth="330.0">
+         <font>
+            <Font name="Roboto" size="30.0" />
+         </font>
+      </Text>
+      <JFXButton id="PIATTI" buttonType="RAISED" layoutX="428.0" layoutY="188.0" onAction="#loadProdotti" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="MENU PIATTI">
+         <font>
+            <Font name="Roboto" size="49.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="DOLCI" buttonType="RAISED" layoutX="428.0" layoutY="620.0" onAction="#loadProdotti" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="DOLCI">
+         <font>
+            <Font name="Roboto" size="49.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="VINI" buttonType="RAISED" layoutX="428.0" layoutY="483.0" onAction="#loadProdotti" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="CARTA DEI VINI">
+         <font>
+            <Font name="Roboto" size="49.0" />
+         </font>
+      </JFXButton>
+      <JFXButton id="BEVANDE" buttonType="RAISED" layoutX="428.0" layoutY="332.0" onAction="#loadProdotti" prefHeight="112.0" prefWidth="555.0" style="-fx-background-color: WHITE;" text="BEVANDE">
+         <font>
+            <Font name="Roboto" size="49.0" />
+         </font>
+      </JFXButton>
+   </children>
+</Pane>

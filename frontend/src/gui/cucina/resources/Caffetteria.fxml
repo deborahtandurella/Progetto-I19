@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane prefHeight="68.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
+            <children>
+                <Label fx:id="time" layoutX="845.0" layoutY="6.0" prefHeight="56.0" prefWidth="165.0" text=" HH  :  mm" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Roboto" size="33.0" />
+                    </font>
+                </Label>
+                <Label layoutX="20.0" layoutY="8.0" prefHeight="51.0" prefWidth="165.0" text="Caffetteria" textFill="WHITE">
+                    <font>
+                        <Font name="Roboto" size="35.0" />
+                    </font>
+                </Label>
+            </children>
+        </Pane>
+        <ScrollPane layoutX="17.0" layoutY="105.0" prefHeight="647.0" prefWidth="981.0" style="-fx-background-color: #FAFAFA; -fx-fit-to-width: true;">
+            <content>
+                <VBox fx:id="vbox" prefHeight="659.0" prefWidth="959.0">
+                    <!--<children>
+                       <AnchorPane prefHeight="115.0" prefWidth="959.0" style="-fx-border-color: grey;">
+                          <children>
+                             <Text layoutX="7.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TAVOLO N." wrappingWidth="562.0">
+                                <font>
+                                   <Font name="Roboto Bold" size="22.0" />
+                                </font>
+                             </Text>
+                             <JFXButton buttonType="RAISED" layoutX="711.0" layoutY="28.0" prefHeight="68.0" prefWidth="215.0" style="-fx-background-color: WHITE;" text="START TIMER">
+                                <font>
+                                   <Font name="Roboto Bold" size="22.0" />
+                                </font>
+                             </JFXButton>
+                             <VBox layoutX="14.0" layoutY="30.0" prefHeight="217.0" prefWidth="668.0">
+                                <children>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 1" wrappingWidth="562.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="8.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 2" wrappingWidth="562.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 3" wrappingWidth="562.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 4" wrappingWidth="562.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                </children>
+                             </VBox>
+                             <JFXButton buttonType="RAISED" layoutX="710.0" layoutY="117.0" prefHeight="68.0" prefWidth="216.0" style="-fx-background-color: WHITE;" text="TUTTO PRONTO" textFill="#1b901d">
+                                <font>
+                                   <Font name="Roboto Bold" size="22.0" />
+                                </font>
+                             </JFXButton>
+                          </children>
+                       </AnchorPane>
+                       <AnchorPane prefHeight="115.0" prefWidth="959.0" style="-fx-border-color: grey;">
+                          <children>
+                             <Text layoutX="7.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TAVOLO N." wrappingWidth="562.0">
+                                <font>
+                                   <Font name="Roboto Bold" size="22.0" />
+                                </font>
+                             </Text>
+                             <JFXButton buttonType="RAISED" layoutX="711.0" layoutY="28.0" prefHeight="68.0" prefWidth="215.0" style="-fx-background-color: WHITE;" text="START TIMER">
+                                <font>
+                                   <Font name="Roboto Bold" size="22.0" />
+                                </font>
+                             </JFXButton>
+                             <VBox layoutX="14.0" layoutY="30.0" prefHeight="217.0" prefWidth="668.0">
+                                <children>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 1" wrappingWidth="562.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="8.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 2" wrappingWidth="562.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 3" wrappingWidth="562.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 4" wrappingWidth="562.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                </children>
+                             </VBox>
+                             <JFXButton buttonType="RAISED" layoutX="710.0" layoutY="117.0" prefHeight="68.0" prefWidth="216.0" style="-fx-background-color: WHITE;" text="TUTTO PRONTO" textFill="#1b901d">
+                                <font>
+                                   <Font name="Roboto Bold" size="22.0" />
+                                </font>
+                             </JFXButton>
+                          </children>
+                       </AnchorPane>
+                       <AnchorPane prefHeight="115.0" prefWidth="959.0" style="-fx-border-color: grey;">
+                          <children>
+                             <Text layoutX="7.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TAVOLO N." wrappingWidth="562.0">
+                                <font>
+                                   <Font name="Roboto Bold" size="22.0" />
+                                </font>
+                             </Text>
+                             <JFXButton buttonType="RAISED" layoutX="711.0" layoutY="28.0" prefHeight="68.0" prefWidth="215.0" style="-fx-background-color: WHITE;" text="START TIMER">
+                                <font>
+                                   <Font name="Roboto Bold" size="22.0" />
+                                </font>
+                             </JFXButton>
+                             <VBox layoutX="14.0" layoutY="30.0" prefHeight="217.0" prefWidth="668.0">
+                                <children>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 1" wrappingWidth="562.0" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="106.0" AnchorPane.topAnchor="8.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 2" wrappingWidth="562.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 3" wrappingWidth="562.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                   <AnchorPane style="-fx-background-color: E0E0E0;">
+                                      <children>
+                                         <JFXButton layoutX="562.0" prefHeight="39.0" prefWidth="106.0" style="-fx-border-color: grey; -fx-background-color: white;" text="PRONTO" textFill="#1b901d">
+                                            <font>
+                                               <Font name="Roboto Bold" size="18.0" />
+                                            </font>
+                                         </JFXButton>
+                                         <Text layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prodotto 4" wrappingWidth="562.0">
+                                            <font>
+                                               <Font name="Roboto" size="20.0" />
+                                            </font>
+                                         </Text>
+                                      </children>
+                                   </AnchorPane>
+                                </children>
+                             </VBox>
+                             <JFXButton buttonType="RAISED" layoutX="710.0" layoutY="117.0" prefHeight="68.0" prefWidth="216.0" style="-fx-background-color: WHITE;" text="TUTTO PRONTO" textFill="#1b901d">
+                                <font>
+                                   <Font name="Roboto Bold" size="22.0" />
+                                </font>
+                             </JFXButton>
+                          </children>
+                       </AnchorPane>
+                    </children>-->
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
+</Pane>

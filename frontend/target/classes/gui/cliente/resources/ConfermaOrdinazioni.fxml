@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA; -fx-fit-to-width: true;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.cliente.controller.ConfermaOrdinazioneController">
+   <children>
+      <Pane prefHeight="160.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
+         <children>
+            <JFXButton onAction="#loadHome" layoutY="90.0" prefHeight="70.0" prefWidth="165.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="table" layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="time" layoutX="454.0" layoutY="101.0" text="HH : mm" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+            <Label id="ordinazione" layoutX="729.0" layoutY="101.0" text="Ordinazioni: " textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="carrello" layoutX="912.0" layoutY="84.0" prefHeight="3.0" prefWidth="82.0" ripplerFill="#ebebeb" style="-fx-background-color: #FF9800;" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane layoutY="162.0" prefHeight="605.0" prefWidth="320.0" style="-fx-background-color: #FAFAFA;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="TOP" layoutY="37.0" prefHeight="62.0" prefWidth="320.0" text="Prodotti ordinati" textAlignment="CENTER">
+               <font>
+                  <Font name="Roboto Bold" size="30.0" />
+               </font>
+            </Label>
+            <Text layoutX="29.0" layoutY="139.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tocca &quot; Rimuovi &quot; a lato per togliere un prodotto dall'ordinazione" textAlignment="CENTER" wrappingWidth="262.451171875">
+               <font>
+                  <Font name="Roboto" size="22.0" />
+               </font>
+            </Text>
+            <Text layoutX="14.0" layoutY="251.0" lineSpacing="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tocca &quot; Conferma ordinazione&quot; per inviare l'ordine alla cucina" textAlignment="CENTER" wrappingWidth="294.451171875">
+               <font>
+                  <Font name="Roboto" size="22.0" />
+               </font>
+            </Text>
+            <JFXButton onAction="#loadVisualizzaProdotti" buttonType="RAISED" layoutX="20.0" layoutY="366.0" prefHeight="73.0" prefWidth="282.0" style="-fx-background-color: white;" text="AGGIUNGI PRODOTTI" textFill="#ff9800">
+               <font>
+                  <Font name="Roboto Bold" size="25.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="468.0" prefHeight="73.0" prefWidth="282.0" style="-fx-background-color: white;" text="SEGNALA PROBLEMA" textFill="#d50000">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow color="#00000059" height="42.39" offsetX="2.0" offsetY="2.0" radius="24.225" width="56.51" />
+         </effect>
+      </Pane>
+      <JFXButton fx:id="conferma" onAction="#confermaOrdinazione" buttonType="RAISED" layoutX="346.0" layoutY="633.0" prefHeight="70.0" prefWidth="660.0" style="-fx-background-color: white;" text="CONFERMA ORDINAZIONE" textFill="#2e7d32">
+         <font>
+            <Font name="Roboto Bold" size="30.0" />
+         </font>
+      </JFXButton>
+      <ScrollPane layoutX="346.0" layoutY="201.0" prefHeight="409.0" prefWidth="660.0" style="-fx-background-color: #FAFAFA; -fx-fit-to-width: true;">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <AnchorPane>
+                     <children>
+                        <JFXButton layoutX="534.0" layoutY="14.0" text="RIMUOVI" textFill="#d50000">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Label text="Titolo del piatto">
+                           <font>
+                              <Font name="Roboto Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="33.0" text="Descrizione prodotto">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets bottom="5.0" />
+                     </padding>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="53.0" prefWidth="658.0">
+                     <children>
+                        <JFXButton layoutX="534.0" layoutY="9.0" text="RIMUOVI" textFill="#d50000">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Label text="Titolo del piatto">
+                           <font>
+                              <Font name="Roboto Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="33.0" text="Descrizione prodotto">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="53.0" prefWidth="658.0">
+                     <children>
+                        <JFXButton layoutX="534.0" layoutY="9.0" text="RIMUOVI" textFill="#d50000">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Label text="Titolo del piatto">
+                           <font>
+                              <Font name="Roboto Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="33.0" text="Descrizione prodotto">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="53.0" prefWidth="658.0">
+                     <children>
+                        <JFXButton layoutX="534.0" layoutY="9.0" text="RIMUOVI" textFill="#d50000">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Label text="Titolo del piatto">
+                           <font>
+                              <Font name="Roboto Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="33.0" text="Descrizione prodotto">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="53.0" prefWidth="658.0">
+                     <children>
+                        <JFXButton layoutX="534.0" layoutY="9.0" text="RIMUOVI" textFill="#d50000">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Label text="Titolo del piatto">
+                           <font>
+                              <Font name="Roboto Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="33.0" text="Descrizione prodotto">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="53.0" prefWidth="658.0">
+                     <children>
+                        <JFXButton layoutX="534.0" layoutY="9.0" text="RIMUOVI" textFill="#d50000">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Label text="Titolo del piatto">
+                           <font>
+                              <Font name="Roboto Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="33.0" text="Descrizione prodotto">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="53.0" prefWidth="658.0">
+                     <children>
+                        <JFXButton layoutX="534.0" layoutY="9.0" text="RIMUOVI" textFill="#d50000">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Label text="Titolo del piatto">
+                           <font>
+                              <Font name="Roboto Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="33.0" text="Descrizione prodotto">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="53.0" prefWidth="658.0">
+                     <children>
+                        <JFXButton layoutX="534.0" layoutY="9.0" text="RIMUOVI" textFill="#d50000">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Label text="Titolo del piatto">
+                           <font>
+                              <Font name="Roboto Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="33.0" text="Descrizione prodotto">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="53.0" prefWidth="658.0">
+                     <children>
+                        <JFXButton layoutX="534.0" layoutY="9.0" text="RIMUOVI" textFill="#d50000">
+                           <font>
+                              <Font name="Roboto Bold" size="20.0" />
+                           </font>
+                        </JFXButton>
+                        <Label text="Titolo del piatto">
+                           <font>
+                              <Font name="Roboto Bold" size="22.0" />
+                           </font>
+                        </Label>
+                        <Label layoutY="33.0" text="Descrizione prodotto">
+                           <font>
+                              <Font name="Roboto" size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox fx:id="vBoxList" prefHeight="200.0" prefWidth="100.0" >
+            </VBox>
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>

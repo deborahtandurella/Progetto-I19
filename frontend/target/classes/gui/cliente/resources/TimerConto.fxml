@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #FAFAFA;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.cliente.controller.TimerContoController">
+   <children>
+      <Pane prefHeight="160.0" prefWidth="1024.0" style="-fx-background-color: #D50000;">
+         <children>
+            <JFXButton fx:id="home" layoutY="90.0" onAction="#loadHome" prefHeight="70.0" prefWidth="165.0" text="Home" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </JFXButton>
+            <Label fx:id="table" layoutX="179.0" layoutY="101.0" text="Tavolo: " textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+            <Label fx:id="time" layoutX="454.0" layoutY="101.0" text="HH : mm" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+            <Label id="ordinazione" layoutX="729.0" layoutY="101.0" text="Ordinazioni: " textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="carrello" layoutX="912.0" layoutY="84.0" onAction="#loadOrdinazioni" prefHeight="3.0" prefWidth="82.0" ripplerFill="#ebebeb" style="-fx-background-color: #FF9800;" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Roboto" size="33.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </Pane>
+      <Pane layoutY="162.0" prefHeight="605.0" prefWidth="320.0" style="-fx-background-color: #FAFAFA;">
+         <children>
+            <Text fill="#424242" layoutX="20.0" layoutY="68.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qui a lato vi è un tempo indicativo affinchè il primo prodotto della tua ordinazione arrivi al tavolo." textAlignment="CENTER" wrappingWidth="282.0">
+               <font>
+                  <Font name="Roboto" size="22.0" />
+               </font>
+            </Text>
+            <Text fill="#424242" layoutX="19.0" layoutY="224.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ricevuti i piatti potrai richiedere il conto e procedere al pagamento in cassa." textAlignment="CENTER" wrappingWidth="282.0">
+               <font>
+                  <Font name="Roboto" size="22.0" />
+               </font>
+            </Text>
+            <JFXButton fx:id="prodotti" buttonType="RAISED" layoutX="20.0" layoutY="366.0" onAction="#loadVisualizzaProdotti" prefHeight="73.0" prefWidth="282.0" style="-fx-background-color: white;" text="ORDINA ANCORA" textFill="#ff9800">
+               <font>
+                  <Font name="Roboto Bold" size="24.0" />
+               </font>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" layoutX="20.0" layoutY="468.0" prefHeight="73.0" prefWidth="282.0" style="-fx-background-color: white;" text="SEGNALA UN PROBLEMA" textFill="#b71c1c">
+               <font>
+                  <Font name="Roboto Bold" size="20.0" />
+               </font>
+            </JFXButton>
+         </children>
+         <effect>
+            <DropShadow color="#0000005a" height="0.0" offsetX="2.0" offsetY="2.0" radius="13.6275" width="56.51" />
+         </effect>
+      </Pane>
+      <JFXButton fx:id="conto" buttonType="RAISED" layoutX="368.0" layoutY="576.0" onAction="#loadConto" prefHeight="73.0" prefWidth="606.0" style="-fx-background-color: white;" text="RICHIEDI CONTO" textFill="#2e7d32">
+         <font>
+            <Font name="Roboto Bold" size="35.0" />
+         </font>
+      </JFXButton>
+      <Text fx:id="txtFinale" fill="#424242" layoutX="368.0" layoutY="213.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tempo rimanente:" textAlignment="CENTER" wrappingWidth="606.0">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Label fx:id="Tempo" alignment="TOP_CENTER" layoutX="368.0" layoutY="229.0" lineSpacing="7.0" prefHeight="45.0" prefWidth="606.0" text="MM : ss" textAlignment="CENTER" textFill="#424242">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Text fx:id="txtConto" fill="#424242" layoutX="369.0" layoutY="709.0" lineSpacing="7.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Conto totale: € " textAlignment="CENTER" wrappingWidth="606.0">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <ScrollPane layoutX="369.0" layoutY="287.0" prefHeight="262.0" prefWidth="606.0">
+         <content>
+            <VBox fx:id="vboxProdotti" prefHeight="258.0" prefWidth="590.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</Pane>

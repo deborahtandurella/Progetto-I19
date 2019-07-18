@@ -1,0 +1,10 @@
+.jfx-button {
+    -fx-background-color: #FF9800;
+    -fx-text-fill: white;
+    -fx-font-size: 20;
+    -fx-font-family: "Roboto Bold";
+}
+#textTavolo{
+    -fx-font-family: "Roboto";
+    -fx-font-size: 20;
+}
