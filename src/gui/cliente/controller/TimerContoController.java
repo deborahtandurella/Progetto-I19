@@ -28,9 +28,6 @@ import java.util.ResourceBundle;
 public class TimerContoController extends MasterController implements Initializable {
 
     public JFXButton conto;
-    public Label table;
-    public Label time;
-    public JFXButton carrello;
     public JFXButton home;
     public JFXButton prodotti;
     public Label Tempo;
@@ -82,15 +79,13 @@ public class TimerContoController extends MasterController implements Initializa
             this.reloadVboxProdotti();
             this.checkConto();
             this.checkStatoProdottoOrdinato();
-        }
-        ),
+        }),
                 new KeyFrame(Duration.seconds(1)));
         this.clock.setCycleCount(Animation.INDEFINITE);
         this.clock.play();
     }
 
         private void checkStatoProdottoOrdinato() {
-
         String temp="";
         //ProdottoOrdinato p = ordini.get(1);
         float delta;
@@ -99,9 +94,7 @@ public class TimerContoController extends MasterController implements Initializa
                 delta= p.getTempoElaborazioneRimanente(maxTempoPreparazione());
                 if (delta >= 0) {
                     temp = "" + (int) (delta / 60) + " Minuti " + (int) (delta % 60) + " Secondi";
-                } else {
-                    temp = "Tempo Scaduto";
-                }
+                } else { temp = "Tempo Scaduto"; }
                 break;
             }
         }

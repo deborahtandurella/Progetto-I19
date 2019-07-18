@@ -64,20 +64,18 @@ public class ConfermaOrdinazioneController extends MasterController implements I
         this.loadProdottiOrdinati(ManagerOrdinazioni.getProdottiOrdinati(), vBoxList);
     }
     private void loadProdottiOrdinati(ArrayList<ProdottoOrdinato> lista, VBox vBox){
-        int indiceBottone=0;
         for(ProdottoOrdinato p : lista){
-            AnchorPane tempPane = initPane(p,indiceBottone);
+            AnchorPane tempPane = initPane(p);
             vBox.getChildren().addAll(tempPane);
         }
     }
-    private AnchorPane initPane(ProdottoOrdinato prodottoOrdinato, int indiceBottone){
+    private AnchorPane initPane(ProdottoOrdinato prodottoOrdinato){
         AnchorPane tempPane = new AnchorPane();
 
         JFXButton remove = new JFXButton("RIMUOVI");
         remove.setLayoutX(514);
         remove.setLayoutY(2);
-        remove.setId(""+indiceBottone);
-        indiceBottone++;
+        remove.setId(String.valueOf(prodottoOrdinato.getProdotto().getId()));
         remove.setOnAction(this::removeProdotto);
 
         Text titleTemp = new Text(prodottoOrdinato.getProdotto().getNome());
