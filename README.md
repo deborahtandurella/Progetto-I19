@@ -5,6 +5,9 @@
 Realizzazione di un programma che gestisca le ordinazioni di un ristorante e i relativi pagamenti da parte del cliente, permettendone una maggiore automazione.
 
 # Come avviare
+
+* Di default l'installazione e l'esecuzione del backend non è obbligatorio in quanto è stato fatto il deploy su una VPS sull'indirizzo 137.74.165.12 e il client in automatico si collega ad essa. 
+
 ## Front-end
 
 1. Compilare LauncherClient, LauncherCucinaCaffetteria. 
