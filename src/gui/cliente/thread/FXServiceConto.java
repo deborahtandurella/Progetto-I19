@@ -4,6 +4,9 @@ import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import serverCentrale.ServerCentraleCliente;
 
+/**
+ * thread per ottenere conto per slegare grafica da chiamata http (evito latenza)
+ */
 public class FXServiceConto extends Service {
 
     private ServerCentraleCliente serverCentraleCliente;

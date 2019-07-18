@@ -9,6 +9,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Permette gestione del caricamento degli fxml tramite percorso
+ */
 public class FXMLManager {
     public static void loadFXML(javafx.event.ActionEvent event, String path, Initializable controller) throws IOException {
         FXMLLoader loader = new FXMLLoader(FXMLManager.class.getResource(path));

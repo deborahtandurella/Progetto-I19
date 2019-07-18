@@ -8,7 +8,9 @@ import prodotti.prodotto.TipoPortata;
 import serverCentrale.ServerCentraleCliente;
 
 import java.util.List;
-
+/**
+ * thread per ottenere prodotti per slegare grafica da chiamata http (evito latenza)
+ */
 public class FXServiceMenu extends Service {
 
     private ServerCentraleCliente server;

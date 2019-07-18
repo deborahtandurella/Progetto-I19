@@ -8,9 +8,18 @@ import prodotti.prodotto_ordinato.ProdottoOrdinato;
 
 import java.util.ArrayList;
 
+/**
+ * Permette la visualizzazione dell'incrementazione/decrementazione dei prodotti nel carrello
+ */
 public class ManagerCarrello {
     private static ArrayList<ProdottoOrdinato> prodottiOrdinati = new ArrayList<>();
 
+    /**
+     * Incrementa quantità del carrello quando aggiungo prodotto
+     * @param prodotto
+     * @param carrello
+     * @throws OrdinazioneNegativaException
+     */
     static void addProdottoOrdinato(Prodotto prodotto, JFXButton carrello) throws OrdinazioneNegativaException {
         for(ProdottoOrdinato prodottoOrdinato1 : prodottiOrdinati){
             if(prodottoOrdinato1.getProdotto().getId() == prodotto.getId()){
@@ -28,6 +37,11 @@ public class ManagerCarrello {
         carrello.setText(String.valueOf(getNumeroProdottiOrdinati()));
     }
 
+    /**
+     * Decrementa quantità del carello in base ad id
+     * @param id
+     * @param carrello
+     */
     public static void removeProdottoOrdinato(int id, JFXButton carrello){
         boolean check=false;
         ProdottoOrdinato temp= new ProdottoOrdinato();

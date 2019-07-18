@@ -8,6 +8,9 @@ import serverCentrale.ServerCentraleCliente;
 import javafx.scene.control.Label;
 import java.io.IOException;
 
+/**
+ * Classe padre per navigare nelle pagine
+ */
 public abstract class GeneralController implements Initializable {
     public JFXButton carrello;
     public Label time;

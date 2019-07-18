@@ -9,6 +9,9 @@ import javafx.util.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Permette gestione dell'orologio nelle pagine
+ */
 public class Clock {
     public static void initClock(Label time){
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, event1 -> {

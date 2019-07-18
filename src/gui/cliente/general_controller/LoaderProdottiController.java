@@ -14,6 +14,9 @@ import serverCentrale.ServerCentraleCliente;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Classe che permette la visualizzazione dei prodotti (gestito da thread)
+ */
 public abstract class LoaderProdottiController extends GeneralController {
 
     protected ServerCentraleCliente serverCentrale = this.serverCentraleCliente;

@@ -5,7 +5,9 @@ import javafx.concurrent.Task;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 import serverCentrale.ServerCentraleCliente;
 import java.util.ArrayList;
-
+/**
+ * thread per inviare ordine per slegare grafica da chiamata http (evito latenza)
+ */
 public class FXServiceOrdini extends Service {
 
     private ServerCentraleCliente server;

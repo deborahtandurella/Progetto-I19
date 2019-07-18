@@ -13,6 +13,9 @@ import serverCentrale.ServerCentraleCliente;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Permette il riempimento delle vBox da db
+ */
 public class ListFiller {
     private ServerCentraleCliente serverCentraleCliente = new ServerCentraleCliente();
     private VisualizzaProdottiController visualizzaProdottiController;
@@ -37,6 +40,10 @@ public class ListFiller {
         return prodotti;
     }
 
+    /**
+     * permette l'aggiunta del prodotto quando premo il bottone "+"
+     * @param event
+     */
     private void addProdotto(ActionEvent event) {
         JFXButton button = (JFXButton) event.getSource();
         Prodotto temp = null;
@@ -52,6 +59,12 @@ public class ListFiller {
             System.err.println(e.getMessage());
         }
     }
+
+    /**
+     * Riempe pannello per aggiungere prodotti
+     * @param prodotto
+     * @return pannello
+     */
     private AnchorPane initPane(Prodotto prodotto){
         AnchorPane tempPane = new AnchorPane();
 
