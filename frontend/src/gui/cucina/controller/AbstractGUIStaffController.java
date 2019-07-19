@@ -26,6 +26,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Classe padre per gestione cucina e caffetteria
+ */
 public abstract class AbstractGUIStaffController implements Initializable {
 
     protected List<ProdottoOrdinato> ordini = new ArrayList<>();
@@ -70,11 +73,19 @@ public abstract class AbstractGUIStaffController implements Initializable {
         clock.play();
     }
 
+    /**
+     * Permette l'eliminazione del prodotto tramite bottone
+     * @param event
+     */
     public void setPronto(ActionEvent event)  {
         JFXButton button = (JFXButton) event.getSource();
         eliminaProdottoPronto(button);
     }
 
+    /**
+     * Lancia thread per settare lo stato dei prodotti in lavorazione, inoltre permette lo start del timer per il cliente
+     * @param event
+     */
     public void setTimer(ActionEvent event)  {
         JFXButton button = (JFXButton)event.getSource();
         int idTavolo = Integer.parseInt(button.getId());
@@ -92,6 +103,9 @@ public abstract class AbstractGUIStaffController implements Initializable {
         }
     }
 
+    /**
+     * Ottengo tavoli in stato lavorazione e stato ordinato
+     */
     private void getTavoliAperti(){
         this.tavoli.clear();
         this.tavoli = serverCentraleStaff.getTavoli(StatoProdottoOrdinato.ORDINATO, tipoProdotto);
@@ -101,6 +115,12 @@ public abstract class AbstractGUIStaffController implements Initializable {
             }
         }
     }
+
+    /**
+     * riempimento Vbox di prodotti per tavolo
+     * @param tavolo
+     * @return
+     */
     protected VBox initVboxProdotti(int tavolo){
         VBox vBox1 = new VBox();
         vBox1.setPrefHeight(217);
@@ -124,6 +144,13 @@ public abstract class AbstractGUIStaffController implements Initializable {
         }
         return vBox1;
     }
+
+    /**
+     * Riempipento pannelli per tavolo
+     * @param tavolo
+     * @param vBox
+     * @return
+     */
     protected AnchorPane initPaneTavolo(int tavolo, VBox vBox){
         Text table = new Text("TAVOLO N. " + tavolo);
         table.setId("tableText");
@@ -138,6 +165,11 @@ public abstract class AbstractGUIStaffController implements Initializable {
         tempPane.getStylesheets().add(getClass().getResource("/gui/cucina/style/StyleCucina.css").toExternalForm());
         return tempPane;
     }
+
+    /**
+     * Lancia thread per eliminare il prodotto cioè setto lo stato del prodotto selezionato in stato consegnato
+     * @param button
+     */
     protected  void eliminaProdottoPronto(JFXButton button){
         boolean check=false;
         for(int tavolo : tavoli) {

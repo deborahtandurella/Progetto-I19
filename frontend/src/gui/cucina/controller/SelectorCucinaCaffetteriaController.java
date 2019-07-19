@@ -6,7 +6,9 @@ import javafx.event.ActionEvent;
 import prodotti.prodotto.TipoProdotto;
 
 import java.io.IOException;
-
+/**
+ * Controller per selezionare tra caffetteria e cucina
+ */
 public class SelectorCucinaCaffetteriaController {
 
     public void loadCucinaOrCaffetteria(ActionEvent event) throws IOException {

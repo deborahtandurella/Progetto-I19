@@ -5,6 +5,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import prodotti.prodotto.TipoProdotto;
 
+/**
+ * Classe Controller per cucina
+ * Attenzione: si differenzia dalla caffetteria poichè gestisce prodotti di tipo Cucina e inserisce bottoni start timer
+ * per tavolo.
+ */
 public class CucinaController extends AbstractGUIStaffController {
 
     public CucinaController(TipoProdotto tipoProdotto) {
