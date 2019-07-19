@@ -17,8 +17,9 @@ Realizzazione di un programma che gestisca le ordinazioni di un ristorante e i r
 ## Back-end
 
 1. Spostarsi nella cartella backend.
-2. Installare pip: https://pip.pypa.io/en/stable/installing/, per documentazione pipenv: https://github.com/pypa/pipenv).
+2. Installare pip (https://pip.pypa.io/en/stable/installing/) oppure pipenv (https://github.com/pypa/pipenv).
+4. Lanciare il comando pipenv install per creare la virtualenv.
 3. Utilizzare pipenv shell per attivare la virtualenv.
 3. Spostarsi nella cartella backend/i19_backend.
 4. Lanciare : python manage.py runserver (per lanciare la versione produzione).
-5. Lanciare : python manage.py runserver --settings=setting_test (per lanciare il database di test).
+5. Lanciare : python manage.py runserver --settings=setting_test (per lanciare la versione con il database di test).
