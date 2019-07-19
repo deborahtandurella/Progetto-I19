@@ -9,7 +9,7 @@ Realizzazione di un programma che gestisca le ordinazioni di un ristorante e i r
 * Di default l'installazione e l'esecuzione del backend non è obbligatorio in quanto è stato fatto il deploy su una VPS sull'indirizzo 137.74.165.12 e il client in automatico si collega ad essa. 
 
 ## Front-end
-
+Attenzione: per il corretto funzionamento è necessario Java 8 e assicurarsi di installare le dipendenze dal file pom.xml
 1. Compilare LauncherClient, LauncherCucinaCaffetteria. 
 2. Avviare LauncherClient e LauncherCucinaCaffetteria nell'ordine preferito. 
 3. All'apertura del Client, inserire il numero del tavolo. 
