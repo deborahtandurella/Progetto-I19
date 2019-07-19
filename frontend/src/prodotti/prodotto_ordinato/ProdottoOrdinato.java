@@ -82,7 +82,13 @@ public class ProdottoOrdinato implements ProdottoOrdinatoInterface {
 		this.statoProdottoOrdinato = StatoProdottoOrdinato.LAVORAZIONE;
 		this.tempoInizioLavorazione = LocalDateTime.now();
 	}
-	
+
+	/**
+	 * Permette la differenza dei tempi tra il tempo in cui il prodotto è stato settato in lavorazione e il tempo vero e
+	 * proprio. Infine sottraggo al tempo massimo di elaborazione il tempo trascorso
+	 * @param max
+	 * @return
+	 */
 	public int getTempoElaborazioneRimanente(int max) {
 		int tempoPassato = (int)Duration.between(this.tempoInizioLavorazione, LocalDateTime.now()).getSeconds();
 		return Math.abs(max) - tempoPassato;
