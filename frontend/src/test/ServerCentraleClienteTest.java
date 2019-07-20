@@ -29,11 +29,11 @@ class ServerCentraleClienteTest {
     @Test
     void getMenu() throws PrezzoNegativoException, JsonProcessingException {
         ArrayList<Prodotto> menu = new ArrayList<>();
+
         Prodotto p1 = new Prodotto(1, "Acqua tranqui", (float) 2.0, "Prodotto interessante della caffetteria.", 0 , TipoProdotto.CAFFETTERIA, TipoPortata.BEVANDE);
         Prodotto p2 = new Prodotto(2, "Carbonara", (float) 12.0, "Descrizione carbonara.", 12 , TipoProdotto.CUCINA, TipoPortata.PIATTI);
         Prodotto p3 = new Prodotto(3, "Barolo", (float) 35.0, "Descrizione Barolo.", 0 , TipoProdotto.CAFFETTERIA, TipoPortata.VINI);
         Prodotto p4 = new Prodotto(4, "Tiramisù", (float) 8.0, "Descrizione dolce.", 10 , TipoProdotto.CAFFETTERIA, TipoPortata.DOLCI);
-
         menu.add(p1);
         menu.add(p2);
         menu.add(p3);

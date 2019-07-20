@@ -21,7 +21,6 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ServerCentraleStaffTest {
-
     ServerCentraleStaff serverStaff;
     ServerCentraleCliente serverCliente;
     List<ProdottoOrdinato> ordinazioni;
@@ -30,16 +29,13 @@ class ServerCentraleStaffTest {
     void setUp() throws OrdinazioneNegativaException, NessunProdottoException {
         serverStaff = new ServerCentraleStaff(true);
         serverCliente = new ServerCentraleCliente(true );
-
-        serverCliente.resetDatabase();
-
         ArrayList<ProdottoOrdinato> ordine = new ArrayList<>();
 
+        serverCliente.resetDatabase();
         List<Prodotto> lista_prodotti = serverCliente.getMenu();
 
         ProdottoOrdinato p1o = new ProdottoOrdinato(lista_prodotti.get(0), 1,1);
         ProdottoOrdinato p2o = new ProdottoOrdinato(lista_prodotti.get(1), 2,2);
-
         ordine.add(p1o);
         ordine.add(p2o);
 
@@ -48,7 +44,6 @@ class ServerCentraleStaffTest {
 
     @Test
     void getOrdini() throws JsonProcessingException {
-
         ObjectMapper mapper = new ObjectMapper();
         System.out.println(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(ordinazioni));
 
@@ -57,17 +52,13 @@ class ServerCentraleStaffTest {
                 ordinazioni.remove(prodottoOrdinato);
             }
         }
-
         assertArrayEquals(ordinazioni.toArray(), serverStaff.getOrdini(TipoProdotto.CUCINA).toArray());
     }
 
     @Test
     void changeStatoProdottoOrdinato() {
-
         ProdottoOrdinato p = serverStaff.getOrdini(TipoProdotto.CUCINA).get(0);
         p = serverStaff.changeStatoProdottoOrdinato(p, StatoProdottoOrdinato.CONSEGNATO);
-        System.out.println("OOOOOOOOOOOOOOOOOOOOOOO  ----> id = " + p.getId());
         assertEquals( StatoProdottoOrdinato.CONSEGNATO , p.getStato());
-
     }
 }
