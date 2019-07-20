@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import prodotti.prodotto_ordinato.ProdottoOrdinato;
 
 /**
- * Classe che permette la conversione di oggetti da Json a Java
+ * Classe che permette la conversione di oggetti da Java a Json
  */
 public class ProdottoOrdinatoSerializer extends StdSerializer<ProdottoOrdinato>{
 
