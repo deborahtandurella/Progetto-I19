@@ -5,7 +5,7 @@ import javafx.scene.layout.VBox;
 import prodotti.prodotto.TipoProdotto;
 
 /**
- * Controller per la Caffetteria, gestisce prodotti di tipo cucina
+ * Controller per la Caffetteria, gestisce prodotti di tipo Caffetteria
  */
 public class CaffetteriaController extends AbstractGUIStaffController {
 
