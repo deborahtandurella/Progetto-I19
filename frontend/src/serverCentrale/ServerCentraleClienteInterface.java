@@ -10,9 +10,9 @@ import prodotti.prodotto.TipoPortata;
 
 public interface ServerCentraleClienteInterface {
 
-	public List<ProdottoOrdinato> inviaOrdine(ArrayList<ProdottoOrdinato> ordini) throws NessunProdottoException;
-	public List<Prodotto> getMenu(TipoPortata tipoPortata);
-	public List<Prodotto> getMenu();
-	public float getConto(int idTavolo);
-	public List<ProdottoOrdinato> getOrdini(int idTavolo);
+	List<ProdottoOrdinato> inviaOrdine(ArrayList<ProdottoOrdinato> ordini) throws NessunProdottoException;
+	List<Prodotto> getMenu(TipoPortata tipoPortata);
+	List<Prodotto> getMenu();
+	float getConto(int idTavolo);
+	List<ProdottoOrdinato> getOrdini(int idTavolo);
 }

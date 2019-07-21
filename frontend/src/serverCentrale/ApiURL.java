@@ -48,8 +48,6 @@ public final class ApiURL {
 		if(!this.test) {
 			throw new ResetDatabaseException();
 		}
-		
 		return this.base_name + RESET_DATABASE;
 	}
-	
 }

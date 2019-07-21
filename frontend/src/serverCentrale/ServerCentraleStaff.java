@@ -28,7 +28,6 @@ public class ServerCentraleStaff extends Server implements ServerCentraleStaffIn
 	
 	@Override
 	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto) {
-
 		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(super.apiURL.getProdottoOrdinato())
 				.queryParam("prodotto__tipo", tipoProdotto.value());
 
@@ -45,7 +44,6 @@ public class ServerCentraleStaff extends Server implements ServerCentraleStaffIn
 	}
 
 	private List<ProdottoOrdinato> getOrdini(String url) {
-		
 		ResponseEntity<List<ProdottoOrdinato>> ret = restTemplate.exchange(url, HttpMethod.GET,
 				null, new ParameterizedTypeReference<List<ProdottoOrdinato>>() {
 				});
@@ -97,5 +95,4 @@ public class ServerCentraleStaff extends Server implements ServerCentraleStaffIn
 		
 		return this.getTavoli(queryBuilder.toUriString());
 	}
-	
 }

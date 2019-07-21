@@ -35,11 +35,9 @@ public class ServerCentraleCliente extends Server implements ServerCentraleClien
 				entity, new ParameterizedTypeReference<List<ProdottoOrdinato>>() {
 				});
 		return ret.getBody();
-
 	}
 	
 	public List<Prodotto> getMenu(TipoPortata tipoPortata) {
-
 		UriComponentsBuilder queryBuilder = UriComponentsBuilder.fromHttpUrl(this.apiURL.getProdotto()).queryParam("tipoPortata",
 				tipoPortata.value());
 
@@ -79,5 +77,4 @@ public class ServerCentraleCliente extends Server implements ServerCentraleClien
 
 		return ret.getBody();
 	}
-	
 }

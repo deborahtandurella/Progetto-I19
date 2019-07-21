@@ -8,11 +8,10 @@ import prodotti.prodotto.TipoProdotto;
 
 public interface ServerCentraleStaffInterface {
 
-	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto);
-	public List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto, StatoProdottoOrdinato statoProdottoOrdinato);
-	public ProdottoOrdinato changeStatoProdottoOrdinato(ProdottoOrdinato prodottoOrdinato, StatoProdottoOrdinato statoProdottoOrdinato);
-	public List<Integer> getTavoli();
-	public List<Integer> getTavoli(StatoProdottoOrdinato statoProdottoOrdinato);
-	public List<Integer> getTavoli(StatoProdottoOrdinato statoProdottoOrdinato, TipoProdotto tipoProdotto);
-	
+	List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto);
+	List<ProdottoOrdinato> getOrdini(TipoProdotto tipoProdotto, StatoProdottoOrdinato statoProdottoOrdinato);
+	ProdottoOrdinato changeStatoProdottoOrdinato(ProdottoOrdinato prodottoOrdinato, StatoProdottoOrdinato statoProdottoOrdinato);
+	List<Integer> getTavoli();
+	List<Integer> getTavoli(StatoProdottoOrdinato statoProdottoOrdinato);
+	List<Integer> getTavoli(StatoProdottoOrdinato statoProdottoOrdinato, TipoProdotto tipoProdotto);
 }
