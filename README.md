@@ -6,7 +6,7 @@ Realizzazione di un programma che gestisca le ordinazioni di un ristorante e i r
 
 # Come avviare
 
-* Di default l'installazione e l'esecuzione del backend non è obbligatorio in quanto è stato fatto il deploy su una VPS sull'indirizzo 137.74.165.12 e il client in automatico si collega ad essa. 
+* Di default l'installazione e l'esecuzione del backend non sono obbligatori in quanto è stato fatto il deploy su una VPS all'indirizzo 137.74.165.12 e il client in automatico si collega ad essa. 
 
 ## Front-end
 Attenzione: per il corretto funzionamento è necessario Java 8 e assicurarsi di installare le dipendenze dal file pom.xml
