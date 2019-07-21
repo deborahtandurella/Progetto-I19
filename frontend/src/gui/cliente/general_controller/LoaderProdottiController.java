@@ -39,5 +39,4 @@ public abstract class LoaderProdottiController extends GeneralController {
         });
         FXServiceMenu.start();
     }
-
 }

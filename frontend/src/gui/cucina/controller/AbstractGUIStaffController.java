@@ -49,7 +49,6 @@ public abstract class AbstractGUIStaffController implements Initializable {
     }
 
     public AbstractGUIStaffController(TipoProdotto tipoProdotto) {
-
         this.tipoProdotto = tipoProdotto;
         this.tavoliInLavorazione = new ArrayList<>();
     }
