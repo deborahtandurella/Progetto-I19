@@ -37,7 +37,5 @@ public class ProdottoOrdinatoSerializer extends StdSerializer<ProdottoOrdinato>{
 		gen.writeNumberField("statoProdottoOrdinato", value.getStato().value());
 
 		gen.writeEndObject();
-		
 	}
-
 }
