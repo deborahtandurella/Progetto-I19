@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 /**
  * Permette la visualizzazione dell'incrementazione/decrementazione dei prodotti nel carrello
+ * Mi istanzia inoltre i prodotti Ordinati
  */
 public class ManagerCarrello {
     private static ArrayList<ProdottoOrdinato> prodottiOrdinati = new ArrayList<>();
